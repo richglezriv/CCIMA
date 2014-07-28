@@ -1,0 +1,20 @@
+[18-Jul-2014 11:50:23 America/Tegucigalpa] 0::session.inc:401: include_once(./tmp/faillog.php): failed to open stream: No such file or directory
+[18-Jul-2014 11:50:23 America/Tegucigalpa] 0::session.inc:401: include_once(): Failed opening './tmp/faillog.php' for inclusion (include_path='.;C:\php\pear')
+[18-Jul-2014 11:50:29 America/Tegucigalpa] 0::session.inc:401: include_once(./tmp/faillog.php): failed to open stream: No such file or directory
+[18-Jul-2014 11:50:29 America/Tegucigalpa] 0::session.inc:401: include_once(): Failed opening './tmp/faillog.php' for inclusion (include_path='.;C:\php\pear')
+[18-Jul-2014 11:51:54 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:51:54 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:51:54 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:51:54 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:51:54 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:51:54 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:51:54 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:51:54 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:51:54 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:51:54 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:51:54 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:52:28 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:52:28 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:52:28 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:52:28 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
+[18-Jul-2014 11:54:37 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
