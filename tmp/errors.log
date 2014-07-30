@@ -18,3 +18,7 @@
 [18-Jul-2014 11:52:28 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
 [18-Jul-2014 11:52:28 America/Tegucigalpa] 0:admin:JsHttpRequest.php:470: mb_convert_encoding(): Illegal character encoding specified
 [18-Jul-2014 11:54:37 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
+[30-Jul-2014 09:55:25 America/Tegucigalpa] 0:admin:remote_url.inc:48: fsockopen(): php_network_getaddresses: getaddrinfo failed: Éste es normalmente un error temporal durante la resolución de nombres de host y significa que el servidor local no recibió una respuesta de un servidor autoritativo. 
+[30-Jul-2014 09:55:25 America/Tegucigalpa] 0:admin:remote_url.inc:48: fsockopen(): unable to connect to repo.frontaccounting.eu:80 (php_network_getaddresses: getaddrinfo failed: Éste es normalmente un error temporal durante la resolución de nombres de host y significa que el servidor local no recibió una respuesta de un servidor autoritativo. )
+[30-Jul-2014 09:56:25 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
+[30-Jul-2014 09:56:52 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed

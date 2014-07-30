@@ -18,7 +18,16 @@ $installed_languages = array (
     'name' => 'English',
     'encoding' => 'iso-8859-1',
   ),
+  1 => 
+  array (
+    'name' => 'Spanish (Mexico)',
+    'package' => 'es_MX',
+    'code' => 'es_MX',
+    'encoding' => 'iso-8859-1',
+    'version' => '2.3.0-2',
+    'path' => 'lang/es_MX',
+  ),
 );
 
-$dflt_lang = 'C';
+$dflt_lang = 'es_MX';
 ?>
