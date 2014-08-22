@@ -1575,6 +1575,70 @@ function stock_categories_list_row($label, $name, $selected_id=null, $spec_opt=f
 
 //-----------------------------------------------------------------------------------------------
 
+function user_list($name, $selected_id=null, $spec_opt=false, $submit_on_change=false)
+{
+	$sql = "SELECT user_id, real_name FROM ".TB_PREF."users";
+	return combo_input($name, $selected_id, $sql, 'user_id', 'real_name',
+			array('order'=>'user_id',
+					'spec_option' => $spec_opt,
+					'spec_id' => -1,
+					'select_submit'=> $submit_on_change,
+					'async' => true
+			));
+}
+
+function user_list_cells($label, $name, $selected_id=null, $spec_opt=false, $submit_on_change=false)
+{
+	if ($label != null)
+		echo "<td>$label</td>\n";
+	echo "<td>";
+	echo user_list($name, $selected_id, $spec_opt, $submit_on_change);
+	echo "</td>\n";
+}
+
+function user_list_row($label, $name, $selected_id=null, $spec_opt=false, $submit_on_change=false)
+{
+	echo "<tr><td class='label'>$label</td>";
+	user_list_cells(null, $name, $selected_id, $spec_opt, $submit_on_change);
+	echo "</tr>\n";
+}
+
+//-----------------------------------------------------------------------------------------------
+
+function sheet_list($name, $selected_id=null, $spec_opt=false, $submit_on_change=false,$calibre)
+{
+	$sql = "SELECT a.stock_id, b.description, b.material_cost ".
+			"FROM ".TB_PREF."calibres_y_laminas a, ".TB_PREF."stock_master b ".
+			"WHERE a.stock_id = b.stock_id ".
+			"AND a.calibre = ".$calibre; 
+	//"SELECT user_id, real_name FROM ".TB_PREF."users";
+	return combo_input($name, $selected_id, $sql, 'a.stock_id', 'b.description',
+			array('order'=>'b.description',
+					'spec_option' => $spec_opt,
+					'spec_id' => -1,
+					'select_submit'=> $submit_on_change,
+					'async' => true
+			));
+}
+
+function sheet_list_cells($label, $name, $selected_id=null, $spec_opt=false, $submit_on_change=false,$calibre)
+{
+	if ($label != null)
+		echo "<td>$label</td>\n";
+	echo "<td>";
+	echo sheet_list($name, $selected_id, $spec_opt, $submit_on_change,$calibre);
+	echo "</td>\n";
+}
+
+function sheet_list_row($label, $name, $selected_id=null, $spec_opt=false, $submit_on_change=false,$calibre)
+{
+	echo "<tr><td class='label'>$label</td>";
+	sheet_list_cells(null, $name, $selected_id, $spec_opt, $submit_on_change,$calibre);
+	echo "</tr>\n";
+}
+
+//-----------------------------------------------------------------------------------------------
+
 function gl_account_types_list($name, $selected_id=null, $all_option=false, $all=true)
 {
 	global $all_items;

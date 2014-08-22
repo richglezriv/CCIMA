@@ -23,9 +23,12 @@ $db_connections = array (
   0 => 
   array (
     'name' => 'CCIMA',
-    'host' => '23.91.122.34',
-    'dbuser' => 'usr_demofa',
-    'dbpassword' => 'usrdemofa',
+    //'host' => '23.91.122.34',
+  	//'dbuser' => 'usr_demofa',
+    //'dbpassword' => 'usrdemofa',
+  	'host' => 'localhost',
+  	'dbuser' => 'root',
+    'dbpassword' => '',
     'dbname' => 'db_ccimadev',
     'tbpref' => '0_',
   ),
