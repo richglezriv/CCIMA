@@ -129,7 +129,7 @@ if (db_has_gl_accounts())
 	if ($showdims)
 		label_cell("<b>".number_format2($btotal, 0)."</b>", "nowrap align=right");
 	label_cell("<b>".number_format2($ltotal, 0)."</b>", "nowrap align=right");
-	end_row();
+	end_row(); 
 	end_table(1);
 	div_end();
 	submit_center_first('update', _("Update"), '', null);

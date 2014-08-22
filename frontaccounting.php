@@ -18,6 +18,7 @@ if (!isset($path_to_root) || isset($_GET['path_to_root']) || isset($_POST['path_
 	include_once($path_to_root . '/applications/manufacturing.php');
 	include_once($path_to_root . '/applications/dimensions.php');
 	include_once($path_to_root . '/applications/generalledger.php');
+	include_once($path_to_root . '/applications/calculadoras.php');
 	include_once($path_to_root . '/applications/setup.php');
 	include_once($path_to_root . '/installed_extensions.php');
 
@@ -79,6 +80,7 @@ if (!isset($path_to_root) || isset($_GET['path_to_root']) || isset($_POST['path_
 			$this->add_application(new inventory_app());
 			$this->add_application(new manufacturing_app());
 			$this->add_application(new dimensions_app());
+			$this->add_application(new calculadoras_app());
 			$this->add_application(new general_ledger_app());
 
 			hook_invoke_all('install_tabs', $this);

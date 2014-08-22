@@ -25,6 +25,8 @@ include_once($path_to_root . "/sales/includes/sales_ui.inc");
 include_once($path_to_root . "/reporting/includes/reporting.inc");
 include_once($path_to_root . "/taxes/tax_calc.inc");
 
+include_once($path_to_root . "/timbrado/WSTimbrado.php");
+
 $js = "";
 if ($use_popup_windows) {
 	$js .= get_js_open_window(900, 500);

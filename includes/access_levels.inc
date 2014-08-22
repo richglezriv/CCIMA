@@ -52,6 +52,10 @@ define('SS_GL_C',	61<<8);
 define('SS_GL',		62<<8);
 define('SS_GL_A',	63<<8);
 
+define('SS_CALC_C', 71<<8);
+define('SS_CALC',   72<<8);
+define('SS_CALC_A', 73<<8);
+
 $security_sections = array(
  SS_SADMIN => _("System administration"),
  SS_SETUP => _("Company setup"),
@@ -72,7 +76,10 @@ $security_sections = array(
  SS_DIM => _("Dimensions"),
  SS_GL_C => _("Banking & GL configuration"),
  SS_GL => _("Banking & GL transactions"),
- SS_GL_A => _("Banking & GL analytics")
+ SS_GL_A => _("Banking & GL analytics"),
+ SS_CALC_C => _("Calculadora configuration"),
+ SS_CALC => _("Calculadora transactions"),
+ SS_CALC_A => _("Calculadora analytics")
 );
 
 /*
@@ -246,6 +253,14 @@ $security_areas =array(
 	'SA_TAXREP' => array(SS_GL_A|2, _("Tax reports and inquiries")),
 	'SA_BANKREP' => array(SS_GL_A|3, _("Bank reports and inquiries")),
 	'SA_GLREP' => array(SS_GL_A|4, _("GL reports and inquiries")),
+		
+	'SS_CALCCOUNT' => array(SS_CALC_C|1, _("Configuracion de la calculadora de materiales")),
+		
+	'SS_CALCTRANS' => array(SS_CALC|1, _("Conversor de materiales")),
+		
+	'SS_CALCANALYTIC' => array(SS_CALC_A|1, _("Reporte de materiales"))
+		
+		
 );
 /*
 	This function should be called whenever we want to extend core access level system
