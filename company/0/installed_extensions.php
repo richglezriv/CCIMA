@@ -6,5 +6,14 @@
 */
 
 $installed_extensions = array (
+  1 => 
+  array (
+    'name' => 'Requisitions',
+    'package' => 'requisitions',
+    'version' => '2.3.13-2',
+    'type' => 'extension',
+    'active' => 1,
+    'path' => 'modules/requisitions',
+  ),
 );
 ?>

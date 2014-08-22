@@ -20,6 +20,15 @@ $installed_languages = array (
   ),
   1 => 
   array (
+    'name' => 'Spanish (Spain)',
+    'package' => 'es_ES',
+    'code' => 'es_ES',
+    'encoding' => 'utf-8',
+    'version' => '2.3.12-1',
+    'path' => 'lang/es_ES',
+  ),
+  2 => 
+  array (
     'name' => 'Spanish (Mexico)',
     'package' => 'es_MX',
     'code' => 'es_MX',
@@ -29,5 +38,5 @@ $installed_languages = array (
   ),
 );
 
-$dflt_lang = 'es_MX';
+$dflt_lang = 'es_ES';
 ?>

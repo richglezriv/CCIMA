@@ -6,8 +6,17 @@
 	FA extension system documentation.
 */
 
-$next_extension_id = 1; // unique id for next installed extension
+$next_extension_id = 2; // unique id for next installed extension
 
 $installed_extensions = array (
+  1 => 
+  array (
+    'name' => 'Requisitions',
+    'package' => 'requisitions',
+    'version' => '2.3.13-2',
+    'type' => 'extension',
+    'active' => false,
+    'path' => 'modules/requisitions',
+  ),
 );
 ?>

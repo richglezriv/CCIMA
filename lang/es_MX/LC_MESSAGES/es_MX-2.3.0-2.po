@@ -3878,10 +3878,15 @@ msgstr "Notas de Crédito de Proveedores"
 msgid "&Allocate Supplier Payments or Credit Notes"
 msgstr "Asignar Pagos a Proveedores o Notas de Crédito"
 
+/** Requisiciones **/
+//#: hooks.php:16 hooks.php:29
+msgid "Requisitions Entries"
+msgstr "Captura de Requisiciones"
+
 #: /var/www/fa2.3/devel/../applications/suppliers.php:39
 #, fuzzy
 msgid "Purchase Orders &Inquiry"
-msgstr "Consultar Órdenes de Compra"
+msgstr "Consultar Órdenes de Compras"
 
 #: /var/www/fa2.3/devel/../applications/suppliers.php:41
 #, fuzzy

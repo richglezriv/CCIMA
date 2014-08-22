@@ -18,7 +18,19 @@ $def_coy - the default company that is pre-selected on login
 $def_coy = 0;
 
 $tb_pref_counter = 1;
-
+/** DEV **/
+$db_connections = array (
+  0 => 
+  array (
+    'name' => 'CCIMA',
+    'host' => '192.168.192.128',
+    'dbuser' => 'usr_demofa',
+    'dbpassword' => 'usrdemofa',
+    'dbname' => 'db_ccimadev',
+    'tbpref' => '0_',
+  ),
+);
+/** QA 
 $db_connections = array (
   0 => 
   array (
@@ -30,4 +42,5 @@ $db_connections = array (
     'tbpref' => '0_',
   ),
 );
+**/
 ?>
