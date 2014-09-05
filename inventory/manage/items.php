@@ -29,7 +29,6 @@ include_once($path_to_root . "/inventory/includes/inventory_db.inc");
 $user_comp = user_company();
 $new_item = get_post('stock_id')=='' || get_post('cancel') || get_post('clone'); 
 //------------------------------------------------------------------------------------
-
 if (isset($_GET['stock_id']))
 {
 	$_POST['stock_id'] = $_GET['stock_id'];
@@ -332,6 +331,20 @@ function item_settings(&$stock_id)
 	check_row(_("Editable description:"), 'editable');
 
 	check_row(_("Exclude from sales:"), 'no_sale');
+    //3H Rentas
+    if (user_company() == 1){
+        table_section_title("Datos del veh&iacute;culo");
+        file_row(_("Tarjeta de verificaci&oacute;n (.jpg)") . ":", 'verif', 'verif');
+        file_row(_("Tarjeta de circulaci&oacute;n (.jpg)") . ":", 'circulacion', 'circulacion');
+        file_row(_("Licencia de operador (.jpg)") . ":", 'licencia', 'licencia');
+        file_row(_("Factura de veh&iacute;culo (.jpg)") . ":", 'factura', 'factura');
+        file_row(_("Gr&aacute;fica de capacidades (.jpg)") . ":", 'capacidad', 'capacidad');
+        //texto
+        text_row(_("No tarjeta de gasolina:"), 'tarjetaGas', null, 22, 50);
+        text_row(_("Fecha de expiraci&oacute;n seguro:"), 'seguro', null, 22, 50);
+        text_row(_("Mes de verificaci&oacute;n:"), 'mesVerif', null, 22, 50);
+        text_row(_("Pago de tenencia:"), 'tenencia', null, 22, 50);
+    }
 
 	table_section(2);
 
@@ -376,6 +389,9 @@ function item_settings(&$stock_id)
 
 	// Add image upload for New Item  - by Joe
 	file_row(_("Image File (.jpg)") . ":", 'pic', 'pic');
+
+    
+
 	// Add Image upload for New Item  - by Joe
 	$stock_img_link = "";
 	$check_remove_image = false;

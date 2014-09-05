@@ -550,7 +550,7 @@ msgstr "Número Oficial de la Compañía:"
 #: admin/company_preferences.php:168 purchasing/manage/suppliers.php:94
 #: sales/manage/customers.php:233 sales/manage/customers.php.orig:230
 msgid "GSTNo:"
-msgstr "CIF/NIF:"
+msgstr "RFC:"
 
 #: admin/company_preferences.php:170
 msgid "Home Currency:"
@@ -2620,7 +2620,7 @@ msgstr "Transacciones"
 
 #: applications/customers.php:19
 msgid "Sales &Quotation Entry"
-msgstr "&Entrada de Presupuesto"
+msgstr "Captura de Cotizacion"
 
 #: applications/customers.php:21
 msgid "Sales &Order Entry"

@@ -136,9 +136,12 @@ submit_add_or_update_center($selected_id == -1, '', 'both');
 
 end_form();
 
+echo "<div align='center'><input type='checkbox' value='1' >&nbsp;Autorizado";
 echo "<div align='center'><a href='requisition_allocations.php?po=yes'>"._("Generate Purchase Orders")."</a></div>\n";
 //------------------------------------------------------------------------------------
 
 end_page();
 
 ?>
+
+
