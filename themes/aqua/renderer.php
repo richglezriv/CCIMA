@@ -127,10 +127,10 @@
 			{
 				echo "<table align='center' id='footer'>\n";
 				echo "<tr>\n";
-				echo "<td align='center' class='footer'><a target='_blank' href='$power_url'><font color='#ffffff'>$app_title $version - " . _("Theme:") . " " . user_theme() . " - ".show_users_online()."</font></a></td>\n";
+				echo "<td align='center' class='footer'><a target='_blank' href='$power_url'><font color='#ffffff'>ERP 1.0&nbsp;-&nbsp;" . _("Theme:") . " " . user_theme() . " - ".show_users_online()."</font></a></td>\n";
 				echo "</tr>\n";
 				echo "<tr>\n";
-				echo "<td align='center' class='footer'><a target='_blank' href='$power_url'><font color='#ffff00'>$power_by</font></a></td>\n";
+				echo "<td align='center' class='footer'><a target='_blank' href='$power_url'><font color='#ffff00'>GRUPO CCIMA</font></a></td>\n";
 				echo "</tr>\n";
 				if ($allow_demo_mode==true)
 				{

@@ -10,15 +10,16 @@ class hooks_requisitions extends hooks {
 	*/
 	function install_options($app) {
 		global $path_to_root;
-
+        /**
 		switch($app->id) {
 			case 'AP':
-				$app->add_rapp_function(0, _('Captura de Requisiciones'), $path_to_root.'/modules/requisitions/requisitions.php',
+				$app->add_rapp_function(0, gettext('Requisitions Entries'), $path_to_root.'/modules/requisitions/requisitions.php',
 					'SA_REQUISITIONS',	MENU_TRANSACTION);
 				$app->add_rapp_function(0, _('Requisitions Allocation'), $path_to_root.'/modules/requisitions/requisition_allocations.php',
 					 'SA_REQUISITION_ALLOCATIONS', MENU_TRANSACTION);
 				break;
 		}
+        **/
 	}
 
 	function install_access()

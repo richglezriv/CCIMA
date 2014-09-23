@@ -49,7 +49,7 @@ function defaultCompany()
 
 	$login_timeout = $_SESSION["wa_current_user"]->last_act;
 
-	$title = $login_timeout ? _('Authorization timeout') : $app_title." ".$version." - "._("Login");
+	$title = $login_timeout ? _('Authorization timeout') : "ERP Grupo CCIMA -&nbsp;"._("Login");
 	$encoding = isset($_SESSION['language']->encoding) ? $_SESSION['language']->encoding : "iso-8859-1";
 	$rtl = isset($_SESSION['language']->dir) ? $_SESSION['language']->dir : "ltr";
 	$onload = !$login_timeout ? "onload='defaultCompany()'" : "";
@@ -78,7 +78,7 @@ function defaultCompany()
 	start_row();
 	echo "<td align='center' colspan=2>";
 	if (!$login_timeout) { // FA logo
-    	echo "<a target='_blank' href='$power_url'><img src='$path_to_root/themes/$def_theme/images/logo_frontaccounting.png' alt='FrontAccounting' height='50' onload='fixPNG(this)' border='0' /></a>";
+    	echo "<a target='_blank' href='$power_url'><img src='$path_to_root/themes/$def_theme/images/ccima_logo.png' alt='Grupo CCIMA' height='50' onload='fixPNG(this)' border='0' /></a>";
 	} else { 
 		echo "<font size=5>"._('Authorization timeout')."</font>";
 	} 
@@ -87,7 +87,7 @@ function defaultCompany()
 
 	echo "<input type='hidden' id=ui_mode name='ui_mode' value='".$_SESSION["wa_current_user"]->ui_mode."' />\n";
 	if (!$login_timeout)
-		table_section_title(_("Version")." $version   Build $build_version - "._("Login"));
+		table_section_title("ERP&nbsp;-&nbsp;"._("Login"));
 	$value = $login_timeout ? $_SESSION['wa_current_user']->loginname : ($allow_demo_mode ? "demouser":"");
 
 	text_row(_("User name"), "user_name_entry_field", $value, 20, 30);
@@ -149,10 +149,10 @@ function defaultCompany()
 	echo "</tr></table>\n";
 	echo "<table class='footer'>\n";
 	echo "<tr>\n";
-	echo "<td><a target='_blank' href='$power_url' tabindex='-1'>$app_title $version - " . _("Theme:") . " " . $def_theme . "</a></td>\n";
+	echo "<td><a target='_blank' href='$power_url' tabindex='-1'>ERP 1.0&nbsp;" . _("Theme:") . " " . $def_theme . "</a></td>\n";
 	echo "</tr>\n";
 	echo "<tr>\n";
-	echo "<td><a target='_blank' href='$power_url' tabindex='-1'>$power_by</a></td>\n";
+	echo "<td><a target='_blank' href='$power_url' tabindex='-1'>GRUPO CCIMA S.A. de C.V.</a></td>\n";
 	echo "</tr>\n";
 	echo "</table><br><br>\n";
 	echo "</body></html>\n";

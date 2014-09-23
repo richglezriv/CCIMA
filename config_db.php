@@ -17,8 +17,8 @@ $def_coy - the default company that is pre-selected on login
 
 $def_coy = 0;
 
-$tb_pref_counter = 1;
-/** DEV **/
+$tb_pref_counter = 2;
+
 $db_connections = array (
   0 => 
   array (
@@ -29,21 +29,14 @@ $db_connections = array (
     'dbname' => 'db_ccimadev',
     'tbpref' => '0_',
   ),
-);
-/** QA 
-$db_connections = array (
-  0 => 
+  1 => 
   array (
-    'name' => 'CCIMA',
-    //'host' => '23.91.122.34',
-  	//'dbuser' => 'usr_demofa',
-    //'dbpassword' => 'usrdemofa',
-  	'host' => 'localhost',
-  	'dbuser' => 'root',
-    'dbpassword' => '',
+    'name' => 'RENTAS',
+    'host' => '192.168.192.128',
+    'dbuser' => 'usr_demofa',
+    'dbpassword' => 'usrdemofa',
     'dbname' => 'db_ccimadev',
-    'tbpref' => '0_',
+    'tbpref' => '1_',
   ),
 );
-**/
 ?>

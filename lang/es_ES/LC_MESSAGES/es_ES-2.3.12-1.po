@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: es_ES\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-15 09:38+0200\n"
-"PO-Revision-Date: 2012-11-29 10:24+0100\n"
+"PO-Revision-Date: 2014-09-22 16:51-0600\n"
 "Last-Translator: Victor van Herpt Valdivia <victor@teidis.com>\n"
 "Language-Team: espanyol; castellà <victor@teidis.com>\n"
 "Language: es_CL\n"
@@ -19,10 +19,8 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: c:/Apache2/htdocs/account22\n"
 "X-Poedit-KeywordsList: _\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Poedit 1.6.9\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Spanish\n"
-"X-Poedit-Country: SPAIN\n"
 
 #: frontaccounting.php:73 frontaccounting.php:74
 msgid "Main  Menu"
@@ -74,7 +72,7 @@ msgstr "Contraseña:"
 #: admin/db/login.php:93 access/login.php:103 access/login.php:110
 #: admin/create_coy.php:253 admin/create_coy.php:336
 msgid "Company"
-msgstr "Compañía"
+msgstr "Empresa"
 
 #: access/login.php:101 admin/db/login.php:102 access/login.php:117
 msgid "Login -->"
@@ -3114,7 +3112,6 @@ msgstr "&Notas de Crédito de Proveedor"
 msgid "&Allocate Supplier Payments or Credit Notes"
 msgstr "&Asignar Pagos a Proveedores o Notas de Crédito"
 
-/** Requisiciones **/
 #: hooks.php:27 requisition_allocations.php:17 requisition_details.php:17
 #: requisitions.php:17
 msgid "Requisitions"

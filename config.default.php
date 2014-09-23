@@ -66,7 +66,7 @@ if (!isset($path_to_root) || isset($_GET['path_to_root']) || isset($_POST['path_
 
 	// Powered by
 	$power_by 		= "FrontAccounting";
-	$power_url 		= "http://frontaccounting.com";
+	$power_url 		= "http://grupoccima.com/";
 
 	/* No check on edit conflicts. Maybe needed to be set to 1 in certains Windows Servers */
 	$no_check_edit_conflicts = 0;

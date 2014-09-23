@@ -248,3 +248,13 @@
 [22-Aug-2014 17:55:02 America/Tegucigalpa] 0:usuario:ui_input.inc:474: Missing argument 2 for label_row(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\calculadoras\conversor_materiales.php on line 147 and defined
 [22-Aug-2014 18:00:13 America/Tegucigalpa] 0:usuario:ui_input.inc:474: Missing argument 2 for label_row(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\calculadoras\conversor_materiales.php on line 147 and defined
 [22-Aug-2014 18:44:19 America/Tegucigalpa] 0:usuario:ui_input.inc:474: Missing argument 2 for label_row(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\calculadoras\conversor_materiales.php on line 147 and defined
+[22-Sep-2014 11:09:00 America/Tegucigalpa] 0:usuario:tcpdf.php:2609: include(C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\reporting\includes/../fonts/dejavu.php): failed to open stream: No such file or directory
+[22-Sep-2014 11:09:00 America/Tegucigalpa] 0:usuario:tcpdf.php:2609: include(): Failed opening 'C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\reporting\includes/../fonts/dejavu.php' for inclusion (include_path='.;C:\php\pear')
+[22-Sep-2014 14:38:29 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
+[22-Sep-2014 14:39:11 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
+[22-Sep-2014 15:30:42 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
+[22-Sep-2014 15:42:43 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
+[22-Sep-2014 15:44:25 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
+[22-Sep-2014 15:52:50 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
+[22-Sep-2014 15:53:02 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
+[22-Sep-2014 15:55:42 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed

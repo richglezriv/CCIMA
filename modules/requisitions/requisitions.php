@@ -100,7 +100,7 @@ $result = get_all_requisitions(check_value('show_inactive'));
 start_form();
 start_table(TABLESTYLE, "width=50%");
 
-$th = array(_("RNo. "), _("Point of use"), _("Narrative"), _("Application Date"), "", "", _("Details"));
+$th = array(_("RNo."), _("Point of Use"), _("Narrative"), _("Application Date"), "", "", _("Details"));
 inactive_control_column($th);
 table_header($th);
 $k = 0;
@@ -142,9 +142,9 @@ if ($selected_id != -1)
 	hidden('selected_id', $selected_id);
 } 
 
-text_row(_("Point of use :"), 'point_of_use', null, 50, 50);
-text_row(_("Narrative :"), 'narrative', null, 50, 50);
-textarea_row(_("Details :"), 'details', null, 50, 5);
+text_row(_("Point of Use"), 'point_of_use', null, 50, 50);
+text_row(_("Narrative"), 'narrative', null, 50, 50);
+textarea_row(_("Details"), 'details', null, 50, 5);
 
 end_table(1);
 

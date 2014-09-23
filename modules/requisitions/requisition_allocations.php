@@ -121,14 +121,14 @@ if ($selected_id != -1)
 	hidden('selected_id', $selected_id);
 } 
 
-supplier_list_row(_("Supplier : "), 'supplier_id', null, true, false);
+supplier_list_row(_("Supplier"), 'supplier_id', null, true, false);
 
 	$res = get_item_edit_info(get_post('item_code'));
 	$dec =  $res["decimals"] == '' ? 0 : $res["decimals"];
 	$units = $res["units"] == '' ? _('kits') : $res["units"];
 
-qty_row(_("Order Quantity:"), 'quantity', number_format2(1, $dec), '', $units, $dec);
-amount_row(_("Order Price :"), 'price', null, null, null, 2);
+qty_row(_("Quantity"), 'quantity', number_format2(1, $dec), '', $units, $dec);
+amount_row(_("Price"), 'price', null, null, null, 2);
 
 end_table(1);
 
