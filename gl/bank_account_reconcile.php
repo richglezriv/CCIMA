@@ -195,8 +195,8 @@ echo "<hr>";
 div_start('summary');
 
 start_table(TABLESTYLE);
-$th = array(_("Reconcile Date"), _("Beginning<br>Balance"), 
-	_("Ending<br>Balance"), _("Account<br>Total"),_("Reconciled<br>Amount"), _("Difference"));
+$th = array(_("Reconcile Date"), _("Beginning Balance"), 
+	_("Ending Balance"), _("Account Total"),_("Reconciled Amount"), _("Difference"));
 table_header($th);
 start_row();
 

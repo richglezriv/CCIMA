@@ -17,7 +17,7 @@ if ($use_date_picker)
 // Begin the UI
 include_once($path_to_root . "/includes/ui.inc");
 
-$_SESSION['page_title'] = _($help_context = "Revenue / Cost Accruals");
+$_SESSION['page_title'] = _($help_context = "Revenue / Costs Accruals");
 page($_SESSION['page_title'], false, false,'', $js);
 
 //--------------------------------------------------------------------------------------------------

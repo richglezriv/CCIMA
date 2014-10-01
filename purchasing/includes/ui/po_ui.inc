@@ -184,7 +184,7 @@ function display_po_header(&$order)
 	table_section(2);
 
 	if ($order->trans_type==ST_SUPPINVOICE)
-		date_row(_("Due Date:"), 'due_date', '', false, 0, 0, 0, null, true);
+		date_row(_("Due Date"), 'due_date', '', false, 0, 0, 0, null, true);
 
   	text_row(_("Supplier's Reference:"), 'supp_ref', null, 16, 15);
 	locations_list_row(_("Receive Into:"), 'StkLocation', null, false, true); 
