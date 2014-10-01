@@ -77,9 +77,9 @@ $security_sections = array(
  SS_GL_C => _("Banking & GL configuration"),
  SS_GL => _("Banking & GL transactions"),
  SS_GL_A => _("Banking & GL analytics"),
- SS_CALC_C => _("Calculadora configuration"),
- SS_CALC => _("Calculadora transactions"),
- SS_CALC_A => _("Calculadora analytics")
+ SS_CALC_C => _("Configuracion de Calculadora"),
+ SS_CALC => _("Transacciones de Calculadora"),
+ SS_CALC_A => _("Reportes de Calculadora")
 );
 
 /*

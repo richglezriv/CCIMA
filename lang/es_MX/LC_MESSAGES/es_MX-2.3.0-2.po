@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FrontAccounting\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-08 15:59+0200\n"
-"PO-Revision-Date: 2014-10-01 13:50-0600\n"
+"PO-Revision-Date: 2014-10-01 15:35-0600\n"
 "Last-Translator: Translation Team <info@frontaccounting.net>\n"
 "Language-Team: FrontAccounting <info@frontaccounting.com>\n"
 "MIME-Version: 1.0\n"
@@ -1019,7 +1019,7 @@ msgstr "La descripción de la categoría de artículos no puede ser vacía."
 
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:41
 msgid "Selected contact category has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "La categoria de contacto seleccionada ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:47
 msgid "New contact category has been added"
@@ -1378,7 +1378,7 @@ msgstr "Intervalo de dias de vencimiento:"
 #: /var/www/fa2.3/devel/../admin/gl_setup.php:196
 #: /var/www/fa2.3/devel/../admin/payment_terms.php:140
 msgid "days"
-msgstr "días"
+msgstr "Días"
 
 #: /var/www/fa2.3/devel/../admin/gl_setup.php:120
 msgid "Retained Earnings:"
@@ -9088,7 +9088,7 @@ msgstr "Código"
 
 #: /var/www/fa2.3/devel/../manufacturing/manage/bom_edit.php:110
 msgid "Selected component has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "El componente seleccionado ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../manufacturing/manage/bom_edit.php:130
 msgid ""
@@ -9129,9 +9129,6 @@ msgid "The work centre name cannot be empty."
 msgstr "El nombre del área de producción no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../manufacturing/manage/work_centres.php:44
-msgid "Selected work center has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
-
 #: /var/www/fa2.3/devel/../manufacturing/manage/work_centres.php:49
 msgid "New work center has been added"
 msgstr "Un nuevo cliente ha sido adicionado."
@@ -11304,7 +11301,7 @@ msgstr "Año"
 #: /var/www/fa2.3/devel/../reporting/rep707.php:226
 #: /var/www/fa2.3/devel/../reporting/rep707.php:232
 msgid "Tags"
-msgstr "días"
+msgstr "Etiquetas"
 
 # c:/Apache2/htdocs/account/reporting/Rep705.php:101
 #: /var/www/fa2.3/devel/../reporting/rep705.php:250
@@ -13283,7 +13280,7 @@ msgstr "Un nuevo estatus de credito ha sido adicionado"
 
 #: /var/www/fa2.3/devel/../sales/manage/credit_status.php:52
 msgid "Selected credit status has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "El estado de credito ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../sales/manage/credit_status.php:63
 msgid ""
@@ -13359,7 +13356,7 @@ msgstr "El nombre de la Filial no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../sales/manage/customer_branches.php:88
 msgid "Selected customer branch has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "La filial del cliente seleccinado ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../sales/manage/customer_branches.php:106
 msgid "New customer branch has been added"
@@ -13626,7 +13623,7 @@ msgstr "La descripción del área no puede ser vacía."
 
 #: /var/www/fa2.3/devel/../sales/manage/recurrent_invoices.php:46
 msgid "Selected recurrent invoice has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "La factura recurrente seleccionada ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../sales/manage/recurrent_invoices.php:52
 msgid "New recurrent invoice has been added"
@@ -13659,7 +13656,7 @@ msgstr "Fin:"
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_areas.php:39
 msgid "Selected sales area has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "El area de ventas seleccionada ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_areas.php:44
 msgid "New sales area has been added"
@@ -13691,7 +13688,7 @@ msgstr "Grupos de Impuestos"
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_groups.php:39
 msgid "Selected sales group has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "El area de ventas seleccionado ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_groups.php:44
 msgid "New sales group has been added"
@@ -13736,7 +13733,7 @@ msgstr "El precio entrado debe ser numérico y mayor o igual a cero."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_people.php:62
 msgid "Selected sales person data have been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "La persona de ventas seleccionada ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_people.php:64
 msgid "New sales person data have been added"
@@ -13776,7 +13773,7 @@ msgstr "Nuevo punto de ventas creado"
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_points.php:52
 msgid "Selected point of sale has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "El punto de venta seleccionado ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_points.php:62
 msgid "Cannot delete this POS because it is used in users setup."
@@ -13844,7 +13841,7 @@ msgstr "Nuevo tipo de ventas ha sido creado"
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_types.php:59
 msgid "Selected sales type has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "El typo de ventas seleccionado ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_types.php:71
 msgid ""
@@ -14414,7 +14411,7 @@ msgstr "El nombre de grupo de impuestos no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../taxes/tax_groups.php:84
 msgid "Selected tax group has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "El grupo de impuestos seleccionado ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../taxes/tax_groups.php:89
 msgid "New tax group has been added"
@@ -14477,7 +14474,7 @@ msgstr "Nuevo tipo de impuesto ha sido creado"
 
 #: /var/www/fa2.3/devel/../taxes/tax_types.php:67
 msgid "Selected tax type has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "El tipo de impuesto seleccionado ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../taxes/tax_types.php:77
 msgid ""
