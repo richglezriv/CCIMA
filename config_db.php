@@ -23,7 +23,7 @@ $db_connections = array (
   0 => 
   array (
     'name' => 'CCIMA',
-    'host' => '192.168.192.128',
+    'host' => '23.91.121.152',
     'dbuser' => 'usr_demofa',
     'dbpassword' => 'usrdemofa',
     'dbname' => 'db_ccimadev',
@@ -32,11 +32,15 @@ $db_connections = array (
   1 => 
   array (
     'name' => 'RENTAS',
-    'host' => '192.168.192.128',
+    'host' => '23.91.121.152',
     'dbuser' => 'usr_demofa',
     'dbpassword' => 'usrdemofa',
     'dbname' => 'db_ccimadev',
     'tbpref' => '1_',
   ),
 );
+
+/** dev => 192.168.192.128 
+    prod => 23.91.121.152
+**/
 ?>

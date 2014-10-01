@@ -12,7 +12,7 @@ this.getElementHeight=getElementHeight;function getElementHeight(){var elm;if(ty
 return parseInt(elm.offsetHeight);}
 this.getElementBottom=getElementBottom;function getElementBottom(){return getElementTop(p_elm)+getElementHeight(p_elm);}
 }
-function CC(){var calendarId='CC';var currentYear=0;var currentMonth=0;var currentDay=0;var selectedYear=0;var selectedMonth=0;var selectedDay=0;var months=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];var wdays=['Do','Lu','Ma','Mi','Ju','Vi','Sa'];var tmonths=['','Jan','Feb','Mar','Apr','Mayo','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var dateField=null;function getProperty(p_property){var p_elm=calendarId;var elm=null;if(typeof(p_elm)=='object'){elm=p_elm;}else{elm=document.getElementById(p_elm);}
+function CC(){var calendarId='CC';var currentYear=0;var currentMonth=0;var currentDay=0;var selectedYear=0;var selectedMonth=0;var selectedDay=0;var months=['January','February','Buscar','April','May','June','July','August','September','October','Número','Número'];var wdays=['Su','Memorándum','Tu','We','Th','De','Ventas'];var tmonths=['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var dateField=null;function getProperty(p_property){var p_elm=calendarId;var elm=null;if(typeof(p_elm)=='object'){elm=p_elm;}else{elm=document.getElementById(p_elm);}
 if(elm!=null){if(elm.style){elm=elm.style;if(elm[p_property]){return elm[p_property];}else{return null;}
 }else{return null;}
 }
@@ -38,7 +38,7 @@ this.changeYear=changeYear;function changeYear(change){currentYear+=change;curre
 function getCurrentYear(){var year=new Date().getYear();if(year < 1900)year+=1900;return year;}
 function getCurrentMonth(){return new Date().getMonth()+1;}
 function getCurrentDay(){return new Date().getDate();}
-function calendarDrawTable(){var dayOfMonth=1;var wstart=0;var wno='&nbsp;S&nbsp;';var validDay=0;var startDayOfWeek=getDayOfWeek(currentYear,currentMonth,dayOfMonth);var daysInMonth=getDaysInMonth(currentYear,currentMonth);var css_class=null;var table="<table cellspacing='0' cellpadding='0' border='0'>";table+="<tr class='header'>";table+="  <td colspan='2' class='previous'><a href='javascript:changeCCMonth(-1);'>&lt;</a><br><a href='javascript:changeCCYear(-1);'>&laquo;</a></td>";table+="  <td colspan='4' class='title'>"+months[currentMonth-1]+"<br>"+currentYear+"</td>";table+="  <td colspan='2' class='next'><a href='javascript:changeCCMonth(1);'>&gt;</a><br><a href='javascript:changeCCYear(1);'>&raquo;</a></td>";table+="</tr>";table+="<tr>";table+="<th class='weekno'>"+wno+"</th>";for(var n=0;n<7;n++)
+function calendarDrawTable(){var dayOfMonth=1;var wstart=0;var wno='&nbsp;W&nbsp;';var validDay=0;var startDayOfWeek=getDayOfWeek(currentYear,currentMonth,dayOfMonth);var daysInMonth=getDaysInMonth(currentYear,currentMonth);var css_class=null;var table="<table cellspacing='0' cellpadding='0' border='0'>";table+="<tr class='header'>";table+="  <td colspan='2' class='previous'><a href='javascript:changeCCMonth(-1);'>&lt;</a><br><a href='javascript:changeCCYear(-1);'>&laquo;</a></td>";table+="  <td colspan='4' class='title'>"+months[currentMonth-1]+"<br>"+currentYear+"</td>";table+="  <td colspan='2' class='next'><a href='javascript:changeCCMonth(1);'>&gt;</a><br><a href='javascript:changeCCYear(1);'>&raquo;</a></td>";table+="</tr>";table+="<tr>";table+="<th class='weekno'>"+wno+"</th>";for(var n=0;n<7;n++)
 table+="<th>"+wdays[(wstart+n)%7]+"</th>";table+="</tr>";for(var week=0;week < 6;week++){table+="<tr>";for(var n=0;n < 7;n++){dayOfWeek=(wstart+n)%7;if(week==0&&startDayOfWeek==dayOfWeek){validDay=1;}else if(validDay==1&&dayOfMonth > daysInMonth){validDay=0;}
 if(n==0){if(dayOfMonth > daysInMonth)
 table+="<td class='empty'>&nbsp;</td>";else
@@ -47,7 +47,7 @@ if(validDay){if(dayOfMonth==selectedDay&&currentYear==selectedYear&&currentMonth
 table+="<td><a class='"+css_class+"' href=\"javascript:setCCDate("+currentYear+","+currentMonth+","+dayOfMonth+")\">"+dayOfMonth+"</a></td>";dayOfMonth++;}else{table+="<td class='empty'>&nbsp;</td>";}
 }
 table+="</tr>";}
-table+="<tr class='header'><th colspan='8' style='padding: 3px;text-align:center;'><a href='javascript:hideCC();'>AtrÃ¡s</a></td></tr>";table+="</table>";return table;}
+table+="<tr class='header'><th colspan='8' style='padding: 3px;text-align:center;'><a href='javascript:hideCC();'>Atrás</a></td></tr>";table+="</table>";return table;}
 this.show=show;function show(field){can_hide=0;if(dateField==field){return;}else{dateField=field;}
 if(dateField){try{var dateString=new String(dateField.value);var dateParts=dateString.split('/');selectedMonth=parseInt(dateParts[0],10);selectedDay=parseInt(dateParts[1],10);selectedYear=parseInt(dateParts[2],10);}catch(e){}
 }

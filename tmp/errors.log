@@ -258,3 +258,72 @@
 [22-Sep-2014 15:52:50 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
 [22-Sep-2014 15:53:02 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
 [22-Sep-2014 15:55:42 America/Tegucigalpa] 0::logout.php:50: session_destroy(): Session object destruction failed
+[29-Sep-2014 17:28:58 America/Tegucigalpa] 0::connect_db.inc:27: mysql_connect(): [2002] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiemp (trying to connect via tcp://192.168.192.128:3306)
+[29-Sep-2014 17:28:58 America/Tegucigalpa] 0::connect_db.inc:27: mysql_connect(): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+
+[29-Sep-2014 17:28:58 America/Tegucigalpa] 0::connect_db.inc:28: mysql_select_db() expects parameter 2 to be resource, boolean given
+[29-Sep-2014 17:29:00 America/Tegucigalpa] 0::connect_db.inc:35: mysql_get_server_info(): [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ (trying to connect via tcp://localhost:3306)
+[29-Sep-2014 17:29:00 America/Tegucigalpa] 0::connect_db.inc:35: mysql_get_server_info(): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+[29-Sep-2014 17:29:00 America/Tegucigalpa] 0::connect_db.inc:35: mysql_get_server_info(): A link to the server could not be established
+[29-Sep-2014 17:29:02 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ (trying to connect via tcp://localhost:3306)
+[29-Sep-2014 17:29:02 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+[29-Sep-2014 17:29:02 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): A link to the server could not be established
+[29-Sep-2014 17:29:04 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ (trying to connect via tcp://localhost:3306)
+[29-Sep-2014 17:29:04 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+[29-Sep-2014 17:29:04 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): A link to the server could not be established
+[29-Sep-2014 17:29:04 America/Tegucigalpa] 0::connect_db.inc:60: mysql_query() expects parameter 2 to be resource, boolean given
+[29-Sep-2014 17:29:04 America/Tegucigalpa] 0::connect_db.inc:154: mysql_errno() expects parameter 1 to be resource, boolean given
+[29-Sep-2014 17:29:04 America/Tegucigalpa] 0::connect_db.inc:114: mysql_num_rows() expects parameter 1 to be resource, null given
+[29-Sep-2014 17:29:04 America/Tegucigalpa] 0::session.inc:127: session_destroy(): Session object destruction failed
+[29-Sep-2014 17:29:25 America/Tegucigalpa] 0::connect_db.inc:27: mysql_connect(): [2002] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiemp (trying to connect via tcp://192.168.192.128:3306)
+[29-Sep-2014 17:29:25 America/Tegucigalpa] 0::connect_db.inc:27: mysql_connect(): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+
+[29-Sep-2014 17:29:25 America/Tegucigalpa] 0::connect_db.inc:28: mysql_select_db() expects parameter 2 to be resource, boolean given
+[29-Sep-2014 17:29:27 America/Tegucigalpa] 0::connect_db.inc:35: mysql_get_server_info(): [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ (trying to connect via tcp://localhost:3306)
+[29-Sep-2014 17:29:27 America/Tegucigalpa] 0::connect_db.inc:35: mysql_get_server_info(): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+[29-Sep-2014 17:29:27 America/Tegucigalpa] 0::connect_db.inc:35: mysql_get_server_info(): A link to the server could not be established
+[29-Sep-2014 17:29:29 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ (trying to connect via tcp://localhost:3306)
+[29-Sep-2014 17:29:29 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+[29-Sep-2014 17:29:29 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): A link to the server could not be established
+[29-Sep-2014 17:29:31 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ (trying to connect via tcp://localhost:3306)
+[29-Sep-2014 17:29:31 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+[29-Sep-2014 17:29:31 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): A link to the server could not be established
+[29-Sep-2014 17:29:31 America/Tegucigalpa] 0::connect_db.inc:60: mysql_query() expects parameter 2 to be resource, boolean given
+[29-Sep-2014 17:29:31 America/Tegucigalpa] 0::connect_db.inc:154: mysql_errno() expects parameter 1 to be resource, boolean given
+[29-Sep-2014 17:29:31 America/Tegucigalpa] 0::connect_db.inc:114: mysql_num_rows() expects parameter 1 to be resource, null given
+[29-Sep-2014 18:27:23 America/Tegucigalpa] 0:usuario:connect_db.inc:27: mysql_connect(): [2002] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiemp (trying to connect via tcp://SRV-RAGR01:3306)
+[29-Sep-2014 18:27:23 America/Tegucigalpa] 0:usuario:connect_db.inc:27: mysql_connect(): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+
+[29-Sep-2014 18:27:23 America/Tegucigalpa] 0:usuario:connect_db.inc:28: mysql_select_db() expects parameter 2 to be resource, boolean given
+[29-Sep-2014 18:27:25 America/Tegucigalpa] 0:usuario:connect_db.inc:35: mysql_get_server_info(): [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ (trying to connect via tcp://localhost:3306)
+[29-Sep-2014 18:27:25 America/Tegucigalpa] 0:usuario:connect_db.inc:35: mysql_get_server_info(): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+[29-Sep-2014 18:27:25 America/Tegucigalpa] 0:usuario:connect_db.inc:35: mysql_get_server_info(): A link to the server could not be established
+[29-Sep-2014 18:27:25 America/Tegucigalpa] 0:usuario:connect_db.inc:60: mysql_query() expects parameter 2 to be resource, boolean given
+[29-Sep-2014 18:27:25 America/Tegucigalpa] 0:usuario:connect_db.inc:154: mysql_errno() expects parameter 1 to be resource, boolean given
+[29-Sep-2014 18:27:25 America/Tegucigalpa] 0:usuario:connect_db.inc:86: mysql_fetch_row() expects parameter 1 to be resource, null given
+[29-Sep-2014 18:27:46 America/Tegucigalpa] 0:usuario:connect_db.inc:27: mysql_connect(): [2002] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiemp (trying to connect via tcp://SRV-RAGR01:3306)
+[29-Sep-2014 18:27:46 America/Tegucigalpa] 0:usuario:connect_db.inc:27: mysql_connect(): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+
+[29-Sep-2014 18:27:46 America/Tegucigalpa] 0:usuario:connect_db.inc:28: mysql_select_db() expects parameter 2 to be resource, boolean given
+[29-Sep-2014 18:27:48 America/Tegucigalpa] 0:usuario:connect_db.inc:35: mysql_get_server_info(): [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ (trying to connect via tcp://localhost:3306)
+[29-Sep-2014 18:27:48 America/Tegucigalpa] 0:usuario:connect_db.inc:35: mysql_get_server_info(): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+[29-Sep-2014 18:27:48 America/Tegucigalpa] 0:usuario:connect_db.inc:35: mysql_get_server_info(): A link to the server could not be established
+[29-Sep-2014 18:27:48 America/Tegucigalpa] 0:usuario:connect_db.inc:60: mysql_query() expects parameter 2 to be resource, boolean given
+[29-Sep-2014 18:27:48 America/Tegucigalpa] 0:usuario:connect_db.inc:154: mysql_errno() expects parameter 1 to be resource, boolean given
+[29-Sep-2014 18:27:48 America/Tegucigalpa] 0:usuario:connect_db.inc:86: mysql_fetch_row() expects parameter 1 to be resource, null given
