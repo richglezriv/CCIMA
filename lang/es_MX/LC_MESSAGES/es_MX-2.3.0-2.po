@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FrontAccounting\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-08 15:59+0200\n"
-"PO-Revision-Date: 2014-10-01 12:27-0600\n"
+"PO-Revision-Date: 2014-10-01 13:20-0600\n"
 "Last-Translator: Translation Team <info@frontaccounting.net>\n"
 "Language-Team: FrontAccounting <info@frontaccounting.com>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Acceso como usuario:demouser contraseña:password"
 
 #: /var/www/fa2.3/devel/../access/login.php:37
 msgid "Please login here"
-msgstr "Colocar Orden"
+msgstr "Favor de Registrarse"
 
 #: /var/www/fa2.3/devel/../access/login.php:45
 #: /var/www/fa2.3/devel/../access/login.php:75
@@ -57,7 +57,7 @@ msgstr "Versión"
 
 #: /var/www/fa2.3/devel/../access/login.php:85
 msgid "User name"
-msgstr "Nombre de Cliente"
+msgstr "Nombre de usuario"
 
 #: /var/www/fa2.3/devel/../access/login.php:89
 #: /var/www/fa2.3/devel/../admin/change_current_user_password.php:78
@@ -218,7 +218,7 @@ msgstr "Tipo de Archivo"
 
 #: /var/www/fa2.3/devel/../admin/attachments.php:164
 msgid "Date Uploaded"
-msgstr "Fecha de Pago"
+msgstr "Fecha de Registro"
 
 #: /var/www/fa2.3/devel/../admin/attachments.php:179
 #: /var/www/fa2.3/devel/../admin/create_coy.php:288
@@ -288,7 +288,7 @@ msgstr "Ver"
 
 #: /var/www/fa2.3/devel/../admin/attachments.php:181
 msgid "Download"
-msgstr "Descargar Respaldo"
+msgstr "Descargar"
 
 #: /var/www/fa2.3/devel/../admin/attachments.php:182
 #: /var/www/fa2.3/devel/../admin/create_coy.php:289
@@ -357,7 +357,7 @@ msgstr "Documento Adjunto"
 #: /var/www/fa2.3/devel/../admin/backups.php:21
 #: /var/www/fa2.3/devel/../admin/backups.php:111
 msgid "Select backup file first."
-msgstr "Seleccionar un artículo:"
+msgstr "Primero seleccione un archive de respaldo:"
 
 #: /var/www/fa2.3/devel/../admin/backups.php:40
 msgid "Backup and Restore Database"
@@ -365,7 +365,7 @@ msgstr "Respaldo y Restauración de la Base de Datos"
 
 #: /var/www/fa2.3/devel/../admin/backups.php:47
 msgid "Backup paths have not been set correctly."
-msgstr "La ruta del respaldo no han sido establecida correctamente."
+msgstr "La ruta del respaldo no ha sido establecida correctamente."
 
 #: /var/www/fa2.3/devel/../admin/backups.php:48
 msgid "Please contact System Administrator."
@@ -381,7 +381,7 @@ msgstr "El respaldo ha sido generado exitosamente."
 
 #: /var/www/fa2.3/devel/../admin/backups.php:62
 msgid "Database backup failed."
-msgstr "Contraseña de base de datos"
+msgstr "Respaldo de base de datos fallido."
 
 #: /var/www/fa2.3/devel/../admin/backups.php:95
 #: /var/www/fa2.3/devel/../admin/create_coy.php:276
@@ -424,7 +424,7 @@ msgstr "El archivo ha sido eliminado exitosamente."
 
 #: /var/www/fa2.3/devel/../admin/backups.php:143
 msgid "Can't delete backup file."
-msgstr "No se puede elimiar el archive de respaldo"
+msgstr "No se puede elimiar el archivo de respaldo"
 
 #: /var/www/fa2.3/devel/../admin/backups.php:152
 msgid "You can only upload *.sql backup files"
@@ -511,7 +511,7 @@ msgstr "La contraseña no puede contener al identificador de usuario."
 
 #: /var/www/fa2.3/devel/../admin/change_current_user_password.php:42
 msgid "The passwords entered are not the same."
-msgstr "El importe de crédito entrado no puede ser cero ni negativo."
+msgstr "Las contraseñas ingresadas no son identicas."
 
 #: /var/www/fa2.3/devel/../admin/change_current_user_password.php:56
 msgid "Password cannot be changed in demo mode."
@@ -519,7 +519,7 @@ msgstr "Contraseña no puede ser cambiada en modo de demostracion"
 
 #: /var/www/fa2.3/devel/../admin/change_current_user_password.php:61
 msgid "Your password has been updated."
-msgstr "El cliente ha sido actualizado."
+msgstr "La contraseña ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../admin/change_current_user_password.php:73
 #: /var/www/fa2.3/devel/../admin/users.php:180
@@ -528,7 +528,7 @@ msgstr "Identificador de usuario:"
 
 #: /var/www/fa2.3/devel/../admin/change_current_user_password.php:79
 msgid "Repeat password:"
-msgstr "Contraseña:"
+msgstr "Repetir Contraseña:"
 
 #: /var/www/fa2.3/devel/../admin/change_current_user_password.php:81
 msgid "Enter your new password in the fields."
@@ -541,11 +541,12 @@ msgstr "Configuración de la Compañía"
 
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:31
 msgid "Login timeout must be positive number not less than 10."
-msgstr "El límite de crédito debe ser numérico y no menor que cero."
+msgstr ""
+"El tiempo de caducidad de la session debe ser numérico y no menor que diez."
 
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:38
 msgid "The company name must be entered."
-msgstr "Debe entrar el nombre de la compañía."
+msgstr "Debe ingresar el nombre de la compañía."
 
 # c:/Apache2/htdocs/account/inventory/manage/items.php:52
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:55
@@ -579,7 +580,7 @@ msgstr "La imagen existente no puede ser removida"
 
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:83
 msgid "Error uploading logo file"
-msgstr "Error al cargar el archive con el logo de la empresa"
+msgstr "Error al cargar el archivo con el logo de la empresa"
 
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:117
 msgid "Company setup has been updated."
@@ -601,7 +602,7 @@ msgstr "Dirección:"
 # c:/Apache2/htdocs/account/admin/company_preferences.php:83
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:163
 msgid "Domicile:"
-msgstr "Ubicación"
+msgstr "Domicilio:"
 
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:165
 #: /var/www/fa2.3/devel/../admin/shipping_companies.php:138
@@ -630,7 +631,7 @@ msgstr "Número Oficial de la Compañía:"
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:86
 #: /var/www/fa2.3/devel/../sales/manage/customers.php:205
 msgid "GSTNo:"
-msgstr "VA No:"
+msgstr "RFC:"
 
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:172
 msgid "Home Currency:"
@@ -694,19 +695,19 @@ msgstr "Redondear a"
 
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:191
 msgid "Search Item List"
-msgstr "No hay Artículos"
+msgstr "Lista de consulta de articulos"
 
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:192
 msgid "Search Customer List"
-msgstr "No hay Clientes"
+msgstr "Lista de consulta de clientes"
 
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:193
 msgid "Search Supplier List"
-msgstr "No hay Proveedores"
+msgstr "Lista de consulta de proveedores"
 
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:195
 msgid "Automatic Revaluation Currency Accounts"
-msgstr "Reevaluacion automatic de monedas"
+msgstr "Reevaluacion automatica de monedas"
 
 #: /var/www/fa2.3/devel/../admin/company_preferences.php:196
 msgid "Time Zone on Reports"
@@ -799,7 +800,7 @@ msgstr ", Por favor, creela manualmente"
 #: /var/www/fa2.3/devel/../admin/create_coy.php:129
 msgid "Cannot create new company due to bugs in sql file."
 msgstr ""
-"No se puede crear una nueva compañia debido a problemas con el archive sql"
+"No se puede crear una nueva compañia debido a problemas con el archivo sql"
 
 # c:/Apache2/htdocs/account/admin/create_coy.php:91
 #: /var/www/fa2.3/devel/../admin/create_coy.php:137
@@ -878,11 +879,11 @@ msgstr "Error al borrar la base de datos: "
 # c:/Apache2/htdocs/account/admin/create_coy.php:128
 #: /var/www/fa2.3/devel/../admin/create_coy.php:221
 msgid ", please remove it manually"
-msgstr ", favor de elimínela manualmente"
+msgstr ", favor de eliminar manualmente"
 
 #: /var/www/fa2.3/devel/../admin/create_coy.php:240
 msgid "Cannot remove temporary renamed company data directory "
-msgstr "No se puede eliminar el directorio de datos de la compañía"
+msgstr "No se puede eliminar el directorio temporal de datos de la compañía"
 
 #: /var/www/fa2.3/devel/../admin/create_coy.php:243
 msgid "Selected company has been deleted"
@@ -1040,30 +1041,30 @@ msgstr "Tipo"
 
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:88
 msgid "Action id"
-msgstr "Asignación"
+msgstr "Accion"
 
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:88
 #: /var/www/fa2.3/devel/../sales/manage/customer_branches.php:294
 msgid "Short Name"
-msgstr "Nombre"
+msgstr "Nombre Corto"
 
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:135
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:139
 msgid "Contact Category Type:"
-msgstr "Nombre de la Categoría:"
+msgstr "Nombre de la categoría de contacto:"
 
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:136
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:140
 msgid "Contact Category Subtype:"
-msgstr "Número de Teléfono:"
+msgstr "Subtipo de la categoria de contacto"
 
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:143
 msgid "Category Short Name:"
-msgstr "Nombre de la Categoría:"
+msgstr "Nombre corto de la Categoría:"
 
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:144
 msgid "Category Description:"
-msgstr "Descripción:"
+msgstr "Descripción de la Categoria:"
 
 #: /var/www/fa2.3/devel/../admin/display_prefs.php:16
 msgid "Display Setup"
@@ -1071,7 +1072,7 @@ msgstr "Configuración de Presentación en Pantalla"
 
 #: /var/www/fa2.3/devel/../admin/display_prefs.php:30
 msgid "Query size must be integer and greater than zero."
-msgstr "La tasa de cambio debe ser numérica y mayor a cero."
+msgstr "El tamaño de la consulta debe ser numérica y mayor a cero."
 
 #: /var/www/fa2.3/devel/../admin/display_prefs.php:58
 msgid ""
@@ -1132,7 +1133,7 @@ msgstr "Separador decimal:"
 #: /var/www/fa2.3/devel/../admin/display_prefs.php:97
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:36
 msgid "Language"
-msgstr "Lenguaje:"
+msgstr "Lenguaje"
 
 #: /var/www/fa2.3/devel/../admin/display_prefs.php:99
 #: /var/www/fa2.3/devel/../admin/users.php:206
@@ -1164,7 +1165,7 @@ msgstr "Tamaño de página:"
 
 #: /var/www/fa2.3/devel/../admin/display_prefs.php:117
 msgid "Start-up Tab"
-msgstr "Fecha de Comienzo"
+msgstr "Seccion inicial"
 
 #: /var/www/fa2.3/devel/../admin/display_prefs.php:125
 #: /var/www/fa2.3/devel/../admin/users.php:210
@@ -1235,8 +1236,8 @@ msgstr "Fecha INICIAL mayor que la fecha FINAL."
 #: /var/www/fa2.3/devel/../admin/fiscalyears.php:64
 msgid "Cannot CLOSE this year because there are open fiscal years before"
 msgstr ""
-"No se puede eliminar este artículo porque existen Pedidos que contienen esta "
-"parte."
+"No se puede cerrar este año porque existen periodos fiscales anteriores "
+"abiertos"
 
 #: /var/www/fa2.3/devel/../admin/fiscalyears.php:75
 msgid "Selected fiscal year has been updated"
@@ -1364,7 +1365,7 @@ msgstr "La configuración de contabilidad general ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../admin/gl_setup.php:116
 msgid "General GL"
-msgstr "Mayor General"
+msgstr "Libro Mayor General"
 
 # c:/Apache2/htdocs/account/admin/gl_setup.php:113
 #: /var/www/fa2.3/devel/../admin/gl_setup.php:118
@@ -1409,7 +1410,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/gl_setup.php:136
 msgid "Legal Text on Invoice:"
-msgstr "Cant Pendiente De Facturar"
+msgstr "Texto legal en Factura"
 
 #: /var/www/fa2.3/devel/../admin/gl_setup.php:138
 msgid "Shipping Charged Account:"
@@ -1633,7 +1634,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:119
 msgid "Update default"
-msgstr "Actualizar Orden"
+msgstr "Actualizar predeterminado"
 
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:121
 msgid "Add new language manually"
@@ -1641,7 +1642,7 @@ msgstr "Agregar Nuevo lenguaje manualmente"
 
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:134
 msgid "Language name, code nor encoding cannot be empty"
-msgstr "La descripción del área no puede ser vacía."
+msgstr "Nombre, codigo o codificacion de lenguaje no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:139
 msgid ""
@@ -1653,15 +1654,15 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:214
 msgid "Language Code"
-msgstr "Archivo de Lenguaje"
+msgstr "Codigo de Lenguaje"
 
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:215
 msgid "Language Name"
-msgstr "Archivo de Lenguaje"
+msgstr "Nombre de Lenguaje"
 
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:219
 msgid "Default Language"
-msgstr "Tasa Predeterminada:"
+msgstr "Lenguaje Predeterminado"
 
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:221
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:222
@@ -1679,7 +1680,7 @@ msgstr "Instalar/Activar extensiones"
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:31
 msgid "Extension name cannot be empty."
-msgstr "El nombre del cliente no puede ser vacío."
+msgstr "El nombre de la extension no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:36
 msgid "Extension name have to be unique."
@@ -1687,11 +1688,11 @@ msgstr "El nombre de la extension debe ser unico"
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:42
 msgid "Extension title cannot be empty."
-msgstr "El nombre del cliente no puede ser vacío."
+msgstr "El Titulo de la extension no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:46
 msgid "Extension folder name cannot be empty."
-msgstr "El nombre del cliente no puede ser vacío."
+msgstr "El Nombre de la carpeta de la extension no puede ser vacío."
 
 # c:/Apache2/htdocs/account/admin/backups.php:64
 #: /var/www/fa2.3/devel/../admin/inst_module.php:50
@@ -1704,8 +1705,7 @@ msgstr "Soporte de instalacion de modulo no ha sido implementada"
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:159
 msgid "Selected extension has been successfully deleted"
-msgstr ""
-"Los datos de compra de este proveedor han sido eliminados exitosamente."
+msgstr "La extension sido eliminada exitosamente."
 
 # c:/Apache2/htdocs/account/applications/Projects.php:5
 # c:/Apache2/htdocs/account/inventory/manage/items.php:287
@@ -1721,7 +1721,7 @@ msgstr "Extension"
 #: /var/www/fa2.3/devel/../admin/inst_module.php:184
 #: /var/www/fa2.3/devel/../admin/inst_module.php:247
 msgid "Modules provided"
-msgstr "Archivo de Módulo"
+msgstr "Modules proporcionados"
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:184
 #: /var/www/fa2.3/devel/../admin/inst_module.php:247
@@ -1773,7 +1773,7 @@ msgstr "Texto Ancla de Menu"
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:314
 msgid "Default status"
-msgstr "Estado Predeterminada:"
+msgstr "Estado predeterminado"
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:316
 msgid "Module File"
@@ -1781,7 +1781,7 @@ msgstr "Archivo de Módulo"
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:317
 msgid "Access Levels Extensions"
-msgstr "Nivel de Acceso"
+msgstr "Extensiones de niveles de acceso"
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:318
 msgid "SQL File"
@@ -1793,15 +1793,15 @@ msgstr "Seleccione su archivo de módulo PHP desde su disco local."
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:329
 msgid "Extension data has been updated."
-msgstr "El costo ha sido actualizado."
+msgstr "La extension ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:331
 msgid "Extension has been installed."
-msgstr "La extension ha sido registrada."
+msgstr "La extension ha sido instalada."
 
 #: /var/www/fa2.3/devel/../admin/inst_module.php:354
 msgid "Current active extensions set has been saved."
-msgstr "La transacción seleccionada ha sido anulada."
+msgstr "La extension actual ha sido registrada."
 
 # c:/Apache2/htdocs/account/applications/Projects.php:5
 # c:/Apache2/htdocs/account/inventory/manage/items.php:287
@@ -1819,8 +1819,7 @@ msgstr "Instalar temas"
 
 #: /var/www/fa2.3/devel/../admin/inst_theme.php:55
 msgid "Selected theme has been successfully deleted"
-msgstr ""
-"Los datos de compra de este proveedor han sido eliminados exitosamente."
+msgstr "El tema seleccionada ha sido actualizado exitosamente"
 
 #: /var/www/fa2.3/devel/../admin/inst_theme.php:70
 msgid "Theme"
@@ -1838,7 +1837,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/inst_upgrade.php:113
 msgid "Database upgrade finished."
-msgstr "Contraseña de base de datos"
+msgstr "Actualizacion de base de datos finalizada"
 
 #: /var/www/fa2.3/devel/../admin/inst_upgrade.php:117
 msgid ""
@@ -1862,12 +1861,12 @@ msgstr ""
 #: /var/www/fa2.3/devel/../admin/inst_upgrade.php:160
 msgid "You should restore company database from latest backup file"
 msgstr ""
-"Se sugiere que restaura la base de datos de la compañia desde el ultimo "
-"archive de respaldo"
+"Se sugiere restaurar la base de datos de la compañia desde el ultimo archivo "
+"de respaldo"
 
 #: /var/www/fa2.3/devel/../admin/inst_upgrade.php:171
 msgid "All companies data has been successfully updated"
-msgstr "El pago del cliente ha sido entrado exitosamente."
+msgstr "Todas las compañias han sido actualizadas exitosamente."
 
 #: /var/www/fa2.3/devel/../admin/inst_upgrade.php:179
 msgid "Sql file"
@@ -1917,11 +1916,11 @@ msgstr "Debe introducir la descripción de los términos."
 
 #: /var/www/fa2.3/devel/../admin/payment_terms.php:77
 msgid "Selected payment terms have been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "El termino de pago seleccionado ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../admin/payment_terms.php:82
 msgid "New payment terms have been added"
-msgstr "El pago ha sido anulado."
+msgstr "Nuevo termino de pago han sido agregado."
 
 #: /var/www/fa2.3/devel/../admin/payment_terms.php:95
 msgid ""
@@ -1941,7 +1940,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/payment_terms.php:107
 msgid "Selected payment terms have been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El pago seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../admin/payment_terms.php:127
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:275
@@ -1995,7 +1994,7 @@ msgstr "N/D"
 
 #: /var/www/fa2.3/devel/../admin/payment_terms.php:174
 msgid "Terms Description:"
-msgstr "Descripción del Término:"
+msgstr "Terminos y codiciones:"
 
 #: /var/www/fa2.3/devel/../admin/payment_terms.php:176
 msgid "Payment type:"
@@ -2011,7 +2010,7 @@ msgstr "Ubicacion de impresora"
 
 #: /var/www/fa2.3/devel/../admin/printers.php:31
 msgid "Printer name cannot be empty."
-msgstr "El nombre del cliente no puede ser vacío."
+msgstr "El nombre de la impresora no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../admin/printers.php:36
 msgid "You have selected printing to server at user IP."
@@ -2026,36 +2025,36 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/printers.php:52
 msgid "New printer definition has been created"
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Una nueva Impresora ha sido adicionada."
 
 #: /var/www/fa2.3/devel/../admin/printers.php:53
 msgid "Selected printer definition has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "La impresora ha sido actualizada"
 
 #: /var/www/fa2.3/devel/../admin/printers.php:64
 msgid ""
 "Cannot delete this printer definition, because print profile have been "
 "created using it."
 msgstr ""
-"No se puede eliminar esta unidad de medida porque se han creado artículos "
-"que referencian a la misma."
+"No se puede eliminar esta impresora porque se ha creado un perfil de "
+"impresion que referencia a la misma."
 
 #: /var/www/fa2.3/devel/../admin/printers.php:69
 msgid "Selected printer definition has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "La impresora seleccionada ha sido eliminada."
 
 #: /var/www/fa2.3/devel/../admin/printers.php:84
 #: /var/www/fa2.3/devel/../admin/printers.php:136
 msgid "Printer Queue"
-msgstr "Imprimir como Cotización"
+msgstr "Cola de impresion"
 
 #: /var/www/fa2.3/devel/../admin/printers.php:132
 msgid "Printer Name"
-msgstr "Nombre de Área"
+msgstr "Nombre de Impresora"
 
 #: /var/www/fa2.3/devel/../admin/printers.php:133
 msgid "Printer Description"
-msgstr "Descripción de Artículo"
+msgstr "Descripción de Impresora"
 
 #: /var/www/fa2.3/devel/../admin/printers.php:134
 msgid "Host name or IP"
@@ -2063,7 +2062,7 @@ msgstr "Nombre de servidor o direccion IP"
 
 #: /var/www/fa2.3/devel/../admin/printers.php:135
 msgid "Port"
-msgstr "Puertos de Impresora"
+msgstr "Puerto"
 
 #: /var/www/fa2.3/devel/../admin/printers.php:137
 msgid "Timeout"
@@ -2079,7 +2078,7 @@ msgstr "Impresora predeterminada"
 
 #: /var/www/fa2.3/devel/../admin/print_profiles.php:91
 msgid "Printing profile name cannot be empty."
-msgstr "El nombre del tipo de impuesto no puede ser vacío."
+msgstr "El nombre del perfil de impresion no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../admin/print_profiles.php:107
 msgid "New printing profile has been created"
@@ -2087,15 +2086,15 @@ msgstr "Un nuevo perfil de impresi&oacute;n ha sido adicionado."
 
 #: /var/www/fa2.3/devel/../admin/print_profiles.php:110
 msgid "Printing profile has been updated"
-msgstr "El precio ha sido actualizado."
+msgstr "El Perfil de impresion ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../admin/print_profiles.php:119
 msgid "Selected printing profile has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El Perfil de impresion seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../admin/print_profiles.php:130
 msgid "Select printing profile"
-msgstr "Seleccion un Perfil de Impresion"
+msgstr "Seleccionar un Perfil de Impresion"
 
 #: /var/www/fa2.3/devel/../admin/print_profiles.php:131
 msgid "New printing profile"
@@ -2108,11 +2107,11 @@ msgstr "Nombre de Perfil de Impresion"
 
 #: /var/www/fa2.3/devel/../admin/print_profiles.php:148
 msgid "Report Id"
-msgstr "Reporte de Impuestos"
+msgstr "Identificador de Reporte"
 
 #: /var/www/fa2.3/devel/../admin/print_profiles.php:148
 msgid "Printer"
-msgstr "Imprimir"
+msgstr "Impresora"
 
 #: /var/www/fa2.3/devel/../admin/print_profiles.php:162
 msgid "Browser support"
@@ -2148,11 +2147,11 @@ msgstr "Nivel de Acceso"
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:63
 msgid "Role description cannot be empty."
-msgstr "La descripción del área no puede ser vacía."
+msgstr "La descripción del Rol no puede ser vacía."
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:69
 msgid "Role name cannot be empty."
-msgstr "El nombre del cliente no puede ser vacío."
+msgstr "El nombre del Rol no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:76
 msgid ""
@@ -2164,25 +2163,24 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:105
 msgid "New security role has been added."
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Un nuevo Rol ha sido adicionado."
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:113
 msgid "Security role has been updated."
-msgstr "El precio ha sido actualizado."
+msgstr "El Rol ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:126
 msgid "This role is currently assigned to some users and cannot be deleted"
 msgstr ""
-"La moneda seleccionada es la moneda local, la cual no puede ser eliminada."
+"El Rol está actualmente asignado a algun usuario y no puede ser eliminado"
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:129
 msgid "Security role has been sucessfully deleted."
-msgstr ""
-"Los datos de compra de este proveedor han sido eliminados exitosamente."
+msgstr "El Rol ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:178
 msgid "Role:"
-msgstr "Rol"
+msgstr "Rol:"
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:180
 #: /var/www/fa2.3/devel/../gl/manage/gl_accounts.php:195
@@ -2190,7 +2188,7 @@ msgstr "Rol"
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:269
 #: /var/www/fa2.3/devel/../sales/manage/customers.php:282
 msgid "Show inactive:"
-msgstr "Ver Imágenes"
+msgstr "Mostrar inactivos"
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:195
 msgid "Role name:"
@@ -2198,7 +2196,7 @@ msgstr "Nombre de Rol:"
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:196
 msgid "Role description:"
-msgstr "Descripción"
+msgstr "Descripción de Rol"
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:197
 msgid "Current status:"
@@ -2262,39 +2260,39 @@ msgstr "Cancelar Edicion"
 #: /var/www/fa2.3/devel/../sales/view/view_dispatch.php:92
 #: /var/www/fa2.3/devel/../sales/view/view_invoice.php:92
 msgid "Shipping Company"
-msgstr "Compañía de Embarque"
+msgstr "Compañía de Envios"
 
 #: /var/www/fa2.3/devel/../admin/shipping_companies.php:26
 msgid "The shipping company name cannot be empty."
-msgstr "El nombre de la compañía de embarque no puede ser vacío."
+msgstr "El nombre de la compañía de envios no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../admin/shipping_companies.php:37
 msgid "New shipping company has been added"
-msgstr "El nuevo precio ha sido adicionado."
+msgstr "La compañia de envios ha sido agregada"
 
 #: /var/www/fa2.3/devel/../admin/shipping_companies.php:46
 msgid "Selected shipping company has been updated"
-msgstr "El usuario seleccionado ha sido actualizado."
+msgstr "La compañia de envios ha sido actualizada"
 
 #: /var/www/fa2.3/devel/../admin/shipping_companies.php:59
 msgid ""
 "Cannot delete this shipping company because sales orders have been created "
 "using this shipper."
 msgstr ""
-"No se puede eliminar la companía de embarque porque se han creado órdenes "
-"que usan este expedidor."
+"No se puede eliminar la companía de envios porque se han creado órdenes que "
+"usan este expedidor."
 
 #: /var/www/fa2.3/devel/../admin/shipping_companies.php:67
 msgid ""
 "Cannot delete this shipping company because invoices have been created using "
 "this shipping company."
 msgstr ""
-"No se puede eliminar la companía de embarque porque se han creado facturas "
-"que usan este expedidor."
+"No se puede eliminar la companía de envios porque se han creado facturas que "
+"usan este expedidor."
 
 #: /var/www/fa2.3/devel/../admin/shipping_companies.php:72
 msgid "Selected shipping company has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El precio de envio seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../admin/shipping_companies.php:91
 msgid "Contact Person"
@@ -2335,11 +2333,11 @@ msgstr "Persona a Contactar:"
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:104
 #: /var/www/fa2.3/devel/../sales/manage/customer_branches.php:262
 msgid "Secondary Phone Number:"
-msgstr "Número de Teléfono:"
+msgstr "Número de Teléfono Secundario:"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:17
 msgid "System Diagnostics"
-msgstr "Administrador de Sistema"
+msgstr "Diagnostico de Sistema"
 
 # c:/Apache2/htdocs/account/reporting/Rep705.php:101
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:23
@@ -2356,7 +2354,7 @@ msgstr "Opcional"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:25
 msgid "Recommended"
-msgstr "Recibido"
+msgstr "Recomendado"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:26
 msgid "Required "
@@ -2364,7 +2362,7 @@ msgstr "Requerido Para"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:37
 msgid "MySQL version"
-msgstr "Versión"
+msgstr "Versión MySQL"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:41
 msgid "Upgrade MySQL server to version at least 4.1"
@@ -2372,7 +2370,7 @@ msgstr "Actualizar servidor MySQL a la version al menos 4.1"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:48
 msgid "PHP version"
-msgstr "Versión"
+msgstr "Versión PHP"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:52
 msgid "Upgrade PHP to version at least 4.3.3"
@@ -2380,7 +2378,7 @@ msgstr "Actualizar version de PHP a la version al menos 4.3.3"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:59
 msgid "Server system"
-msgstr "Actualizar Artículo"
+msgstr "Servidor de sistema"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:69
 msgid "Session save path"
@@ -2388,7 +2386,7 @@ msgstr "Ruta de registro de sesion"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:79
 msgid "Browser type"
-msgstr "Tipo de Transferencia"
+msgstr "Tipo de Navegador"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:83
 msgid "Any browser is supported"
@@ -2404,7 +2402,7 @@ msgstr "Cualquier servidor es soportado"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:101
 msgid "Native gettext"
-msgstr "Ver este ajuste"
+msgstr "Funcion gettext nativa"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:105
 msgid "In case of no gettext support, php emulation is used"
@@ -2423,7 +2421,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:126
 msgid "Error logging"
-msgstr "Identificador de Usuario"
+msgstr "Registro de errores"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:134
 msgid "Disabled"
@@ -2470,21 +2468,21 @@ msgstr "Directorio temporal"
 # c:/Apache2/htdocs/account/admin/create_coy.php:86
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:225
 msgid "Language configuration consistency"
-msgstr "El archivo de configuración "
+msgstr "Consisntencia del archivo de traducción "
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:243
 msgid "Missing %s translation file."
-msgstr "Anular Transacción"
+msgstr "No existe el archivo de traduccion %s"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:248
 #, php-format
 msgid "Missing system locale: %s"
-msgstr "No existe el archive de Sistema: %s"
+msgstr "No existe el archivo de Sistema: %s"
 
 # c:/Apache2/htdocs/account/admin/create_coy.php:86
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:263
 msgid "Main config file"
-msgstr "El archivo de configuración "
+msgstr "El archivo de configuración principal"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:267
 #, php-format
@@ -2493,7 +2491,7 @@ msgstr "'%s' debe ser de solo lectura"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:275
 msgid "Database auth file"
-msgstr "Contraseña de base de datos"
+msgstr "Archivo de autorizacion de Base de Datos"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:279
 #, php-format
@@ -2510,21 +2508,21 @@ msgstr ""
 # c:/Apache2/htdocs/account/includes/page/header.inc:44
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:288
 msgid "Extensions system"
-msgstr "Proyectos"
+msgstr "Extensiones de sistema"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:294
 msgid "Extensions configuration files and directories should be writeable"
 msgstr ""
-"Archivos de configuracion de extensiones y diretorios debieran ser "
+"Archivos de configuracion de extensiones y directorios debieran ser "
 "modificables"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:322
 msgid "Test"
-msgstr "Términos"
+msgstr "Probar"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:322
 msgid "Test type"
-msgstr "Tipo de Impuesto"
+msgstr "Tipo de Prueba"
 
 #: /var/www/fa2.3/devel/../admin/system_diagnostics.php:322
 #: /var/www/fa2.3/devel/../includes/ui/view_package.php:37
@@ -2608,7 +2606,7 @@ msgstr "Tipo de etiqueta no especificado"
 #: /var/www/fa2.3/devel/../reporting/reports_main.php:354
 #: /var/www/fa2.3/devel/../reporting/reports_main.php:363
 msgid "Account Tags"
-msgstr "Marca de cuenta"
+msgstr "Etiqueta de cuenta"
 
 # c:/Apache2/htdocs/account/applications/Projects.php:5
 # c:/Apache2/htdocs/account/inventory/manage/items.php:287
@@ -2618,11 +2616,11 @@ msgstr "Marca de cuenta"
 # c:/Apache2/htdocs/account/includes/page/header.inc:44
 #: /var/www/fa2.3/devel/../admin/tags.php:44
 msgid "Dimension Tags"
-msgstr "Proyectos"
+msgstr "Etiquetas de Proyectos"
 
 #: /var/www/fa2.3/devel/../admin/tags.php:57
 msgid "The tag name cannot be empty."
-msgstr "El nombre de grupo de impuestos no puede ser vacío."
+msgstr "El nombre de etiqueta no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../admin/tags.php:73
 msgid "Selected tag settings have been updated"
@@ -2641,23 +2639,23 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/tags.php:109
 msgid "Selected tag has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "La etiqueta seleccionada ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../admin/tags.php:128
 msgid "Tag Name"
-msgstr "Nombre de Impuesto"
+msgstr "Nombre de Etiqueta"
 
 #: /var/www/fa2.3/devel/../admin/tags.php:128
 msgid "Tag Description"
-msgstr "Descripción"
+msgstr "Descripción de etiqueta"
 
 #: /var/www/fa2.3/devel/../admin/tags.php:165
 msgid "Tag Name:"
-msgstr "Nombre de Impuesto"
+msgstr "Nombre de Etiqueta:"
 
 #: /var/www/fa2.3/devel/../admin/tags.php:166
 msgid "Tag Description:"
-msgstr "Descripción:"
+msgstr "Descripción de etiqueta:"
 
 #: /var/www/fa2.3/devel/../admin/users.php:16
 msgid "Users"
@@ -2737,7 +2735,7 @@ msgstr "Nivel de Acceso:"
 
 #: /var/www/fa2.3/devel/../admin/users.php:208
 msgid "User's POS"
-msgstr "Usuarios"
+msgstr "Usuarios de punto de venta"
 
 #: /var/www/fa2.3/devel/../admin/users.php:213
 msgid "Use popup window to display reports:"
@@ -2918,7 +2916,7 @@ msgstr "Fecha"
 #: /var/www/fa2.3/devel/../admin/void_transaction.php:163
 #: /var/www/fa2.3/devel/../includes/ui/ui_view.inc:51
 msgid "GL"
-msgstr "MG"
+msgstr "Libro Mayor"
 
 #: /var/www/fa2.3/devel/../admin/void_transaction.php:29
 msgid "Void a Transaction"
@@ -3548,7 +3546,7 @@ msgstr "&Puntos de Venta"
 
 #: /var/www/fa2.3/devel/../applications/setup.php:49
 msgid "&Printers"
-msgstr "Imprimir"
+msgstr "Impresoras"
 
 #: /var/www/fa2.3/devel/../applications/setup.php:51
 msgid "Contact &Categories"
@@ -3592,7 +3590,7 @@ msgstr "Instalar/Activar Extensiones"
 
 #: /var/www/fa2.3/devel/../applications/setup.php:72
 msgid "Install/Activate &Themes"
-msgstr "Instalar/Actualizar Módulos"
+msgstr "Instalar/Actualizar Temas"
 
 #: /var/www/fa2.3/devel/../applications/setup.php:74
 msgid "Software &Upgrade"
@@ -3680,11 +3678,11 @@ msgstr "El proyecto ha sido cerrado. No puede hacer más cambios en él."
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:88
 msgid "The dimension has been re-opened. "
-msgstr "El proyecto ha sido registrado."
+msgstr "El proyecto ha sido reabierto."
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:98
 msgid "Enter a &new dimension"
-msgstr "Entrar un nuevo proyecto"
+msgstr "Ingresar un nuevo proyecto"
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:100
 msgid "&Select an existing dimension"
@@ -3736,7 +3734,7 @@ msgstr "Este proyecto no puede ser eliminado porque ya ha sido procesado."
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:234
 msgid "The dimension sent is not valid."
-msgstr "El número proyecto enviado no es válido."
+msgstr "El proyecto enviado no es válido."
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:261
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:268
@@ -3776,7 +3774,7 @@ msgstr "Requerido para Fecha"
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:281
 msgid "Tags:"
-msgstr "días"
+msgstr "Etiquetas:"
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:288
 msgid "This Dimension is closed."
@@ -3784,15 +3782,15 @@ msgstr "Este proyecto ha sido cerrado."
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:293
 msgid "Save changes to dimension"
-msgstr "Seleccione un proyecto existente"
+msgstr "Guardar cambios de proyecto"
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:295
 msgid "Re-open This Dimension"
-msgstr "Cerrar Este Proyecto"
+msgstr "Reabrir este proyecto"
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:295
 msgid "Mark this dimension as re-opened"
-msgstr "Este proyecto ha sido cerrado."
+msgstr "Marcar este proyecto como reabierto"
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:297
 msgid "Close This Dimension"
@@ -3800,7 +3798,7 @@ msgstr "Cerrar Este Proyecto"
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:297
 msgid "Mark this dimension as closed"
-msgstr "Este proyecto ha sido cerrado."
+msgstr "Marcar proyecto como cerrado"
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:298
 msgid "Delete This Dimension"
@@ -3808,7 +3806,7 @@ msgstr "Eliminar este Proyecto"
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:298
 msgid "Delete unused dimension"
-msgstr "Eliminar este Proyecto"
+msgstr "Eliminar Proyecto sin usar"
 
 #: /var/www/fa2.3/devel/../dimensions/dimension_entry.php:302
 #: /var/www/fa2.3/devel/../includes/ui/simple_crud_class.inc:214
@@ -3816,7 +3814,7 @@ msgstr "Eliminar este Proyecto"
 #: /var/www/fa2.3/devel/../purchasing/includes/ui/invoice_ui.inc:381
 #: /var/www/fa2.3/devel/../purchasing/includes/ui/invoice_ui.inc:383
 msgid "Add"
-msgstr "Dirección"
+msgstr "Agregar"
 
 #: /var/www/fa2.3/devel/../dimensions/includes/dimensions_ui.inc:24
 msgid "There are no transactions for this dimension for the selected period."
@@ -3824,7 +3822,7 @@ msgstr "No existen transaccciones para los parámetros dados."
 
 #: /var/www/fa2.3/devel/../dimensions/includes/dimensions_ui.inc:28
 msgid "Balance for this Dimension"
-msgstr "Cerrar Este Proyecto"
+msgstr "Balance de Este Proyecto"
 
 #: /var/www/fa2.3/devel/../dimensions/includes/dimensions_ui.inc:31
 #: /var/www/fa2.3/devel/../gl/inquiry/gl_account_inquiry.php:128
@@ -4037,7 +4035,7 @@ msgstr "Fecha de Vencimiento"
 
 #: /var/www/fa2.3/devel/../dimensions/inquiry/search_dimensions.php:143
 msgid "Marked dimensions are overdue."
-msgstr "Los artículos marcados están vencidos."
+msgstr "Los proyectos marcados están vencidos."
 
 # c:/Apache2/htdocs/account/projects/view/view_project.php:8
 #: /var/www/fa2.3/devel/../dimensions/view/view_dimension.php:20
@@ -4664,7 +4662,7 @@ msgstr "Moneda"
 
 #: /var/www/fa2.3/devel/../gl/manage/bank_accounts.php:102
 msgid "GL Account"
-msgstr "Cuenta de Libro Mayor"
+msgstr "Cuenta del MG"
 
 #: /var/www/fa2.3/devel/../gl/manage/bank_accounts.php:103
 #: /var/www/fa2.3/devel/../reporting/includes/doctext.inc:77
@@ -4976,7 +4974,7 @@ msgstr "Tipo de Clase:"
 #: /var/www/fa2.3/devel/../gl/manage/gl_accounts.php:16
 #: /var/www/fa2.3/devel/../reporting/rep701.php:110
 msgid "Chart of Accounts"
-msgstr "Cuadro de Cuentas"
+msgstr "Plan de Cuentas"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_accounts.php:23
 msgid ""
@@ -5116,7 +5114,7 @@ msgstr "Eliminar Cuenta"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_types.php:16
 msgid "GL Account Groups"
-msgstr "Grupos de Cuentas de Libro Mayor"
+msgstr "Grupos de Cuentas del MG"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_types.php:29
 msgid "The account group id cannot be empty."
@@ -6117,7 +6115,7 @@ msgstr "Grupos de Cuentas del MG"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:221
 msgid "GL account classes"
-msgstr "Cuentas de Libro Mayor"
+msgstr "Cuentas de MG"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:222
 msgid "Quick GL entry definitions"
