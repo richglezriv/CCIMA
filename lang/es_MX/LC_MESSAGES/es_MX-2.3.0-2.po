@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FrontAccounting\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-08 15:59+0200\n"
-"PO-Revision-Date: 2014-09-30 11:06-0600\n"
+"PO-Revision-Date: 2014-10-01 11:07-0600\n"
 "Last-Translator: Translation Team <info@frontaccounting.net>\n"
 "Language-Team: FrontAccounting <info@frontaccounting.com>\n"
 "MIME-Version: 1.0\n"
@@ -3091,7 +3091,7 @@ msgstr "Identificador de Usuario"
 
 #: /var/www/fa2.3/devel/../admin/db/users_db.inc:196
 msgid "users online"
-msgstr "Clientes"
+msgstr "usuarios en linea"
 
 #: /var/www/fa2.3/devel/../admin/db/voiding_db.inc:107
 #: /var/www/fa2.3/devel/../sales/includes/db/sales_invoice_db.inc:208
@@ -3171,7 +3171,7 @@ msgstr "Consultas y Reportes"
 
 #: /var/www/fa2.3/devel/../applications/customers.php:48
 msgid "Sales Quotation I&nquiry"
-msgstr "Consultar Asignaciones a Proveedores"
+msgstr "Consultar Cotizaciones"
 
 #: /var/www/fa2.3/devel/../applications/customers.php:50
 msgid "Sales Order &Inquiry"
@@ -6965,7 +6965,7 @@ msgstr "Seleccione un proveedor: "
 
 #: /var/www/fa2.3/devel/../includes/ui/ui_lists.inc:476
 msgid "All Customers"
-msgstr "Clientes"
+msgstr "Todos los Clientes"
 
 #: /var/www/fa2.3/devel/../includes/ui/ui_lists.inc:480
 msgid "Press Space tab to filter by name fragment; F2 - entry new customer"
@@ -8133,7 +8133,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../inventory/manage/sales_kits.php:116
 msgid "New alias code has been created."
-msgstr "Un nuevo usuario ha sido adicionado."
+msgstr "Nuevo alias de codigo ha sido creado."
 
 #: /var/www/fa2.3/devel/../inventory/manage/sales_kits.php:119
 msgid "New component has been added to selected kit."
@@ -10426,7 +10426,7 @@ msgstr "El cliente ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:220
 msgid "A new supplier has been added."
-msgstr "Un nuevo usuario ha sido adicionado."
+msgstr "Un nuevo proveedor ha sido adicionado."
 
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:238
 msgid ""
@@ -10834,7 +10834,7 @@ msgstr "Catalogo de Clientes"
 
 #: /var/www/fa2.3/devel/../reporting/rep103.php:178
 msgid "Customers in"
-msgstr "Clientes"
+msgstr "Clientes en"
 
 #: /var/www/fa2.3/devel/../reporting/rep103.php:202
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:404
@@ -12241,7 +12241,7 @@ msgstr "Ventas"
 
 #: /var/www/fa2.3/devel/../reporting/includes/reports_classes.inc:393
 msgid "No Users Filter"
-msgstr "No hay Clientes"
+msgstr "No hay Usuarios"
 
 #: /var/www/fa2.3/devel/../sales/create_recurrent_invoices.php:24
 msgid "Create and Print Recurrent Invoices"
@@ -12277,7 +12277,7 @@ msgstr "Los artículos marcados están vencidos."
 
 #: /var/www/fa2.3/devel/../sales/create_recurrent_invoices.php:151
 msgid "No recurrent invoices are due."
-msgstr "Un nuevo usuario ha sido adicionado."
+msgstr "No existen facturas recurrentes."
 
 #: /var/www/fa2.3/devel/../sales/credit_note_entry.php:40
 #, php-format
@@ -12934,7 +12934,7 @@ msgstr "Modificando Factura de Ventas # %d."
 
 #: /var/www/fa2.3/devel/../sales/sales_order_entry.php:78
 msgid "New Sales Order Entry"
-msgstr "Nueva Cotizaci&oacute;n"
+msgstr "Registro de Nuevo Pedido"
 
 #: /var/www/fa2.3/devel/../sales/sales_order_entry.php:82
 msgid "New Sales Quotation Entry"
@@ -13281,7 +13281,7 @@ msgstr "La descripción del estado de crédito no puede ser vacía."
 
 #: /var/www/fa2.3/devel/../sales/manage/credit_status.php:44
 msgid "New credit status has been added"
-msgstr "Un nuevo usuario ha sido adicionado."
+msgstr "Un nuevo estatus de credito ha sido adicionado"
 
 #: /var/www/fa2.3/devel/../sales/manage/credit_status.php:52
 msgid "Selected credit status has been updated"
@@ -13632,7 +13632,7 @@ msgstr "El usuario seleccionado ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../sales/manage/recurrent_invoices.php:52
 msgid "New recurrent invoice has been added"
-msgstr "Un nuevo usuario ha sido adicionado."
+msgstr "Nueva factura recurrente creada"
 
 #: /var/www/fa2.3/devel/../sales/manage/recurrent_invoices.php:69
 msgid "Selected recurrent invoice has been deleted"
@@ -13665,7 +13665,7 @@ msgstr "El usuario seleccionado ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_areas.php:44
 msgid "New sales area has been added"
-msgstr "Un nuevo usuario ha sido adicionado."
+msgstr "Nueva area de ventas creada"
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_areas.php:62
 msgid ""
@@ -13697,7 +13697,7 @@ msgstr "El usuario seleccionado ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_groups.php:44
 msgid "New sales group has been added"
-msgstr "Un nuevo usuario ha sido adicionado."
+msgstr "Nuevo grupo de ventas creado"
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_groups.php:62
 msgid ""
@@ -13774,7 +13774,7 @@ msgstr "El nombre de la Filial no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_points.php:41
 msgid "New point of sale has been added"
-msgstr "Un nuevo usuario ha sido adicionado."
+msgstr "Nuevo punto de ventas creado"
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_points.php:52
 msgid "Selected point of sale has been updated"
@@ -13842,7 +13842,7 @@ msgstr "La cantidad introducida debe ser un número positivo."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_types.php:48
 msgid "New sales type has been added"
-msgstr "Un nuevo usuario ha sido adicionado."
+msgstr "Nuevo tipo de ventas ha sido creado"
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_types.php:59
 msgid "Selected sales type has been updated"
@@ -14131,15 +14131,15 @@ msgstr "Seleccionar Plantilla para Remisión"
 
 #: /var/www/fa2.3/devel/../sales/inquiry/sales_orders_view.php:61
 msgid "Search All Sales Orders"
-msgstr "Buscar Todos los Pedidos"
+msgstr "Consultar Pedidos"
 
 #: /var/www/fa2.3/devel/../sales/inquiry/sales_orders_view.php:67
 msgid "Search All Sales Quotations"
-msgstr "Buscar Todos los Pedidos"
+msgstr "Consultar Cotizaciones"
 
 #: /var/www/fa2.3/devel/../sales/inquiry/sales_orders_view.php:131
 msgid "Dispatch"
-msgstr "Despacha"
+msgstr "Despachar"
 
 #: /var/www/fa2.3/devel/../sales/inquiry/sales_orders_view.php:171
 msgid "Set this order as a template for direct deliveries/invoices"
@@ -14235,7 +14235,7 @@ msgstr "Compañía de Embarque"
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_credit_ui.inc:114
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:379
 msgid "Customer Discount:"
-msgstr "Clientes"
+msgstr "Descuento al Cliente:"
 
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:61
 msgid "This item is already on this document. You have been warned."
@@ -14420,7 +14420,7 @@ msgstr "El usuario seleccionado ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../taxes/tax_groups.php:89
 msgid "New tax group has been added"
-msgstr "Un nuevo usuario ha sido adicionado."
+msgstr "Nuevo grupo de impuestos ha sido creado"
 
 #: /var/www/fa2.3/devel/../taxes/tax_groups.php:104
 msgid ""
@@ -14475,7 +14475,7 @@ msgstr "Cuenta de Libro Mayor no puede ser utiliada por otro tipo de impuesto"
 
 #: /var/www/fa2.3/devel/../taxes/tax_types.php:56
 msgid "New tax type has been added"
-msgstr "Un nuevo usuario ha sido adicionado."
+msgstr "Nuevo tipo de impuesto ha sido creado"
 
 #: /var/www/fa2.3/devel/../taxes/tax_types.php:67
 msgid "Selected tax type has been updated"
@@ -14695,3 +14695,15 @@ msgstr "Instalar Cuadro de Cuentas"
 
 msgid "BCC Address for all outgoing mails:"
 msgstr "Direccion de correo CCO para correos salientes:"
+
+msgid "Print &Invoices"
+msgstr "Imprimir Facturas"
+
+msgid "Print &Credit Notes"
+msgstr "Imprimir Notas de Credito"
+
+msgid "Sales &Summary Report"
+msgstr "Reporte de Resumen de Ventas"
+
+msgid "Sales &Orders"
+msgstr "Ordenes de Venta"

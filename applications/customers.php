@@ -45,7 +45,7 @@ class customers_app extends application
 			"sales/allocations/customer_allocation_main.php?", 'SA_SALESALLOC', MENU_TRANSACTION);
 
 		$this->add_module(_("Inquiries and Reports"));
-		$this->add_lapp_function(1, _("Consulta de cotizaciones"),
+		$this->add_lapp_function(1, _("Sales Quotation I&nquiry"),
 			"sales/inquiry/sales_orders_view.php?type=32", 'SA_SALESTRANSVIEW', MENU_INQUIRY);
 		$this->add_lapp_function(1, _("Sales Order &Inquiry"),
 			"sales/inquiry/sales_orders_view.php?type=30", 'SA_SALESTRANSVIEW', MENU_INQUIRY);

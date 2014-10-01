@@ -126,7 +126,7 @@ $result = get_recurrent_invoices();
 start_form();
 start_table(TABLESTYLE_NOBORDER);
 start_row();
-date_cells(_("Invoice date:"), 'date', '');
+date_cells(_("Invoice Date:"), 'date', '');
 end_row();
 end_table();
 
