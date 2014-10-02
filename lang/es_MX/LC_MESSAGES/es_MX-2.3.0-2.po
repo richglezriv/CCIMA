@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FrontAccounting\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-08 15:59+0200\n"
-"PO-Revision-Date: 2014-10-01 15:35-0600\n"
+"PO-Revision-Date: 2014-10-01 19:13-0600\n"
 "Last-Translator: Translation Team <info@frontaccounting.net>\n"
 "Language-Team: FrontAccounting <info@frontaccounting.com>\n"
 "MIME-Version: 1.0\n"
@@ -493,7 +493,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/backups.php:189
 msgid "Upload file"
-msgstr "Actualizar Orden"
+msgstr "Cargar Archivo"
 
 msgid "Change password"
 msgstr "Modificar Contraseña"
@@ -1406,7 +1406,7 @@ msgstr "Límite de Crédito Predeterminado:"
 
 #: /var/www/fa2.3/devel/../admin/gl_setup.php:134
 msgid "Accumulate batch shipping:"
-msgstr ""
+msgstr "Acumular envio"
 
 #: /var/www/fa2.3/devel/../admin/gl_setup.php:136
 msgid "Legal Text on Invoice:"
@@ -1495,7 +1495,7 @@ msgstr "Precaucion: Esto ocasionara retrasos en envios de Libro Mayor"
 
 #: /var/www/fa2.3/devel/../admin/gl_setup.php:181
 msgid "Items Defaults"
-msgstr "Valores Predeterminados de Inventario"
+msgstr "Valores Predeterminados"
 
 #: /var/www/fa2.3/devel/../admin/gl_setup.php:184
 #: /var/www/fa2.3/devel/../inventory/manage/item_categories.php:202
@@ -1537,7 +1537,7 @@ msgstr "Orden de Trabajo Predeterminada Requerida Para Después de:"
 # c:/Apache2/htdocs/account/applications/Setup.php:28
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:23
 msgid "Install/Update Languages"
-msgstr "Instalar/Actualizar Lenguajes"
+msgstr "Instalar/Actualizar Idioma"
 
 #: /var/www/fa2.3/devel/../admin/inst_lang.php:36
 #: /var/www/fa2.3/devel/../admin/inst_module.php:308
@@ -3582,7 +3582,7 @@ msgstr "Crear/Actualizar Compañías"
 # c:/Apache2/htdocs/account/applications/Setup.php:28
 #: /var/www/fa2.3/devel/../applications/setup.php:68
 msgid "Install/Update &Languages"
-msgstr "Instalar/Actualizar Lenguajes"
+msgstr "Instalar/Actualizar Idioma"
 
 #: /var/www/fa2.3/devel/../applications/setup.php:70
 msgid "Install/Activate &Extensions"
@@ -4185,6 +4185,9 @@ msgstr "Consultas"
 #: /var/www/fa2.3/devel/../reporting/rep601.php:69
 msgid "Bank Statement"
 msgstr "Estado de Cuentas"
+
+msgid "Bank Statement:"
+msgstr "Estado de Cuentas:"
 
 #: /var/www/fa2.3/devel/../gl/inquiry/bank_inquiry.php:30
 #: /var/www/fa2.3/devel/../purchasing/supplier_payment.php:42
@@ -4909,7 +4912,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_classes.php:16
 msgid "GL Account Classes"
-msgstr "Cuentas de MG"
+msgstr "Cuentas de Libro Mayor"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_classes.php:36
 msgid "The account class name cannot be empty."
@@ -5114,7 +5117,7 @@ msgstr "Eliminar Cuenta"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_types.php:16
 msgid "GL Account Groups"
-msgstr "Grupos de Cuentas del MG"
+msgstr "Grupos de Cuentas del Libro Mayor"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_types.php:29
 msgid "The account group id cannot be empty."
@@ -5704,7 +5707,7 @@ msgid "Manufacturing configuration"
 msgstr "Valores Predeterminados de Manufactura"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:69
-msgid "Manufacturing transations"
+msgid "Manufacturing transactions"
 msgstr "Valores Predeterminados de Manufactura"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:70
@@ -5751,7 +5754,7 @@ msgstr "Instalar/Actualizar compañias"
 # c:/Apache2/htdocs/account/applications/Setup.php:28
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:94
 msgid "Install/update languages"
-msgstr "Instalar/Actualizar Lenguajes"
+msgstr "Instalar/Actualizar Idioma"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:95
 msgid "Install/upgrade modules"
@@ -5859,7 +5862,7 @@ msgstr "Mantenimento de areas de venta"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:131
 msgid "Sales groups changes"
-msgstr "Grupos de Impuestos"
+msgstr "Administracion de Grupos de Ventas"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:132
 msgid "Sales templates"
@@ -5879,7 +5882,7 @@ msgstr "Seleccione un cliente: "
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:137
 msgid "Sales quotations"
-msgstr "Vendedor"
+msgstr "Cotizaciones"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:138
 msgid "Sales orders edition"
@@ -6144,7 +6147,7 @@ msgstr "Configuración de la Compañía"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:229
 msgid "GL Account tags"
-msgstr "Cuentas del MG"
+msgstr "Etiquetas de cuentas de Libro Mayor"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:230
 msgid "Allow entry on non closed Fiscal years"
@@ -6435,7 +6438,7 @@ msgstr "Recibo de Orden de Compra"
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:37
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:69
 msgid "Work Order"
-msgstr "# Orden de Trabajo:"
+msgstr "Orden de Trabajo"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:38
 msgid "Work Order Issue"
@@ -6449,7 +6452,7 @@ msgstr "Ver Producción de la Orden de Trabajo"
 #: /var/www/fa2.3/devel/../sales/inquiry/sales_orders_view.php:134
 #: /var/www/fa2.3/devel/../sales/inquiry/sales_orders_view.php:156
 msgid "Sales Order"
-msgstr "Para Pedido"
+msgstr "Orden de Venta"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:41
 #: /var/www/fa2.3/devel/../sales/sales_order_entry.php:587
@@ -6458,7 +6461,7 @@ msgstr "Vendedor"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:42
 msgid "Cost Update"
-msgstr "Actualizar"
+msgstr "Actualizacion de Costo"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:50
 msgid "Savings Account"
@@ -7869,7 +7872,7 @@ msgstr "Descripción"
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:361
 #: /var/www/fa2.3/devel/../sales/manage/customer_branches.php:249
 msgid "GL Accounts"
-msgstr "Cuentas del MG"
+msgstr "Cuentas del Libro Mayor"
 
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:384
 msgid "Other"
@@ -7890,7 +7893,7 @@ msgstr "Logotipo de la Compañía:"
 
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:409
 msgid "Item status:"
-msgstr "Valores Predeterminados de Inventario"
+msgstr "Estado de Inventario"
 
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:415
 msgid "Insert New Item"
@@ -8829,7 +8832,7 @@ msgstr "Cantidad Manufacturada:"
 
 #: /var/www/fa2.3/devel/../manufacturing/work_order_entry.php:435
 msgid "Credit Labour Account"
-msgstr "Cuenta de crdito laboral:"
+msgstr "Cuenta de credito laboral:"
 
 #: /var/www/fa2.3/devel/../manufacturing/work_order_entry.php:442
 msgid "Credit Overhead Account"
@@ -10320,7 +10323,7 @@ msgstr "Contacto"
 
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:107
 msgid "System default"
-msgstr "Valores Predeterminados de Inventario"
+msgstr "Valores Predeterminados"
 
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:109
 msgid "Purchasing"
@@ -11084,7 +11087,7 @@ msgstr "Precio Actual"
 
 #: /var/www/fa2.3/devel/../reporting/rep204.php:90
 msgid "Outstanding GRNs Report"
-msgstr "Reporte de GRNs Abiertas"
+msgstr "Reporte de Notas Directas Abiertas"
 
 # c:/Apache2/htdocs/account/reporting/rep209.php:78
 # c:/Apache2/htdocs/account/reporting/rep209.php:98
@@ -14753,3 +14756,43 @@ msgstr "Mostrar también Asignados"
 
 msgid "Tax Id Only"
 msgstr "Solo el identificador de impuesto"
+
+msgid "Class"
+msgstr "Clase"
+
+msgid "GRN Clearing Account:"
+msgstr "Cuenta de reembolso de Notas Directas"
+
+msgid "Sales Summary Report"
+msgstr "Reporte de Resumen de Ventas"
+
+msgid "Supplier Details Listing"
+msgstr "Lista de Proveedores"
+
+msgid "Inventory Purchasing Report"
+msgstr "Reporte de compras de inventario"
+
+msgid "Inventory Movements"
+msgstr "Movimientos de Inventario"
+
+msgid "Costed Inventory Movements"
+msgstr "Reporte de costos de inventario"
+
+msgid "Item Sales Summary Report"
+msgstr "Reporte de promedio de venta de articulos"
+
+msgid ""
+"If no Admin Password is entered, the new Admin Password will be 'password' "
+"by default"
+msgstr ""
+"Si no se introduce la contraseña de adminstrador, la nueva contraseña será "
+"'password'"
+
+msgid "Current Password:"
+msgstr "Contraseña Actual:"
+
+msgid "New Password:"
+msgstr "Nueva Contraseña:"
+
+msgid "Repeat New Password:"
+msgstr "Repetir Nueva Contraseña:"
