@@ -734,6 +734,40 @@ function dimensions_list_row($label, $name, $selected_id=null, $no_option=false,
 }
 
 //---------------------------------------------------------------------------------------------------
+function calculadora_list($name, $selected_id=null, $all_option=false, $submit_on_change=false, $all=false)
+{
+	global $all_items;
+
+	$sql = "SELECT CONCAT(id_calculadora ,':-:',nombre_calculadora,':-:',indicador_borrado), id_calculadora FROM "
+			.TB_PREF."cabecera_calculadora";
+	//"SELECT nombre_calculadora, id_calculadora FROM ".TB_PREF."cabecera_calculadora";
+
+	return combo_input($name, $selected_id, $sql, 'id_calculadora', 'nombre_calculadora',
+			array(
+				'format' => '_format_calculadora',
+				'spec_option' => $all_option === true ? _("All Locations") : $all_option,
+				'spec_id' => $all_items,
+				'search_box' => false,
+				'select_submit'=> $submit_on_change,
+				"order" => array('id_calculadora','nombre_calculadora')
+			) );
+}
+
+function calculadora_list_cells($label, $name, $selected_id=null, $all_option=false, $submit_on_change=false, $all=false)
+{
+	if ($label != null)
+		echo "<td>$label</td>\n";
+	echo "<td>";
+	echo calculadora_list($name, $selected_id, $all_option, $submit_on_change, $all);
+	echo "</td>\n";
+}
+
+function _format_calculadora($row) {
+	return (user_show_codes()  ?  ($row[0] . "&nbsp;-&nbsp;") : "") . $row[1];
+	//return $row[0];
+}
+
+//---------------------------------------------------------------------------------------------------
 
 function stock_items_list($name, $selected_id=null, $all_option=false, 
 	$submit_on_change=false, $opts=array(), $editkey = false)
@@ -1604,7 +1638,7 @@ function user_list_row($label, $name, $selected_id=null, $spec_opt=false, $submi
 }
 
 //-----------------------------------------------------------------------------------------------
-
+/*
 function sheet_list($name, $selected_id=null, $spec_opt=false, $submit_on_change=false,$calibre)
 {
 	$sql = "SELECT a.stock_id, b.description, b.material_cost ".
@@ -1636,7 +1670,7 @@ function sheet_list_row($label, $name, $selected_id=null, $spec_opt=false, $subm
 	sheet_list_cells(null, $name, $selected_id, $spec_opt, $submit_on_change,$calibre);
 	echo "</tr>\n";
 }
-
+*/
 //-----------------------------------------------------------------------------------------------
 
 function gl_account_types_list($name, $selected_id=null, $all_option=false, $all=true)
@@ -2109,6 +2143,34 @@ function number_list_row($label, $name, $selected, $from, $to, $no_option=false)
 {
 	echo "<tr><td class='label'>$label</td>";
 	echo number_list_cells(null, $name, $selected, $from, $to, $no_option);
+	echo "</tr>\n";
+}
+
+function sheet_list($name, $selected, $sheetitems, $calibre, $no_option=false)
+{
+	$items = array();
+	foreach($sheetitems as $sheet)
+		if ($sheet["calibre"] == $calibre)
+			$items[$sheet["stock_id"]] = $sheet["description"];
+
+	return array_selector($name, $selected, $items,
+				array(	'spec_option' => $no_option,
+						'select_submit'=> true));
+}
+
+function sheet_list_cells($label, $name, $selected, $sheetitems, $calibre, $no_option=false)
+{
+	if ($label != null)
+		label_cell($label);
+	echo "<td>\n";
+	echo sheet_list($name, $selected, $sheetitems, $calibre, $no_option);
+	echo "</td>\n";
+}
+
+function sheet_list_row($label, $name, $selected, $sheetitems, $calibre, $no_option=false)
+{
+	echo "<tr><td class='label'>$label</td>";
+	echo sheet_list_cells(null, $name, $selected, $sheetitems, $calibre, $no_option);
 	echo "</tr>\n";
 }
 

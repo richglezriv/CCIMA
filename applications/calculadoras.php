@@ -16,9 +16,16 @@ class calculadoras_app extends application
 		$this->application("CM", _($this->help_context = "&Calculadoras"));
 
 		$this->add_module(_("Transactions"));
-		$this->add_lapp_function(0, _("Conversor de materiales"),
-				"calculadoras/conversor_materiales.php?",'SA_OPEN',  MENU_TRANSACTION);
-
+		$this->add_lapp_function(0, _("Despliega calculadoras"),
+				"calculadoras/despliega.php?",'SA_OPEN',  MENU_TRANSACTION);
+		
+		$this->add_module(_("Maintenance"));
+		$this->add_lapp_function(1, _("Creación de calculadoras"),
+				"calculadoras/creacion.php?",'SA_OPEN',  MENU_MAINTENANCE);
+		$this->add_rapp_function(1, _("Visualización de calculadoras"),
+				"calculadoras/visualizacion.php?",'SA_OPEN',  MENU_MAINTENANCE);
+		
+		
 		$this->add_extensions();
 	}
 }
