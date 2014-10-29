@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FrontAccounting\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-08 15:59+0200\n"
-"PO-Revision-Date: 2014-10-01 19:13-0600\n"
+"PO-Revision-Date: 2014-10-28 15:51-0600\n"
 "Last-Translator: Translation Team <info@frontaccounting.net>\n"
 "Language-Team: FrontAccounting <info@frontaccounting.com>\n"
 "MIME-Version: 1.0\n"
@@ -2176,7 +2176,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:129
 msgid "Security role has been sucessfully deleted."
-msgstr "El Rol ha sido actualizado."
+msgstr "El Rol ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../admin/security_roles.php:178
 msgid "Role:"
@@ -3379,7 +3379,7 @@ msgstr "Artículos e Inventario"
 
 #: /var/www/fa2.3/devel/../applications/inventory.php:19
 msgid "Inventory Location &Transfers"
-msgstr "Transferencias de Almacén  de Inventario"
+msgstr "Configuracion de Almacén  de Inventario"
 
 #: /var/www/fa2.3/devel/../applications/inventory.php:21
 msgid "Inventory &Adjustments"
@@ -4358,7 +4358,7 @@ msgstr "Balance de Comprobación"
 # c:/Apache2/htdocs/account/gl/inquiry/gl_trial_balance.php:27
 #: /var/www/fa2.3/devel/../gl/inquiry/gl_trial_balance.php:46
 msgid "No zero values"
-msgstr "Debe tener valor"
+msgstr "No debe tener valor cero"
 
 #: /var/www/fa2.3/devel/../gl/inquiry/gl_trial_balance.php:47
 #: /var/www/fa2.3/devel/../reporting/reports_main.php:287
@@ -4399,19 +4399,19 @@ msgstr "Registro de Asiento Diario"
 
 #: /var/www/fa2.3/devel/../gl/inquiry/journal_inquiry.php:45
 msgid "Enter reference fragment or leave empty"
-msgstr "Ingrese el fragment de referencia o deje en blanco"
+msgstr "Ingrese el fragmento de referencia o deje en blanco"
 
 #: /var/www/fa2.3/devel/../gl/inquiry/journal_inquiry.php:51
 msgid "Show closed:"
-msgstr "mostrar confirmados:"
+msgstr "Mostrar cerrados:"
 
 #: /var/www/fa2.3/devel/../gl/inquiry/journal_inquiry.php:56
 msgid "Enter memo fragment or leave empty"
-msgstr "El nombre del cliente no puede ser vacío."
+msgstr "Escriba fragmento comentario o dejar en blanco."
 
 #: /var/www/fa2.3/devel/../gl/inquiry/journal_inquiry.php:122
 msgid "Trans #"
-msgstr "Tipo de Transferencia"
+msgstr "Numero de Transferencia"
 
 #: /var/www/fa2.3/devel/../gl/inquiry/journal_inquiry.php:124
 #: /var/www/fa2.3/devel/../gl/inquiry/tax_inquiry.php:82
@@ -4498,7 +4498,7 @@ msgstr "Comparar con"
 # /../../BankAccounts.php:154
 #: /var/www/fa2.3/devel/../gl/inquiry/profit_loss.php:217
 msgid "Group/Account Name"
-msgstr "Nombre de Cuenta"
+msgstr "Grupo/Nombre de Cuenta"
 
 #: /var/www/fa2.3/devel/../gl/inquiry/profit_loss.php:218
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:226
@@ -4563,7 +4563,7 @@ msgstr "Salida de Impuesto "
 
 #: /var/www/fa2.3/devel/../gl/inquiry/tax_inquiry.php:106
 msgid "Paid on purchases"
-msgstr "Compras"
+msgstr " Pagado por  adquisición"
 
 # c:/Apache2/htdocs/account/reporting/Rep709.php:283
 #: /var/www/fa2.3/devel/../gl/inquiry/tax_inquiry.php:106
@@ -4615,7 +4615,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../gl/manage/bank_accounts.php:83
 msgid "Selected bank account has been deleted"
-msgstr "La transacción seleccionada ha sido anulada."
+msgstr "La cuenta de banco ha sido anulada."
 
 #                                                                                              repeated\n
 # /../../PurchData.php:257
@@ -4665,7 +4665,7 @@ msgstr "Moneda"
 
 #: /var/www/fa2.3/devel/../gl/manage/bank_accounts.php:102
 msgid "GL Account"
-msgstr "Cuenta del MG"
+msgstr "Cuenta de Libro Mayor"
 
 #: /var/www/fa2.3/devel/../gl/manage/bank_accounts.php:103
 #: /var/www/fa2.3/devel/../reporting/includes/doctext.inc:77
@@ -4729,19 +4729,19 @@ msgstr "Monedas"
 
 #: /var/www/fa2.3/devel/../gl/manage/currencies.php:29
 msgid "The currency abbreviation must be entered."
-msgstr "Debe entrar una abreveitura de la moneda."
+msgstr "Debe ingresar una abreviatura de la moneda."
 
 #: /var/www/fa2.3/devel/../gl/manage/currencies.php:35
 msgid "The currency name must be entered."
-msgstr "Debe entrar el nombre de la moneda."
+msgstr "Debe ingresar el nombre de la moneda."
 
 #: /var/www/fa2.3/devel/../gl/manage/currencies.php:41
 msgid "The currency symbol must be entered."
-msgstr "Debe entrar el símbolo de la moneda."
+msgstr "Debe ingresar el símbolo de la moneda."
 
 #: /var/www/fa2.3/devel/../gl/manage/currencies.php:47
 msgid "The hundredths name must be entered."
-msgstr "Debe entrar los centavos."
+msgstr "Debe ingresar los centavos."
 
 #: /var/www/fa2.3/devel/../gl/manage/currencies.php:69
 msgid "Selected currency settings has been updated"
@@ -4749,7 +4749,7 @@ msgstr "La moneda seleccionada ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../gl/manage/currencies.php:76
 msgid "New currency has been added"
-msgstr "Una nueva moneda ha sido adicionado."
+msgstr "Una nueva moneda ha sido adicionada."
 
 #: /var/www/fa2.3/devel/../gl/manage/currencies.php:94
 msgid ""
@@ -4785,7 +4785,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../gl/manage/currencies.php:128
 msgid "Selected currency has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "La moneda seleccionada ha sido eliminada"
 
 #: /var/www/fa2.3/devel/../gl/manage/currencies.php:141
 msgid "Abbreviation"
@@ -4880,9 +4880,7 @@ msgstr "Obtener el valor actual de ECB"
 
 #: /var/www/fa2.3/devel/../gl/manage/exchange_rates.php:149
 msgid "Exchange rates are entered against the company currency."
-msgstr ""
-"Las tasas de cambio son introducidas con respecto a la moneda predeterminada "
-"de la compañía."
+msgstr "Las tasas de cambio se ingresan contra  la divisa de la empresa."
 
 #: /var/www/fa2.3/devel/../gl/manage/exchange_rates.php:180
 msgid "Select a currency :"
@@ -4989,7 +4987,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_accounts.php:53
 msgid "The account code must be entered."
-msgstr "Debe entrar el código de la cuenta."
+msgstr "Debe ingresar el código de la cuenta."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_accounts.php:59
 msgid "The account name cannot be empty."
@@ -5137,7 +5135,7 @@ msgstr "El tipo de cuenta seleccionada ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_types.php:66
 msgid "New account type has been added"
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr " Nuevo tipo de cuenta se ha agregado"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_types.php:83
 msgid ""
@@ -5161,12 +5159,12 @@ msgstr "El precio seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_types.php:122
 msgid "Group ID"
-msgstr "Grupo"
+msgstr "Grupo ID"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_types.php:122
 #: /var/www/fa2.3/devel/../sales/manage/sales_groups.php:85
 msgid "Group Name"
-msgstr "Grupo"
+msgstr "Nombre de Grupo"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_types.php:122
 msgid "Subgroup Of"
@@ -5192,7 +5190,7 @@ msgstr "Agregar"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:73
 msgid "The Quick Entry description cannot be empty."
-msgstr "La descripción de la categoría de artículos no puede ser vacía."
+msgstr "La descripción de la Entrada Rapida no puede ser vacía."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:80
 msgid "You can only use Balance Based together with Journal Entries."
@@ -5200,7 +5198,7 @@ msgstr "Puede usar solamente el Balanca basado en los asientos de diario"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:86
 msgid "The base amount description cannot be empty."
-msgstr "La descripción del área no puede ser vacía."
+msgstr "El monto base no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:106
 msgid "Selected quick entry has been updated"
@@ -5208,7 +5206,7 @@ msgstr "La entrada rapida seleccionada ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:112
 msgid "New quick entry has been added"
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Nueva entrada rápida ha sido agregada"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:124
 msgid "Selected quick entry line has been updated"
@@ -5216,11 +5214,11 @@ msgstr "La linea de entrada rapida ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:130
 msgid "New quick entry line has been added"
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "El registro de  entrada rapida ha sido adicionado."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:142
 msgid "Selected quick entry has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "La entrada rapida seleccionada ha sido eliminada"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:147
 msgid "The Quick Entry has Quick Entry Lines. Cannot be deleted."
@@ -5229,13 +5227,13 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:155
 msgid "Selected quick entry line has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El registro de entrada rapida seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:163
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:232
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:233
 msgid "Base Amount"
-msgstr "Importe"
+msgstr "Importe Base"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:220
 msgid "Entry Type"
@@ -5280,7 +5278,7 @@ msgstr "Registros de entrada rapida"
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:253
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:255
 msgid "Post"
-msgstr "Servidor"
+msgstr "Mensaje"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:251
 #: /var/www/fa2.3/devel/../gl/manage/gl_quick_entries.php:253
@@ -5304,11 +5302,11 @@ msgstr "Imprimir"
 
 #: /var/www/fa2.3/devel/../gl/manage/revaluate_currencies.php:23
 msgid "Revaluation of Currency Accounts"
-msgstr "Reevaluacion de cuentas de moneda"
+msgstr "Renovacion de Cuentas Corrientes"
 
 #: /var/www/fa2.3/devel/../gl/manage/revaluate_currencies.php:31
 msgid "No Revaluation was needed"
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "No hubo necesidad de  revaluación."
 
 #: /var/www/fa2.3/devel/../gl/manage/revaluate_currencies.php:34
 msgid "Transfer has been entered"
@@ -5333,7 +5331,7 @@ msgstr "Ver las Polizas de Diario para esta Transferencia"
 #: /var/www/fa2.3/devel/../sales/customer_payments.php:106
 #: /var/www/fa2.3/devel/../sales/sales_order_entry.php:398
 msgid "You must enter a reference."
-msgstr "Debe entrar una referencia."
+msgstr "Debe agregar una referencia."
 
 #: /var/www/fa2.3/devel/../gl/manage/revaluate_currencies.php:101
 msgid "Date for Revaluation:"
@@ -5667,57 +5665,57 @@ msgstr "Mantenimiento"
 # c:/Apache2/htdocs/account/admin/create_coy.php:86
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:59
 msgid "Sales configuration"
-msgstr "El archivo de configuración "
+msgstr "Configuracion de Ventas"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:60
 msgid "Sales transactions"
-msgstr "Transacciones"
+msgstr "Transacciones de Ventas"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:61
 msgid "Sales related reports"
-msgstr "Artículos del Pedido"
+msgstr "Reportes de Ventas"
 
 # c:/Apache2/htdocs/account/admin/create_coy.php:86
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:62
 msgid "Purchase configuration"
-msgstr "El archivo de configuración "
+msgstr "Configuracion de Compras"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:63
 msgid "Purchase transactions"
-msgstr "Transacciones de Cliente"
+msgstr "Transacciones de Compras"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:64
 msgid "Purchase analytics"
-msgstr "Compras"
+msgstr "Reportes analiticos de Compras"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:65
 msgid "Inventory configuration"
-msgstr "Almacén de Inventario"
+msgstr "Configuracion de Inventario"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:66
 msgid "Inventory operations"
-msgstr "Almacén de Inventario"
+msgstr "Transaccciones de Inventario"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:67
 msgid "Inventory analytics"
-msgstr "Almacén de Inventario"
+msgstr "Reportes analiticos de Inventario"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:68
 msgid "Manufacturing configuration"
-msgstr "Valores Predeterminados de Manufactura"
+msgstr "Configuracion de Manufactura"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:69
 msgid "Manufacturing transactions"
-msgstr "Valores Predeterminados de Manufactura"
+msgstr "Transacciones de Manufactura"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:70
 msgid "Manufacturing analytics"
-msgstr "Valores Predeterminados de Manufactura"
+msgstr "Reportes analiticos de Manufactura"
 
 # c:/Apache2/htdocs/account/admin/create_coy.php:86
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:71
 msgid "Dimensions configuration"
-msgstr "El archivo de configuración "
+msgstr "Configuración de Proyectos"
 
 # c:/Apache2/htdocs/account/applications/Projects.php:5
 # c:/Apache2/htdocs/account/inventory/manage/items.php:287
@@ -5734,15 +5732,15 @@ msgstr "Proyectos"
 # c:/Apache2/htdocs/account/admin/create_coy.php:69
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:73
 msgid "Banking & GL configuration"
-msgstr "No se puede abrir el archivo de configuración - "
+msgstr "Configuracion de Bancos y Libro Mayor"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:74
 msgid "Banking & GL transactions"
-msgstr "Pendiente"
+msgstr "Transacciones de Bancos y Libro Mayor"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:75
 msgid "Banking & GL analytics"
-msgstr "Bancos y Analisis de Libro Mayor"
+msgstr "Reportes analiticos de Bancos y Libro Mayor"
 
 # c:/Apache2/htdocs/account/admin/inst_lang.php:7
 # c:/Apache2/htdocs/account/applications/Setup.php:28
@@ -5834,7 +5832,7 @@ msgstr "Vista/Impresion sencilla de transacciones"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:120
 msgid "Attaching documents"
-msgstr "Seleccione una cuenta:"
+msgstr "Adjuntar documentos"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:121
 msgid "Display preferences"
@@ -5874,11 +5872,11 @@ msgstr "Definicion de factura recurrente"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:135
 msgid "Sales transactions view"
-msgstr "La transacción seleccionada ha sido anulada."
+msgstr "Vista de transacciones"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:136
 msgid "Sales customer and branches changes"
-msgstr "Seleccione un cliente: "
+msgstr "Modificaciones a Clientes y Filiales"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:137
 msgid "Sales quotations"
@@ -5886,15 +5884,15 @@ msgstr "Cotizaciones"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:138
 msgid "Sales orders edition"
-msgstr "Representante de Venta"
+msgstr "Modificacion a Ordenes de venta"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:139
 msgid "Sales deliveries edition"
-msgstr "Representante de Venta"
+msgstr "Modificacion a Entregas de ventas"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:140
 msgid "Sales invoices edition"
-msgstr "Facturas de Venta"
+msgstr "Modificacion a Facturas de Venta"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:141
 msgid "Sales credit notes against invoice"
@@ -5918,7 +5916,7 @@ msgstr "Reportes analiticos de ventas"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:147
 msgid "Sales document bulk reports"
-msgstr "Seleccione una cuenta:"
+msgstr "Reportes masivos de ventas"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:148
 msgid "Sales prices listing"
@@ -5994,7 +5992,7 @@ msgstr "Entrada de Pago a Proveedor"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:175
 msgid "Stock items add/edit"
-msgstr "Artículos de la Factura"
+msgstr "Articulos de inventario agregar/editar"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:176
 msgid "Sales kits"
@@ -6018,7 +6016,7 @@ msgstr "Transacciones de Cliente"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:182
 msgid "Foreign item codes entry"
-msgstr "Mostrar los Códigos de Artículos:"
+msgstr "Mostrar los Códigos de Artículos"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:183
 msgid "Inventory location transfers"
@@ -6046,7 +6044,7 @@ msgstr "Lista de Materiales"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:195
 msgid "Manufacturing operations view"
-msgstr "Valores Predeterminados de Manufactura"
+msgstr "Vista de operaciones de manufactura"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:196
 msgid "Work order entry"
@@ -6167,7 +6165,7 @@ msgstr "Tasas de Cambio"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:235
 msgid "Bank payments"
-msgstr "Ver Pagos Bancarios"
+msgstr "Pagos Bancarios"
 
 #: /var/www/fa2.3/devel/../includes/access_levels.inc:236
 msgid "Bank deposits"
@@ -6375,7 +6373,7 @@ msgstr "Registro de Asiento Diario"
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:23
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:122
 msgid "Bank Payment"
-msgstr "Ver Pagos Bancarios"
+msgstr "Pago Bancario"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:24
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:121
@@ -6652,7 +6650,7 @@ msgstr "Manufacturado"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:131
 msgid "Purchased"
-msgstr "Compras"
+msgstr "Comprado"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:132
 msgid "Service"
@@ -7876,7 +7874,7 @@ msgstr "Cuentas del Libro Mayor"
 
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:384
 msgid "Other"
-msgstr "Sobre"
+msgstr "Otros"
 
 # c:/Apache2/htdocs/account/inventory/manage/items.php:301
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:387
@@ -7990,7 +7988,7 @@ msgstr "Debe introducir el nombre del Almacén."
 
 #: /var/www/fa2.3/devel/../inventory/manage/locations.php:56
 msgid "Selected location has been updated"
-msgstr "La transacción seleccionada ha sido anulada."
+msgstr "La ubicacion seleccionada ha sido anulada."
 
 #: /var/www/fa2.3/devel/../inventory/manage/locations.php:65
 msgid "New location has been added"
@@ -8033,7 +8031,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../inventory/manage/locations.php:129
 msgid "Selected location has been deleted"
-msgstr "La transacción seleccionada ha sido anulada."
+msgstr "La ubicacion seleccionada ha sido eliminada."
 
 #: /var/www/fa2.3/devel/../inventory/manage/locations.php:146
 msgid "Location Code"
@@ -8571,7 +8569,7 @@ msgstr "para artículo:"
 #: /var/www/fa2.3/devel/../sales/inquiry/sales_deliveries_view.php:111
 #: /var/www/fa2.3/devel/../sales/inquiry/sales_orders_view.php:238
 msgid "Select documents"
-msgstr "Seleccione una cuenta:"
+msgstr "Seleccionar documentos"
 
 #: /var/www/fa2.3/devel/../manufacturing/search_work_orders.php:117
 msgid "Release"
@@ -10327,7 +10325,7 @@ msgstr "Valores Predeterminados"
 
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:109
 msgid "Purchasing"
-msgstr "Compras"
+msgstr "Comprando"
 
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:110
 msgid "Bank Name/Account:"
@@ -10374,7 +10372,7 @@ msgstr "Dirección de Correo-e:"
 
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:138
 msgid "General"
-msgstr "Mayor General"
+msgstr "General"
 
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:139
 #: /var/www/fa2.3/devel/../sales/manage/customer_branches.php:270
@@ -12932,7 +12930,7 @@ msgstr "Modificando Factura de Ventas # %d."
 
 #: /var/www/fa2.3/devel/../sales/sales_order_entry.php:78
 msgid "New Sales Order Entry"
-msgstr "Registro de Nuevo Pedido"
+msgstr "Registro de Orden de Trabajo"
 
 #: /var/www/fa2.3/devel/../sales/sales_order_entry.php:82
 msgid "New Sales Quotation Entry"
@@ -13203,7 +13201,7 @@ msgstr "Fecha de Cotizacion:"
 
 #: /var/www/fa2.3/devel/../sales/sales_order_entry.php:656
 msgid "Sales Quotation Items"
-msgstr "Articulos Facturados"
+msgstr "Articulos Cotizados"
 
 #: /var/www/fa2.3/devel/../sales/sales_order_entry.php:657
 msgid "Enter Delivery Details and Confirm Quotation"
@@ -14249,7 +14247,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:148
 msgid "Price after Tax"
-msgstr "Compras"
+msgstr "Precio despues de impuestos"
 
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:148
 msgid "Price before Tax"
@@ -14277,7 +14275,7 @@ msgstr "Artículos a Recibir"
 
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:578
 msgid "Cash payment"
-msgstr "Ver Pagos Bancarios"
+msgstr "Pago"
 
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:580
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:611
@@ -14290,7 +14288,7 @@ msgstr "Cuenta de Ventas:"
 
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:589
 msgid "Delivery Details"
-msgstr "Adicionar Nuevos Detalles del Proveedor"
+msgstr "Detalles de entrega"
 
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:594
 msgid "Invoice Delivery Details"
@@ -14583,8 +14581,8 @@ msgstr "Balance de cuenta"
 msgid "Supplier &Detail Listing"
 msgstr "Lista de Proveedores"
 
-msgid "Email Suppliers:"
-msgstr "Ver Correo:"
+msgid "Email Suppliers"
+msgstr "Ver Correo del Proveedor"
 
 msgid "Orientation"
 msgstr "Orientaci&oacute;n"

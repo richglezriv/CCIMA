@@ -24,10 +24,20 @@ simple_page_mode(true);
 //-----------------------------------------------------------------------------------
 if(isset($_GET['po'])) {
 	if($_GET['po'] == 'yes') {
-		if (generate_po())
-			display_notification(_("Purchase orders has been generated."));
-		else
-			display_error(_("Purchase orders generation failed."));
+        //CCIMA validar el monto maximo para procesar requisicion
+        if (puede_procesar()){
+            
+		        if (generate_po())
+			        display_notification(_("Purchase orders has been generated."));
+		        else
+			        display_error(_("Purchase orders generation failed."));
+            
+        }
+        else 
+        {
+            display_warning("No puede procesar la orden de compra ya que excede el monto m&aacute;ximo, se ha solicitado la autorizaci&oacute;n correspondiente");
+        }
+    
 	}
 }
 
@@ -136,7 +146,7 @@ submit_add_or_update_center($selected_id == -1, '', 'both');
 
 end_form();
 
-echo "<div align='center'><input type='checkbox' value='1' >&nbsp;Autorizado";
+//echo "<div align='center'><input type='checkbox' value='1' >&nbsp;Autorizado";
 echo "<div align='center'><a href='requisition_allocations.php?po=yes'>"._("Generate Purchase Orders")."</a></div>\n";
 //------------------------------------------------------------------------------------
 

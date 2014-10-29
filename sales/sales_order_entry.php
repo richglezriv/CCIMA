@@ -83,7 +83,9 @@ if (isset($_GET['NewDelivery']) && is_numeric($_GET['NewDelivery'])) {
 
 } elseif (isset($_GET['NewOrder'])) {
 
-	$_SESSION['page_title'] = _($help_context = "New Sales Order Entry");
+	$_SESSION['page_title'] = user_company() == 0 ? "Nueva Orden de Trabajo" : "Nueva Orden de Servicio";
+    
+    _($help_context = "New Sales Order Entry");
 	create_cart(ST_SALESORDER, 0);
 } elseif (isset($_GET['NewQuotation'])) {
 
@@ -250,6 +252,8 @@ function copy_to_cart()
 	$cart->Comments =  $_POST['Comments'];
 
 	$cart->document_date = $_POST['OrderDate'];
+    $cart->inicioObra = $_POST['inicioObra'];
+    $cart->finObra = $_POST['finObra'];
 
 	$newpayment = false;
 
@@ -300,6 +304,8 @@ function copy_from_cart()
 
 	$_POST['OrderDate'] = $cart->document_date;
 	$_POST['delivery_date'] = $cart->due_date;
+    $_POST['inicioObra'] = $cart->inicioObra;
+    $_POST['finObra'] = $cart->finObra;
 	$_POST['cust_ref'] = $cart->cust_ref;
 	$_POST['freight_cost'] = price_format($cart->freight_cost);
 
@@ -438,8 +444,9 @@ if (isset($_POST['ProcessOrder']) && can_process()) {
 	copy_to_cart();
 	$modified = ($_SESSION['Items']->trans_no != 0);
 	$so_type = $_SESSION['Items']->so_type;
-
+    
 	$ret = $_SESSION['Items']->write(1);
+    //$ret = -1;
 	if ($ret == -1)
 	{
 		display_error(_("The entered reference is already in use."));

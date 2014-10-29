@@ -83,4 +83,81 @@ function requisitions_in_details($selected_id)
 	return ($myrow[0] > 0); 
 }
 
+//valida si se puede generar la orden de compra con base a un parametro maximo
+function puede_procesar(){
+    
+    $total = 0;
+    $sql = "SELECT SUM(price) AS 'total' FROM ".TB_PREF."requisition_details WHERE lpo_id = 0";
+    $result = db_query($sql, "no se pudo obtener el total de la requisicion");
+    $myrow = db_fetch_row($result);
+    
+    $total = $myrow[0];
+    
+    
+    $sql = "SELECT value FROM ".TB_PREF."sys_prefs WHERE name = 'max_req'";
+    
+    $result = db_query($sql, "no se pudo obtener el parametro maximo de monto");
+    $myrow = db_fetch_row($result);
+
+    $parametro = $myrow[0];
+    
+    if ($parametro > $total){
+        return true;
+    }
+    else {
+        notificaAutorizacionRequisicion();
+        return false;
+    }
+    
+
+    
+
+}
+
+//notifica la autorizacion de la requisicion
+function notificaAutorizacionRequisicion(){
+
+    // Enviarlo
+    global $path_to_root;
+    $seccionMensaje = getItemsPendientesReq();
+    $liga = "";
+    $motivoCorreo = "Autorizacion de Requisicion";
+    $descripcion = "Solicitud de autorizacion de orden de compra para los items requeridos";
+    
+    require_once($path_to_root . "/includes/db/utilities.inc");
+    $notificacion = notifica_autorizacion("http://google.com", $motivoCorreo, $descripcion, $seccionMensaje);
+    //echo($notificacion);
+}
+
+function getItemsPendientesReq(){
+
+    $sql = "SELECT * FROM ".TB_PREF."item_codes ic INNER JOIN ".TB_PREF."requisition_details rd ON ic.item_code = rd.item_code
+	INNER JOIN ".TB_PREF."requisitions r ON rd.requisition_id = r.requisition_id
+	LEFT JOIN ".TB_PREF."suppliers s ON rd.supplier_id = s.supplier_id
+	WHERE (r.completed = 1) AND (rd.lpo_id = 0)
+	ORDER BY r.requisition_id";
+    $result = db_query($sql, "could not get all requisition_details");
+    $html = "<table style='width:100px;'>";
+    $html .= "<tr>";
+    $html .= "<td>Utilidad</td>";
+    $html .= "<td>Cantidad</td>";
+    $html .= "<td>Precio</td>";
+    $html .= "<td>Proveedor</td></tr>";
+
+    while ($myrow = db_fetch($result)) 
+    {
+	    $html .= "<tr>";
+        
+        $html .= "<td>".$myrow["point_of_use"]."</td>";
+        $html .= "<td>".$myrow["quantity"]."</td>";
+        $html .= "<td>".$myrow["price"]."</td>";
+        $html .= "<td>".$myrow["supp_name"]."</td>";
+
+	    $html .= "</tr>";
+    }
+    
+    $html .= "</table>";
+
+	return $html;
+}
 ?>

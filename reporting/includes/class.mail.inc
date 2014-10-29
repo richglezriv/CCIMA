@@ -158,6 +158,7 @@ class email
 		$ret = 0;
         foreach($this->to as $mail)
         {
+        
 			if (mail($mail, $this->subject, $this->body, $this->header, $this->add_params))
 				$ret++;
         }

@@ -25,10 +25,10 @@ class hooks_requisitions extends hooks {
 	function install_access()
 	{
 
-		$security_sections[SS_REQUISITIONS] = _("Requisitions");
+		$security_sections[SS_REQUISITIONS] = _("Requisiciones");
 
-		$security_areas['SA_REQUISITIONS'] = array(SS_REQUISITIONS|1, _("Requisitions Entries"));
-		$security_areas['SA_REQUISITION_ALLOCATIONS'] = array(SS_REQUISITIONS|1, _("Requisitions Allocations"));
+		$security_areas['SA_REQUISITIONS'] = array(SS_REQUISITIONS|1, _("Captura de Requisiciones"));
+		$security_areas['SA_REQUISITION_ALLOCATIONS'] = array(SS_REQUISITIONS|1, _("Previsiones de Requisicion"));
 
 		return array($security_areas, $security_sections);
 	}

@@ -109,7 +109,7 @@ if (isset($_POST['update']) && $_POST['update'] != "")
 				'no_item_list' => 0, 'no_customer_list' => 0, 
 				'no_supplier_list' =>0, 'base_sales', 
 				'time_zone' => 0, 'add_pct', 'round_to', 'login_tout', 'auto_curr_reval',
-				'bcc_email'))
+				'bcc_email', 'max_req'))
 		);
 
 		$_SESSION['wa_current_user']->timeout = $_POST['login_tout'];
@@ -156,6 +156,7 @@ $_POST['round_to'] = $myrow['round_to'];
 $_POST['auto_curr_reval'] = $myrow['auto_curr_reval'];	
 $_POST['del_coy_logo']  = 0;
 $_POST['bcc_email']  = $myrow["bcc_email"];
+$_POST['max_req'] = $myrow["max_req"];
 
 start_outer_table(TABLESTYLE2);
 
@@ -191,7 +192,9 @@ sales_types_list_row(_("Base for auto price calculations:"), 'base_sales', $_POS
 text_row_ex(_("Add Price from Std Cost:"), 'add_pct', 10, 10, '', null, null, "%");
 $curr = get_currency($_POST['curr_default']);
 text_row_ex(_("Round to nearest:"), 'round_to', 10, 10, '', null, null, $curr['hundreds_name']);
-label_row("", "&nbsp;");
+//label_row("", "&nbsp;");
+//monto para requisiciones CCIMA
+text_row_ex("Monto m&aacute;ximo para Requisiciones", 'max_req', 10, 10, '', NULL, NULL, 'Pesos');
 
 check_row(_("Search Item List"), 'no_item_list', null);
 check_row(_("Search Customer List"), 'no_customer_list', null);

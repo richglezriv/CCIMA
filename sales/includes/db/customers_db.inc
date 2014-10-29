@@ -187,4 +187,12 @@ function get_customer_by_ref($reference)
 	return db_fetch($result);
 }
 
+/**
+//CCIMA Asigna el usuario al cliente
+function block_customer($user, $customer){
+    
+    $sql = "UPDATE ".TB_PREF."debtors_master SET cotizando = ".db_escape($user)." WHERE debtor_no = ".db_escape($customer);
+    db_query($sql, "error al asignar usuario que cotiza");
+}
+**/
 ?>

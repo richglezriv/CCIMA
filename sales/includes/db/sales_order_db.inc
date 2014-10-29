@@ -18,11 +18,13 @@ function add_sales_order(&$order)
 	hook_db_prewrite($order, $order->trans_type);
 	$order_no = get_next_trans_no($order->trans_type);
 	$del_date = date2sql($order->due_date);
+    $inicioObra = date2sql($order->inicioObra);
+    $finObra = date2sql($order->finObra);
 	$order_type = 0; // this is default on new order
 	$total = $order->get_trans_total();
 	$sql = "INSERT INTO ".TB_PREF."sales_orders (order_no, type, debtor_no, trans_type, branch_code, customer_ref, reference, comments, ord_date,
 		order_type, ship_via, deliver_to, delivery_address, contact_phone,
-		freight_cost, from_stk_loc, delivery_date, payment_terms, total)
+		freight_cost, from_stk_loc, delivery_date, payment_terms, total, inicio_obra, fin_obra)
 		VALUES (" .db_escape($order_no) . "," .db_escape($order_type) . "," . db_escape($order->customer_id) .
 		 ", " .db_escape($order->trans_type) . "," .db_escape($order->Branch) . ", ".
 			db_escape($order->cust_ref) .",". 
@@ -38,7 +40,7 @@ function add_sales_order(&$order)
 			db_escape($order->Location) .", " .
 			db_escape($del_date) . "," .
 			db_escape($order->payment) . "," .
-			db_escape($total). ")";
+			db_escape($total). ",".db_escape($inicioObra).",".db_escape($finObra).")";
 
 	db_query($sql, "order Cannot be Added");
 
@@ -122,6 +124,8 @@ function update_sales_order($order)
 
 	$del_date = date2sql($order->due_date);
 	$ord_date = date2sql($order->document_date);
+    $inicioObra = date2sql($order->inicioObra);
+    $finObra = date2sql($order->finObra);
 	$order_no =  key($order->trans_no);
 	$version= current($order->trans_no);
 	$total = $order->get_trans_total();
@@ -146,7 +150,9 @@ function update_sales_order($order)
 		delivery_date = " .db_escape($del_date). ",
 		version = ".($version+1).",
 		payment_terms = " .db_escape($order->payment). ",
-		total = ". db_escape($total) ."
+		total = ". db_escape($total) .",
+        inicio_obra = ".db_escape($inicioObra).",
+        fin_obra = ".db_escape($finObra)." 
 	 WHERE order_no=" . db_escape($order_no) ."
 	 AND trans_type=".$order->trans_type." AND version=".$version;
 	db_query($sql, "order Cannot be Updated, this can be concurrent edition conflict");
@@ -308,6 +314,8 @@ function read_sales_order($order_no, &$order, $trans_type)
 	$order->reference = $myrow["reference"];
 	$order->Comments = $myrow["comments"];
 	$order->due_date = sql2date($myrow["delivery_date"]);
+    $order->inicioObra = sql2date($myrow["inicio_obra"]);
+    $order->finObra = sql2date($myrow["fin_obra"]);
 	$order->document_date = sql2date($myrow["ord_date"]);
 
 	$result = get_sales_order_details($order_no, $order->trans_type);
@@ -514,5 +522,11 @@ function get_sql_for_sales_orders_view($selected_customer, $trans_type, $trans_n
 					sorder.ord_date,
 					sorder.deliver_to";
 	return $sql;
+}
+//CCIMA Asigna el usuario al cliente
+function block_customer($user, $customer){
+    
+    $sql = "UPDATE ".TB_PREF."debtors_master SET cotizando = ".db_escape($user)." WHERE debtor_no = ".db_escape($customer);
+    db_query($sql, "error al asignar usuario que cotiza");
 }
 ?>

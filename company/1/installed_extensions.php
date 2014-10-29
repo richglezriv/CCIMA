@@ -12,7 +12,7 @@ $installed_extensions = array (
     'package' => 'requisitions',
     'version' => '2.3.13-2',
     'type' => 'extension',
-    'active' => false,
+    'active' => 1,
     'path' => 'modules/requisitions',
   ),
 );

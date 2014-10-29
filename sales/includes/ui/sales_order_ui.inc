@@ -139,6 +139,12 @@ function display_order_summary($title, &$order, $editable_items=false)
 
 	display_heading($title);
 
+    //descuento modificable para 3H
+    $descuento = $_POST['customer_discount'];
+    if ($descuento > 0 && $descuento != ($order->default_discount*100)){
+        $order->default_discount = ($descuento / 100);
+    }
+
     div_start('items_table');
 	start_table(TABLESTYLE, "colspan=7 width=90%");
 	$th = array(_("Item Code"), _("Item Description"), _("Quantity"),
@@ -162,6 +168,8 @@ function display_order_summary($title, &$order, $editable_items=false)
 
 	foreach ($order->get_items() as $line_no=>$stock_item)
 	{
+        //CCIMA descuento aplicado a los items
+        $stock_item->discount_percent = $order->default_discount;
 
 		$line_total = round($stock_item->qty_dispatched * $stock_item->price * (1 - $stock_item->discount_percent),
 		   user_price_dec());
@@ -199,8 +207,9 @@ function display_order_summary($title, &$order, $editable_items=false)
 
 			label_cell($stock_item->units);
 			amount_cell($stock_item->price);
-
-			percent_cell($stock_item->discount_percent * 100);
+            
+            
+			percent_cell($stock_item->discount_percent*100);
 			amount_cell($line_total);
 
 			if ($editable_items)
@@ -388,7 +397,15 @@ function display_order_header(&$order, $editable, $date_text)
 
 	customer_credit_row($_POST['customer_id'], $order->credit);
 
-	label_row(_("Customer Discount:"), ($order->default_discount * 100) . "%");
+    //descuento modificable para 3H
+    $descuento = $_POST['customer_discount'];
+    if ($descuento > 0 && $descuento > ($order->default_discount*100)){
+        $order->default_discount = ($descuento / 100);
+    }
+
+    echo "<tr><td class='label'>"._("Customer Discount:")."</td><td><input type='text' id='customer_discount' name='customer_discount' ".
+        " value='".($order->default_discount * 100)."' style='width:20px;'/>&nbsp;%</td></tr>";
+	//label_row(_("Customer Discount:"), ($order->default_discount * 100) . "%");
 
 	table_section(3);
 	if ($order->pos['cash_sale'] || $order->pos['credit_sale']) {
@@ -470,6 +487,14 @@ function display_order_header(&$order, $editable, $date_text)
 		hidden('OrderDate', $order->document_date);
 	}
 
+    //CCIMA solo construccion puede ver inicio y fin de obra
+    if (user_company() == 0){
+    
+        date_row('Inicio de Obra', 'inicioObra', 'Inicio de Obra',
+			    $order->trans_no==0, 0, 0, 0, null, false);
+        date_row('Fin de Obra', 'finObra', 'Fin de Obra',
+			    $order->trans_no==0, 0, 0, 0, null, false);
+    }
 	end_outer_table(1); // outer table
 
 	if ($change_prices != 0) {
@@ -547,9 +572,9 @@ function sales_order_item_controls(&$order, &$rowcounter, $line_no=-1)
 
 	label_cell($units, '', 'units');
 
-	amount_cells(null, 'price');
-
-	small_amount_cells(null, 'Disc', percent_format($_POST['Disc']), null, null, user_percent_dec());
+	amount_cells(null, 'price',null,null,null,null,'readonly');
+        
+	small_amount_cells(null, 'Disc', percent_format($_POST['Disc']), null, null, user_percent_dec(), 'readonly');
 
 	$line_total = input_num('qty') * input_num('price') * (1 - input_num('Disc') / 100);
 
@@ -587,9 +612,10 @@ function display_delivery_details(&$order)
 		display_heading(_('Cash payment'));
 		start_table(TABLESTYLE2, "width=60%");
 
-		locations_list_row(_("Deliver from Location:"), 'Location', null, false, true);
- 		if (list_updated('Location'))
- 			$Ajax->activate('items_table');
+        locations_list_row(_("Deliver from Location:"), 'Location', null, false, true);
+		if (list_updated('Location'))
+			$Ajax->activate('items_table');
+        
 		label_row(_("Cash account:"), $order->pos['bank_account_name']);
 		textarea_row(_("Comments:"), "Comments", $order->Comments, 31, 5);
 		end_table();
@@ -619,11 +645,10 @@ function display_delivery_details(&$order)
 		start_outer_table(TABLESTYLE2, "width=90%");
 		table_section(1);
 
-		locations_list_row(_("Deliver from Location:"), 'Location', null, false, true);
+        locations_list_row(_("Deliver from Location:"), 'Location', null, false, true);
 		if (list_updated('Location'))
 			$Ajax->activate('items_table');
-
-
+        
 		date_row($delname, 'delivery_date',
 			$order->trans_type==ST_SALESORDER ?  _('Enter requested day of delivery') 
 				: $order->trans_type==ST_SALESQUOTE ? _('Enter Valid until Date') : '');

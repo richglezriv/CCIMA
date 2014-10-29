@@ -411,7 +411,14 @@ table.tablestyle_inner td {
 	font-size: 11px;
 	text-align: right;
 }
-
+/** 3H disabled style */
+.amount_disabled{
+    font-family: Verdana, Arial, Helvetica;
+	font-size: 11px;
+	text-align: right;
+    border-style:none;
+    background-color: transparent;
+}
 input.amount {
 	padding-right: 0px;
 	border-right: none;

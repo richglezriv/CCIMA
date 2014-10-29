@@ -327,3 +327,155 @@
 [29-Sep-2014 18:27:48 America/Tegucigalpa] 0:usuario:connect_db.inc:60: mysql_query() expects parameter 2 to be resource, boolean given
 [29-Sep-2014 18:27:48 America/Tegucigalpa] 0:usuario:connect_db.inc:154: mysql_errno() expects parameter 1 to be resource, boolean given
 [29-Sep-2014 18:27:48 America/Tegucigalpa] 0:usuario:connect_db.inc:86: mysql_fetch_row() expects parameter 1 to be resource, null given
+[14-Oct-2014 14:41:26 America/Tegucigalpa] 1:usuario:access_levels.inc:289: Invalid argument supplied for foreach()
+[14-Oct-2014 14:42:33 America/Tegucigalpa] 1:usuario:access_levels.inc:289: Invalid argument supplied for foreach()
+[14-Oct-2014 14:42:35 America/Tegucigalpa] 1:usuario:access_levels.inc:289: Invalid argument supplied for foreach()
+[14-Oct-2014 14:42:36 America/Tegucigalpa] 1:usuario:access_levels.inc:289: Invalid argument supplied for foreach()
+[14-Oct-2014 14:42:38 America/Tegucigalpa] 1:usuario:access_levels.inc:289: Invalid argument supplied for foreach()
+[14-Oct-2014 14:42:47 America/Tegucigalpa] 1:usuario:access_levels.inc:289: Invalid argument supplied for foreach()
+[14-Oct-2014 14:42:48 America/Tegucigalpa] 1:usuario:access_levels.inc:289: Invalid argument supplied for foreach()
+[25-Oct-2014 14:19:25 America/Tegucigalpa] 0:usuario:requisitions_db.inc:126: require_once(../../includes/utilities.inc): failed to open stream: No such file or directory
+[25-Oct-2014 14:19:53 America/Tegucigalpa] 0:usuario:requisitions_db.inc:126: require_once(../../includes/utilities.inc): failed to open stream: No such file or directory
+[25-Oct-2014 14:20:54 America/Tegucigalpa] 0:usuario:requisitions_db.inc:126: require_once(../../includes/utilities.inc): failed to open stream: No such file or directory
+[25-Oct-2014 14:24:04 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:24:04 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:24:04 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:24:04 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:24:37 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:24:37 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:24:37 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:24:37 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:24:49 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:24:49 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:24:49 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:24:49 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:03 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:03 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:03 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:03 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:13 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:13 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:13 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:13 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:36 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:36 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:36 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:36 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:51 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:51 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:51 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:25:51 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:18 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:18 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:18 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:18 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:26 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:26 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:26 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:26 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:40 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:40 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:40 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:40 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:49 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:49 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:49 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:26:49 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:27:03 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 1 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:27:03 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 2 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:27:03 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 3 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:27:03 America/Tegucigalpa] 0:usuario:utilities.inc:4: Missing argument 4 for notifica_autorizacion(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\modules\requisitions\includes\db\requisitions_db.inc on line 127 and defined
+[25-Oct-2014 14:30:54 America/Tegucigalpa] 0:usuario:class.mail.inc:161: mail() expects parameter 1 to be string, object given
+[25-Oct-2014 14:31:50 America/Tegucigalpa] 0:usuario:class.mail.inc:161: mail() expects parameter 1 to be string, object given
+[25-Oct-2014 14:32:39 America/Tegucigalpa] 0:usuario:class.mail.inc:161: mail() expects parameter 1 to be string, object given
+[25-Oct-2014 14:33:25 America/Tegucigalpa] 0:usuario:class.mail.inc:161: mail() expects parameter 1 to be string, object given
+[25-Oct-2014 14:39:16 America/Tegucigalpa] 0:usuario:class.mail.inc:161: mail() expects parameter 1 to be string, object given
+[25-Oct-2014 14:40:16 America/Tegucigalpa] 0:usuario:class.mail.inc:161: mail() expects parameter 1 to be string, object given
+[25-Oct-2014 14:40:34 America/Tegucigalpa] 0:usuario:class.mail.inc:161: mail() expects parameter 1 to be string, object given
+[25-Oct-2014 14:41:09 America/Tegucigalpa] 0:usuario:class.mail.inc:162: mail() expects parameter 1 to be string, object given
+[25-Oct-2014 14:41:25 America/Tegucigalpa] 0:usuario:class.mail.inc:161: Object of class email could not be converted to string
+[25-Oct-2014 14:41:25 America/Tegucigalpa] 0:usuario:class.mail.inc:162: mail() expects parameter 1 to be string, object given
+[25-Oct-2014 14:44:05 America/Tegucigalpa] 0:usuario:class.mail.inc:162: mail(): Failed to connect to mailserver at "localhost" port 25, verify your "SMTP" and "smtp_port" setting in php.ini or use ini_set()
+[25-Oct-2014 14:47:21 America/Tegucigalpa] 0:usuario:class.mail.inc:162: mail(): Failed to connect to mailserver at "localhost" port 25, verify your "SMTP" and "smtp_port" setting in php.ini or use ini_set()
+[25-Oct-2014 14:48:01 America/Tegucigalpa] 0:usuario:class.mail.inc:162: mail(): Failed to connect to mailserver at "localhost" port 25, verify your "SMTP" and "smtp_port" setting in php.ini or use ini_set()
+[25-Oct-2014 14:52:14 America/Tegucigalpa] 0:usuario:class.mail.inc:162: mail(): Failed to connect to mailserver at "localhost" port 25, verify your "SMTP" and "smtp_port" setting in php.ini or use ini_set()
+[25-Oct-2014 14:53:04 America/Tegucigalpa] 0:usuario:requisitions_db.inc:127: mail(): "sendmail_from" not set in php.ini or custom "From:" header missing
+[25-Oct-2014 14:53:26 America/Tegucigalpa] 0:usuario:requisitions_db.inc:127: mail(): "sendmail_from" not set in php.ini or custom "From:" header missing
+[25-Oct-2014 14:56:00 America/Tegucigalpa] 0:usuario:requisitions_db.inc:127: mail(): "sendmail_from" not set in php.ini or custom "From:" header missing
+[25-Oct-2014 14:56:17 America/Tegucigalpa] 0:usuario:requisitions_db.inc:127: mail(): "sendmail_from" not set in php.ini or custom "From:" header missing
+[25-Oct-2014 14:56:25 America/Tegucigalpa] 0:usuario:requisitions_db.inc:127: mail(): "sendmail_from" not set in php.ini or custom "From:" header missing
+[28-Oct-2014 09:00:45 America/Tegucigalpa] 0:usuario:creacion.php:285: Invalid argument supplied for foreach()
+[28-Oct-2014 09:00:45 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 13:25:53 America/Tegucigalpa] 0:usuario:creacion.php:285: Invalid argument supplied for foreach()
+[28-Oct-2014 13:25:53 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 13:26:11 America/Tegucigalpa] 0:usuario:creacion.php:75: Function split() is deprecated
+[28-Oct-2014 13:26:11 America/Tegucigalpa] 0:usuario:creacion.php:115: Invalid argument supplied for foreach()
+[28-Oct-2014 13:27:28 America/Tegucigalpa] 0:usuario:creacion.php:75: Function split() is deprecated
+[28-Oct-2014 13:27:30 America/Tegucigalpa] 0:usuario:creacion.php:285: Invalid argument supplied for foreach()
+[28-Oct-2014 13:27:30 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 13:27:33 America/Tegucigalpa] 0:usuario:creacion.php:285: Invalid argument supplied for foreach()
+[28-Oct-2014 13:27:33 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 13:27:39 America/Tegucigalpa] 0:usuario:visualizacion.php:27: Function split() is deprecated
+[28-Oct-2014 13:27:50 America/Tegucigalpa] 0:usuario:visualizacion.php:27: Function split() is deprecated
+[28-Oct-2014 13:27:51 America/Tegucigalpa] 0:usuario:visualizacion.php:27: Function split() is deprecated
+[28-Oct-2014 13:32:54 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 13:32:54 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 13:33:24 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 13:33:24 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 13:41:03 America/Tegucigalpa] 0:usuario:ui_input.inc:516: Missing argument 2 for label_cells(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\sales\includes\ui\sales_order_ui.inc on line 393 and defined
+[28-Oct-2014 14:54:22 America/Tegucigalpa] 0:usuario:ui_input.inc:523: Missing argument 2 for label_row(), called in C:\Users\rgonzalez\Documents\My Web Sites\CCIMA\sales\includes\ui\sales_order_ui.inc on line 490 and defined
+[28-Oct-2014 22:05:14 America/Tegucigalpa] 0::connect_db.inc:27: mysql_connect(): php_network_getaddresses: getaddrinfo failed: Host desconocido. 
+[28-Oct-2014 22:05:15 America/Tegucigalpa] 0::connect_db.inc:27: mysql_connect(): [2002] php_network_getaddresses: getaddrinfo failed: Host desconocido.  (trying to connect via tcp://SRV-RAGR14:3306)
+[28-Oct-2014 22:05:15 America/Tegucigalpa] 0::connect_db.inc:27: mysql_connect(): php_network_getaddresses: getaddrinfo failed: Host desconocido. 
+[28-Oct-2014 22:05:15 America/Tegucigalpa] 0::connect_db.inc:28: mysql_select_db() expects parameter 2 to be resource, boolean given
+[28-Oct-2014 22:05:17 America/Tegucigalpa] 0::connect_db.inc:35: mysql_get_server_info(): [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ (trying to connect via tcp://localhost:3306)
+[28-Oct-2014 22:05:17 America/Tegucigalpa] 0::connect_db.inc:35: mysql_get_server_info(): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+[28-Oct-2014 22:05:17 America/Tegucigalpa] 0::connect_db.inc:35: mysql_get_server_info(): A link to the server could not be established
+[28-Oct-2014 22:05:19 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ (trying to connect via tcp://localhost:3306)
+[28-Oct-2014 22:05:19 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+[28-Oct-2014 22:05:19 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): A link to the server could not be established
+[28-Oct-2014 22:05:21 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+ (trying to connect via tcp://localhost:3306)
+[28-Oct-2014 22:05:21 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+
+[28-Oct-2014 22:05:21 America/Tegucigalpa] 0::connect_db.inc:137: mysql_real_escape_string(): A link to the server could not be established
+[28-Oct-2014 22:05:21 America/Tegucigalpa] 0::connect_db.inc:60: mysql_query() expects parameter 2 to be resource, boolean given
+[28-Oct-2014 22:05:21 America/Tegucigalpa] 0::connect_db.inc:154: mysql_errno() expects parameter 1 to be resource, boolean given
+[28-Oct-2014 22:05:21 America/Tegucigalpa] 0::connect_db.inc:114: mysql_num_rows() expects parameter 1 to be resource, null given
+[28-Oct-2014 22:07:13 America/Tegucigalpa] 0:usuario:visualizacion.php:27: Function split() is deprecated
+[28-Oct-2014 22:08:12 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:08:12 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:08:17 America/Tegucigalpa] 0:usuario:despliega.php:56: Function split() is deprecated
+[28-Oct-2014 22:08:17 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:08:20 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:08:20 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:08:53 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:08:53 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:08:57 America/Tegucigalpa] 0:usuario:despliega.php:56: Function split() is deprecated
+[28-Oct-2014 22:08:57 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:09:00 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:09:00 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:09:24 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:09:24 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:09:30 America/Tegucigalpa] 0:usuario:despliega.php:56: Function split() is deprecated
+[28-Oct-2014 22:09:30 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:09:39 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:09:39 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:09:42 America/Tegucigalpa] 0:usuario:despliega.php:56: Function split() is deprecated
+[28-Oct-2014 22:09:42 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:09:46 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:09:46 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:10:49 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:10:49 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:10:52 America/Tegucigalpa] 0:usuario:despliega.php:56: Function split() is deprecated
+[28-Oct-2014 22:10:52 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:10:55 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:10:55 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:11:25 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:11:25 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:12:39 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()
+[28-Oct-2014 22:12:39 America/Tegucigalpa] 0:usuario:ui_input.inc:106: Invalid argument supplied for foreach()

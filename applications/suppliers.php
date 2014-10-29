@@ -34,9 +34,9 @@ class suppliers_app extends application
 			"purchasing/supplier_credit.php?New=1", 'SA_SUPPLIERCREDIT', MENU_TRANSACTION);
 		$this->add_rapp_function(0, _("&Allocate Supplier Payments or Credit Notes"),
 			"purchasing/allocations/supplier_allocation_main.php?", 'SA_SUPPLIERALLOC', MENU_TRANSACTION);
-        $this->add_rapp_function(0, gettext('Requisitions Entries'), $path_to_root.'/modules/requisitions/requisitions.php',
+        $this->add_rapp_function(0, gettext('Requisitions Entries'), 'modules/requisitions/requisitions.php',
 					'SA_REQUISITIONS',	MENU_TRANSACTION);
-		$this->add_rapp_function(0, _('Requisitions Allocation'), $path_to_root.'/modules/requisitions/requisition_allocations.php',
+		$this->add_rapp_function(0, _('Requisitions Allocation'), 'modules/requisitions/requisition_allocations.php',
 				'SA_REQUISITION_ALLOCATIONS', MENU_TRANSACTION);
 
 		$this->add_module(_("Inquiries and Reports"));

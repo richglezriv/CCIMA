@@ -73,6 +73,9 @@ class cart
 	var $credit;
 	var $ex_rate;
 
+    var $inicioObra;
+    var $finObra;
+
 	//-------------------------------------------------------------------------
 	//
 	//  $trans_no==0 => open new/direct document
@@ -312,6 +315,12 @@ class cart
 		}
 
 		commit_transaction();
+
+        //CCIMA si es construccion tiene que bloquear el cliente
+        //if (user_company() == 0){
+        
+            block_customer($_SESSION["wa_current_user"]->username, $customer_id);
+        //}
 
 		return $ret;
 	}
