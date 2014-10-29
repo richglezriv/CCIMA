@@ -62,7 +62,9 @@ if (get_post('cancelar')) {
 /*****************************************************************************/
 function apply_uncoded($param) {
 	
-	return rtrim(explode('(',$param)[1],')');
+    $arreglo = explode('(',$param);
+	return rtrim($arreglo[1],')');
+    
 }
 function convierte_formula($formula) {
 	
@@ -81,7 +83,7 @@ page($_SESSION['page_title'], false, false, "", $js);
 				end_row();
 	
 				start_row();
-					calculadora_list_cells(_("C�lculo a ser utilizado en cotizaci�n:"), 'calculo', null, 
+					calculadora_list_cells(_("Calculo a ser utilizado en cotizacion:"), 'calculo', null, 
 						null, true, check_value('show_inactive'));
 					text_cells(null,'cotizacion', $cotizacion, 61, 60,null,'','','READONLY');
 				end_row();
@@ -125,9 +127,9 @@ page($_SESSION['page_title'], false, false, "", $js);
 		echo "</div>\n";
 		
 		start_outer_table(TABLESTYLE_NOBORDER, "width=80%");
-			submit('calcular', _("Realizar c�lculos"), true, '', true);
-			submit('guardar', _("Guardar c�lculos"), true, '', true);
-			submit('cancelar', _("Cancelar c�lculos"), true, '', true);
+			submit('calcular', _("Realizar calculos"), true, '', true);
+			submit('guardar', _("Guardar calculos"), true, '', true);
+			submit('cancelar', _("Cancelar calculos"), true, '', true);
 		end_table(1); 
 		
 	end_form();
