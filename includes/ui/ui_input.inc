@@ -100,6 +100,19 @@ function hidden($name, $value=null, $echo=true)
 	else
 		return $ret;
 }
+
+function hidden_array($name, $array)
+{
+	foreach ($array as $key1=>$data1) {
+		if (is_array($data1)) {
+			foreach($data1 as $key2=>$data2) {
+				echo "<input type='hidden' name='".$name."[\"".$key1."\"][\"".$key2."\"]' value='".$data2."'"." />\n";
+			}
+		} else {
+			echo "<input type='hidden' name='".$name."[\"".$key1."\"]' value='".$data1."'"." />\n";
+		}
+	}
+}
 /*
 	Universal submit form button.
 	$atype - type of submit:
@@ -211,6 +224,22 @@ function submit_add_or_update($add=true, $title=false, $async=false, $clone=fals
 	}
 }
 
+function submit_add_and_cancel($titleAdd=false, $titleCancel=false, $async=false)
+{
+	$cancel = $async;
+
+	if ($async === 'both') {
+		$async = 'default'; $cancel = 'cancel';
+	} 
+	else if ($async === 'default')
+		$cancel = true;
+	else if ($async === 'cancel')
+		$async = true;
+	
+	submit('ADD_CALC', _("Add new"), true, $titleAdd, $async);
+	submit('CANCEL_CALC', _("Cancel"), true, $titleCancel, $cancel);
+}
+
 function submit_add_or_update_center($add=true, $title=false, $async=false, $clone=false)
 {
 	echo "<center>";
@@ -225,6 +254,16 @@ function submit_add_or_update_row($add=true, $right=true, $extra="", $title=fals
 		echo "<td>&nbsp;</td>\n";
 	echo "<td $extra>";
 	submit_add_or_update($add, $title, $async, $clone);
+	echo "</td></tr>\n";
+}
+
+function submit_add_and_cancel_row($right=true, $extra="", $titleAdd=false, $titleCancel=false, $async=false)
+{
+	echo "<tr>";
+	if ($right)
+		echo "<td>&nbsp;</td>\n";
+	echo "<td $extra>";
+	submit_add_and_cancel($titleAdd, $titleCancel, $async);
 	echo "</td></tr>\n";
 }
 
@@ -365,6 +404,16 @@ function check($label, $name, $value=null, $submit_on_change=false, $title=false
 	echo checkbox($label, $name, $value, $submit_on_change, $title);
 }
 
+function check_cells_right($label, $name, $value=null, $submit_on_change=false, $title=false,
+	$params='')
+{
+	echo "<td $params>";
+	echo check(null, $name, $value, $submit_on_change, $title);
+	echo "</td>";
+	if ($label != null)
+		echo "<td>$label</td>\n";
+}
+
 function check_cells($label, $name, $value=null, $submit_on_change=false, $title=false,
 	$params='')
 {
@@ -486,6 +535,29 @@ function label_row($label, $value, $params="", $params2="", $leftfill=0, $id='')
 }
 
 //-----------------------------------------------------------------------------------
+
+function text_cells_colspan($label, $name, $value=null, $size="", $max="", $title=false, 
+	$labparams="", $post_label="", $inparams="", $colspan="")
+{
+  	global $Ajax;
+
+	default_focus($name);
+	if ($label != null)
+		label_cell($label, $labparams);
+	echo "<td colspan=" . $colspan . ">";
+
+	if ($value === null)
+		$value = get_post($name);
+	echo "<input $inparams type=\"text\" name=\"$name\" size=\"$size\" maxlength=\"$max\" value=\"$value\""
+	    .($title ? " title='$title'" : '')
+	    .">";
+
+	if ($post_label != "")
+		echo " " . $post_label;
+
+	echo "</td>\n";
+	$Ajax->addUpdate($name, $name, $value);
+}
 
 function text_cells($label, $name, $value=null, $size="", $max="", $title=false, 
 	$labparams="", $post_label="", $inparams="")
@@ -713,7 +785,7 @@ function percent_row($label, $name, $init=null)
 	small_amount_row($label, $name, $_POST[$name], null, "%", user_percent_dec());
 }
 
-function amount_cells_ex($label, $name, $size, $max=null, $init=null, $params=null, $post_label=null, $dec=null)
+function amount_cells_ex($label, $name, $size, $max=null, $init=null, $params=null, $post_label=null, $dec=null, $disabled='')
 {
 	global $Ajax;
 
@@ -740,7 +812,13 @@ function amount_cells_ex($label, $name, $size, $max=null, $init=null, $params=nu
 	else
 		echo "<td align='right'>";
 
-	echo "<input class='amount' type=\"text\" name=\"$name\" size=\"$size\" maxlength=\"$max\" dec=\"$dec\" value=\"" . $_POST[$name]. "\">";
+    if ($disabled == ''){
+	    echo "<input class='amount' type=\"text\" name=\"$name\" size=\"$size\" maxlength=\"$max\" dec=\"$dec\" value=\"" . $_POST[$name]. "\">";
+    }
+    else {
+        //CCIMA inhabilitar campos cuando sean requeridos
+        echo "<input ".$disabled." class='amount_disabled' type=\"text\" name=\"$name\" size=\"$size\" maxlength=\"$max\" dec=\"$dec\" value=\"" . $_POST[$name]. "\">";
+    }
 
 	if ($post_label) {
 		echo "<span id='_{$name}_label'> $post_label</span>";
@@ -754,9 +832,9 @@ function amount_cells_ex($label, $name, $size, $max=null, $init=null, $params=nu
 
 //-----------------------------------------------------------------------------------
 
-function amount_cells($label, $name, $init=null, $params=null, $post_label=null, $dec=null)
+function amount_cells($label, $name, $init=null, $params=null, $post_label=null, $dec=null, $disabled='')
 {
-	amount_cells_ex($label, $name, 15, 15, $init, $params, $post_label, $dec);
+	amount_cells_ex($label, $name, 15, 15, $init, $params, $post_label, $dec, $disabled);
 }
 
 //JAM  Allow entered unit prices to be fractional
@@ -814,9 +892,9 @@ function small_qty_row($label, $name, $init=null, $params=null, $post_label=null
 
 //-----------------------------------------------------------------------------------
 
-function small_amount_cells($label, $name, $init=null, $params=null, $post_label=null, $dec=null)
+function small_amount_cells($label, $name, $init=null, $params=null, $post_label=null, $dec=null, $disabled='')
 {
-	amount_cells_ex($label, $name, 7, 12, $init, $params, $post_label, $dec);
+	amount_cells_ex($label, $name, 7, 12, $init, $params, $post_label, $dec, $disabled);
 }
 
 //-----------------------------------------------------------------------------------
