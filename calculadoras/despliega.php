@@ -86,7 +86,8 @@ if (get_post('cancelar')) {
 
 function apply_uncoded($param) {
 	
-	return rtrim(explode('(',$param)[1],')');
+    $arreglo = explode('(',$param);
+	return rtrim($arrego[1],')');
 }
 
 function convierte_formula($formula) {
@@ -147,7 +148,7 @@ page($_SESSION['page_title'], false, false, "", $js);
 									31,60,null,'','',$control['editable'] == 'Si' ? '' : 'READONLY');
 							}
 						end_row();
-					}var_dump($_POST);
+					}//var_dump($_POST);
 				end_table();
 				hidden_array('variables', $variables);
 				hidden_array('operaciones',$operaciones);

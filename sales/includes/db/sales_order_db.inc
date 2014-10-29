@@ -527,6 +527,23 @@ function get_sql_for_sales_orders_view($selected_customer, $trans_type, $trans_n
 function block_customer($user, $customer){
     
     $sql = "UPDATE ".TB_PREF."debtors_master SET cotizando = ".db_escape($user)." WHERE debtor_no = ".db_escape($customer);
+    
     db_query($sql, "error al asignar usuario que cotiza");
+}
+//CCIMA valida si el usuario asignado al cliente es el mismo
+function cliente_asignado($user, $customer){
+
+    $sql = "SELECT cotizando FROM ".TB_PREF."debtors_master WHERE debtor_no = ".db_escape($customer);
+    
+    $result = db_query($sql, "error al asignar usuario que cotiza");
+
+    $myrow = db_fetch($result);
+
+    if ($myrow[0] == $user){
+        return TRUE;
+    }
+    else
+        return FALSE;
+
 }
 ?>

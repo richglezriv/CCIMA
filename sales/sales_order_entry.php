@@ -19,7 +19,8 @@
 
 $path_to_root = "..";
 $page_security = 'SA_SALESORDER';
-
+//variable para habilitar botones
+$habilitado = TRUE;
 include_once($path_to_root . "/sales/includes/cart_class.inc");
 include_once($path_to_root . "/includes/session.inc");
 include_once($path_to_root . "/sales/includes/sales_ui.inc");
@@ -57,6 +58,10 @@ if ($use_popup_windows) {
 
 if ($use_date_picker) {
 	$js .= get_js_date_picker();
+}
+
+function display_form_buttons(){
+    
 }
 
 if (isset($_GET['NewDelivery']) && is_numeric($_GET['NewDelivery'])) {
@@ -667,7 +672,9 @@ function create_cart($type, $trans_no)
 		$_SESSION['Items'] = $doc;
 	} else
 		$_SESSION['Items'] = new Cart($type, array($trans_no));
-	copy_from_cart();
+	
+    
+    copy_from_cart();
 }
 
 //--------------------------------------------------------------------------------
@@ -721,6 +728,9 @@ if ($_SESSION['Items']->trans_type == ST_SALESINVOICE) {
 	$porder = _("Place Order");
 	$corder = _("Commit Order Changes");
 }
+
+
+
 start_form();
 
 hidden('cart_id');
@@ -736,28 +746,38 @@ if ($customer_error == "") {
 	display_delivery_details($_SESSION['Items']);
 	echo "</td></tr>";
 	end_table(1);
+  
+    //CCIMA evalua si el usuario que cotiza es acorde al cliente
+    if (!cliente_asignado($_SESSION["wa_current_user"]->username, $_SESSION['Items']->customer_id)){
+        $habilitado = FALSE;
+        display_warning('No puede realizar transacciones al cliente debido a que otro usuario lo est&aacute; atendiendo.');
+        
+    }  
+    if (user_company() == 0 && $habilitado == TRUE || user_company() == 1){
+        
+        if ($_SESSION['Items']->trans_no == 0) {
 
-	if ($_SESSION['Items']->trans_no == 0) {
-
-		submit_center_first('ProcessOrder', $porder,
-		    _('Check entered data and save document'), 'default');
-		submit_center_last('CancelOrder', $cancelorder,
-	   		_('Cancels document entry or removes sales order when editing an old document'), true);
-		submit_js_confirm('CancelOrder', _('You are about to void this Document.\nDo you want to continue?'));
-	} else {
-		submit_center_first('ProcessOrder', $corder,
-		    _('Validate changes and update document'), 'default');
-		submit_center_last('CancelOrder', $cancelorder,
-	   		_('Cancels document entry or removes sales order when editing an old document'), true);
-		if ($_SESSION['Items']->trans_type==ST_SALESORDER)
-			submit_js_confirm('CancelOrder', _('You are about to cancel undelivered part of this order.\nDo you want to continue?'));
-		else
-			submit_js_confirm('CancelOrder', _('You are about to void this Document.\nDo you want to continue?'));
-	}
+		        submit_center_first('ProcessOrder', $porder,
+		            _('Check entered data and save document'), 'default');
+		        submit_center_last('CancelOrder', $cancelorder,
+	   		        _('Cancels document entry or removes sales order when editing an old document'), true);
+		        submit_js_confirm('CancelOrder', _('You are about to void this Document.\nDo you want to continue?'));
+	        } else {
+		        submit_center_first('ProcessOrder', $corder,
+		            _('Validate changes and update document'), 'default');
+		        submit_center_last('CancelOrder', $cancelorder,
+	   		        _('Cancels document entry or removes sales order when editing an old document'), true);
+		        if ($_SESSION['Items']->trans_type==ST_SALESORDER)
+			        submit_js_confirm('CancelOrder', _('You are about to cancel undelivered part of this order.\nDo you want to continue?'));
+		        else
+			        submit_js_confirm('CancelOrder', _('You are about to void this Document.\nDo you want to continue?'));
+	        }  
+    }
 
 } else {
 	display_error($customer_error);
 }
+
 
 end_form();
 end_page();

@@ -317,10 +317,10 @@ class cart
 		commit_transaction();
 
         //CCIMA si es construccion tiene que bloquear el cliente
-        //if (user_company() == 0){
+        if (user_company() == 0){
         
-            block_customer($_SESSION["wa_current_user"]->username, $customer_id);
-        //}
+            block_customer($_SESSION["wa_current_user"]->username, $this->customer_id);
+        }
 
 		return $ret;
 	}
