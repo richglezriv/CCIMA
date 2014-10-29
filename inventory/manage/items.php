@@ -364,13 +364,18 @@ function item_settings(&$stock_id)
 
 	table_section_title(_("GL Accounts"));
 
-	gl_all_accounts_list_row(_("Sales Account:"), 'sales_account', $_POST['sales_account']);
+	//gl_all_accounts_list_row(_("Sales Account:"), 'sales_account', $_POST['sales_account']);
+    $esDireccion = $_SESSION['wa_current_user']->access == 10 || $_SESSION['wa_current_user']->access == 2;
+    muestra_cuentas_contables(_("Sales Account:"), 'sales_account', $_POST['sales_account'], $esDireccion);
 
 	if (!is_service($_POST['mb_flag'])) 
 	{
-		gl_all_accounts_list_row(_("Inventory Account:"), 'inventory_account', $_POST['inventory_account']);
-		gl_all_accounts_list_row(_("C.O.G.S. Account:"), 'cogs_account', $_POST['cogs_account']);
-		gl_all_accounts_list_row(_("Inventory Adjustments Account:"), 'adjustment_account', $_POST['adjustment_account']);
+		//gl_all_accounts_list_row(_("Inventory Account:"), 'inventory_account', $_POST['inventory_account']);
+        //gl_all_accounts_list_row(_("C.O.G.S. Account:"), 'cogs_account', $_POST['cogs_account']);
+		//gl_all_accounts_list_row(_("Inventory Adjustments Account:"), 'adjustment_account', $_POST['adjustment_account']);
+        muestra_cuentas_contables(_("Inventory Account:"), 'inventory_account', $_POST['inventory_account'], $esDireccion);
+		muestra_cuentas_contables(_("C.O.G.S. Account:"), 'cogs_account', $_POST['cogs_account'], $esDireccion);
+		muestra_cuentas_contables(_("Inventory Adjustments Account:"), 'adjustment_account', $_POST['adjustment_account'], $esDireccion);
 	}
 	else 
 	{

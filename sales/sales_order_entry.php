@@ -66,7 +66,9 @@ function display_form_buttons(){
 
 if (isset($_GET['NewDelivery']) && is_numeric($_GET['NewDelivery'])) {
 
-	$_SESSION['page_title'] = _($help_context = "Direct Sales Delivery");
+	$_SESSION['page_title'] = user_company() == 0 ? "Entrega de Obra" : "Direct Sales Delivery";
+    
+    _($help_context = "Direct Sales Delivery");
 	create_cart(ST_CUSTDELIVERY, $_GET['NewDelivery']);
 
 } elseif (isset($_GET['NewInvoice']) && is_numeric($_GET['NewInvoice'])) {

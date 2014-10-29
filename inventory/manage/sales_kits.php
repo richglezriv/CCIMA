@@ -140,6 +140,19 @@ if (get_post('update_name')) {
 	$Ajax->activate('_page_body');
 }
 
+//CCIMA Clona el kit de articulos
+if (get_post('clone')){
+
+    if ($_POST['txtClon'] == ""){
+        display_error("El codigo del kit a clonar no debe ir vacio");
+    }
+    else{
+        clone_kit($_POST['item_code'], $_POST['txtClon']);
+	    display_notification("Kit clonado con exito");
+    }
+    
+}
+
 if ($Mode=='ADD_ITEM' || $Mode=='UPDATE_ITEM')
 	update_component($_POST['item_code'], $selected_id);
 
@@ -205,6 +218,9 @@ if (get_post('item_code') == '') {
 	start_table(TABLESTYLE2);
 	text_row(_("Description:"), 'description', null, 50, 200);
 	stock_categories_list_row(_("Category:"), 'category', null);
+    echo("<td class='label'>Nuevo codigo:</td><td><input type='text' name='txtClon' id='txtClon' />&nbsp;");
+    submit('clone', "Clonar Kit", true, '', true);
+    echo("</td>");
 	submit_row('update_name', _("Update"), false, 'align=center colspan=2', _('Update kit/alias name'), true);
 	end_row();
 	end_table(1);
@@ -246,6 +262,7 @@ if (get_post('item_code') == '') {
 
 	end_table(1);
 	submit_add_or_update_center($selected_id == -1, '', 'both');
+    
 	end_form();
 //----------------------------------------------------------------------------------
 

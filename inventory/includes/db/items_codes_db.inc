@@ -44,6 +44,16 @@ function add_item_code($item_code, $stock_id, $description, $category, $qty, $fo
 	db_query($sql,"an item code could not be added");
 }
 
+function clone_kit($item_code, $clon_code){
+
+    $result = get_item_kit($item_code);
+
+    while($row = db_fetch($result)){
+        add_item_code($clon_code, $row["stock_id"], $clon_code, $row["category_id"], $row["quantity"], $row["is_foreign"]);
+
+    }
+}
+
 function delete_item_code($id)
 {
 	$sql="DELETE FROM ".TB_PREF."item_codes WHERE id=".db_escape($id);

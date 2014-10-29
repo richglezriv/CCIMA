@@ -26,7 +26,8 @@ if ($use_date_picker)
 if (isset($_GET['OutstandingOnly']) && ($_GET['OutstandingOnly'] == true))
 {
 	$_POST['OutstandingOnly'] = true;
-	page(_($help_context = "Search Not Invoiced Deliveries"), false, false, "", $js);
+    $cadena = user_company() == 0 ? "Buscar Facturas de Obra Pendientes" : _("Search Not Invoiced Deliveries");
+	page(_($help_context = $cadena), false, false, "", $js);
 }
 else
 {

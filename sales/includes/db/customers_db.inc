@@ -30,8 +30,11 @@ function add_customer($CustName, $cust_ref, $address, $tax_id, $curr_code,
 
 function update_customer($customer_id, $CustName, $cust_ref, $address, $tax_id, $curr_code,
 	$dimension_id, $dimension2_id, $credit_status, $payment_terms, $discount, $pymt_discount,
-	$credit_limit, $sales_type, $notes)
+	$credit_limit, $sales_type, $notes, $asignado='')
 {
+    //CCIMA si no es asignado, el valor es nulo
+    $valor = $asignado == '' ? 'null' : "'".$asignado."'";
+
 	$sql = "UPDATE ".TB_PREF."debtors_master SET name=" . db_escape($CustName) . ", 
 		debtor_ref=" . db_escape($cust_ref) . ",
 		address=".db_escape($address) . ", 
@@ -45,7 +48,7 @@ function update_customer($customer_id, $CustName, $cust_ref, $address, $tax_id, 
 		pymt_discount=" . $pymt_discount . ", 
 		credit_limit=" . $credit_limit . ", 
 		sales_type = ".db_escape($sales_type) . ", 
-		notes=".db_escape($notes) ."
+		notes=".db_escape($notes) .", cotizando = $valor  
 		WHERE debtor_no = ".db_escape($customer_id);
 
 	db_query($sql,"The customer could not be updated");

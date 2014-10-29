@@ -1767,6 +1767,20 @@ function gl_all_accounts_list_row($label, $name, $selected_id=null,
 	echo "</tr>\n";
 }
 
+//CCIMA lista desplegable con opcion a ser deshabilitada
+function muestra_cuentas_contables($label, $name, $selected_id=null,$activo=TRUE)
+{
+	echo "<tr><td class='label'>$label</td>";
+    if ($activo){
+	    gl_all_accounts_list_cells(null, $name, $selected_id, 
+		    FALSE, FALSE, FALSE);
+    }
+    else{
+        echo ("<td>".$selected_id."</td>");
+    }
+	echo "</tr>\n";
+}
+
 function yesno_list($name, $selected_id=null, $name_yes="", $name_no="", $submit_on_change=false)
 {
 	$items = array();

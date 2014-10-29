@@ -89,7 +89,7 @@ function handle_submit(&$selected_id)
 		update_customer($_POST['customer_id'], $_POST['CustName'], $_POST['cust_ref'], $_POST['address'],
 			$_POST['tax_id'], $_POST['curr_code'], $_POST['dimension_id'], $_POST['dimension2_id'],
 			$_POST['credit_status'], $_POST['payment_terms'], input_num('discount') / 100, input_num('pymt_discount') / 100,
-			input_num('credit_limit'), $_POST['sales_type'], $_POST['notes']);
+			input_num('credit_limit'), $_POST['sales_type'], $_POST['notes'], $_POST['cotizando']);
 
 		update_record_status($_POST['customer_id'], $_POST['inactive'],
 			'debtors_master', 'debtor_no');
@@ -223,6 +223,7 @@ function customer_settings($selected_id)
 		$_POST['credit_limit']	= price_format($myrow["credit_limit"]);
 		$_POST['notes']  = $myrow["notes"];
 		$_POST['inactive'] = $myrow["inactive"];
+        $_POST['cotizando'] = $myrow["cotizando"];
 	}
 
 	start_outer_table(TABLESTYLE2);
@@ -262,7 +263,12 @@ function customer_settings($selected_id)
 	table_section(2);
 
 	table_section_title(_("Sales"));
-
+    //CCIMA usuario asignado al cliente
+    if ($_POST['cotizando'] != ""){
+        echo("<tr><td class='label'>Vendedor asignado:</td><td><span id='cot' name='cot'>".$_POST['cotizando']."</span>&nbsp;&nbsp;".
+            "<input type='hidden' name='cotizando' id='cotizando' value='".$_POST['cotizando'].
+            "' />&nbsp;&nbsp;<input type='button' name='btnRemove' onclick='removeSalesMan();' value='Desasignar' id='btnRemove' class='inputsubmit'/></td></tr>");
+    }
 	percent_row(_("Discount Percent:"), 'discount', $_POST['discount']);
 	percent_row(_("Prompt Payment Discount Percent:"), 'pymt_discount', $_POST['pymt_discount']);
 	amount_row(_("Credit Limit:"), 'credit_limit', $_POST['credit_limit']);
@@ -376,6 +382,19 @@ tabbed_content_end();
 
 hidden('popup', @$_REQUEST['popup']);
 end_form();
+?>
+<script>
+    function removeSalesMan() {
+        var hid = document.getElementById('cotizando');
+        var etiqueta = document.getElementById('cot');
+        var boton = document.getElementById('btnRemove');
+        hid.value = "";
+        etiqueta.innerHTML = "";
+        boton.style.display = "none";
+    }
+</script>
+
+<?php
 end_page(@$_REQUEST['popup']);
 
 ?>

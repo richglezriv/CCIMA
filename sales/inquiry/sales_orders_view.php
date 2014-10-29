@@ -37,7 +37,8 @@ if ($trans_type == ST_SALESORDER)
 	if (isset($_GET['OutstandingOnly']) && ($_GET['OutstandingOnly'] == true))
 	{
 		$_POST['order_view_mode'] = 'OutstandingOnly';
-		$_SESSION['page_title'] = _($help_context = "Search Outstanding Sales Orders");
+        $cadena = user_company() == 0 ? "Buscar Entregas de Obra Pendientes" : _("Search Outstanding Sales Orders");
+		$_SESSION['page_title'] = _($help_context = $cadena);
 	}
 	elseif (isset($_GET['InvoiceTemplates']) && ($_GET['InvoiceTemplates'] == true))
 	{

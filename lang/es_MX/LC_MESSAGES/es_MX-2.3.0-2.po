@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FrontAccounting\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-08 15:59+0200\n"
-"PO-Revision-Date: 2014-10-28 15:51-0600\n"
+"PO-Revision-Date: 2014-10-29 13:56-0600\n"
 "Last-Translator: Translation Team <info@frontaccounting.net>\n"
 "Language-Team: FrontAccounting <info@frontaccounting.com>\n"
 "MIME-Version: 1.0\n"
@@ -1023,7 +1023,7 @@ msgstr "La categoria de contacto seleccionada ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:47
 msgid "New contact category has been added"
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Nueva categoria de contacto agregado."
 
 #: /var/www/fa2.3/devel/../admin/crm_categories.php:62
 msgid "Cannot delete this category because there are contacts related to it."
@@ -4595,7 +4595,7 @@ msgstr "El costo ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../gl/manage/bank_accounts.php:56
 msgid "New bank account has been added"
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Nueva cuenta de banco agregada."
 
 #: /var/www/fa2.3/devel/../gl/manage/bank_accounts.php:72
 msgid ""
@@ -5003,7 +5003,7 @@ msgstr "El costo ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_accounts.php:95
 msgid "New account has been added."
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Nueva cuenta agregada."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_accounts.php:113
 msgid ""
@@ -6899,7 +6899,7 @@ msgstr "Clientes"
 
 #: /var/www/fa2.3/devel/../includes/ui/ui_controls.inc:427
 msgid "Branches"
-msgstr "Filial"
+msgstr "Filiales"
 
 #: /var/www/fa2.3/devel/../includes/ui/ui_controls.inc:429
 #: /var/www/fa2.3/devel/../purchasing/manage/suppliers.php:16
@@ -7128,7 +7128,7 @@ msgstr "No se han definido entradas rapidas"
 
 #: /var/www/fa2.3/devel/../includes/ui/ui_view.inc:572
 msgid "No Quick Entry lines are defined."
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Nueva entrada rapida ha sido definida"
 
 #: /var/www/fa2.3/devel/../includes/ui/ui_view.inc:646
 #: /var/www/fa2.3/devel/../purchasing/supplier_credit.php:119
@@ -7610,7 +7610,7 @@ msgstr "La categor&iacute;a ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_categories.php:58
 msgid "New item category has been added"
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Nueva categoria ha sido agregada"
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_categories.php:72
 msgid ""
@@ -7725,7 +7725,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_codes.php:67
 msgid "New item code has been added."
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Nuevo codigo de inventario ha sido agregado"
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_codes.php:73
 msgid "Item code has been updated."
@@ -7907,7 +7907,7 @@ msgstr "Seleccione estos items y regrese a la entrada de documento"
 
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:423
 msgid "Clone This Item"
-msgstr "Eliminar Este Artículo"
+msgstr "Clonar este Artículo"
 
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:424
 msgid "Delete This Item"
@@ -7992,7 +7992,7 @@ msgstr "La ubicacion seleccionada ha sido anulada."
 
 #: /var/www/fa2.3/devel/../inventory/manage/locations.php:65
 msgid "New location has been added"
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Nueva ubicacion ha sido agregada"
 
 #: /var/www/fa2.3/devel/../inventory/manage/locations.php:76
 msgid ""
@@ -8136,7 +8136,7 @@ msgstr "Nuevo alias de codigo ha sido creado."
 
 #: /var/www/fa2.3/devel/../inventory/manage/sales_kits.php:119
 msgid "New component has been added to selected kit."
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Nuevo componente ha sido agregado al kit seleccionado"
 
 #: /var/www/fa2.3/devel/../inventory/manage/sales_kits.php:129
 msgid "Component of selected kit has been updated."
@@ -9132,7 +9132,7 @@ msgstr "El nombre del área de producción no puede ser vacío."
 #: /var/www/fa2.3/devel/../manufacturing/manage/work_centres.php:44
 #: /var/www/fa2.3/devel/../manufacturing/manage/work_centres.php:49
 msgid "New work center has been added"
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Nuevo centro de trabajo ha sido agregado"
 
 #: /var/www/fa2.3/devel/../manufacturing/manage/work_centres.php:61
 msgid ""
@@ -13361,7 +13361,7 @@ msgstr "La filial del cliente seleccinado ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../sales/manage/customer_branches.php:106
 msgid "New customer branch has been added"
-msgstr "Un nuevo cliente ha sido adicionado."
+msgstr "Nueva filial de cliente ha sido agregada"
 
 #: /var/www/fa2.3/devel/../sales/manage/customer_branches.php:125
 msgid ""
@@ -13529,7 +13529,7 @@ msgstr "El precio seleccionado ha sido eliminado."
 # /../../BankAccounts.php:158\n
 #: /var/www/fa2.3/devel/../sales/manage/customers.php:199
 msgid "Name and Address"
-msgstr "Dirección del Banco"
+msgstr "Nombre y Direccion"
 
 #: /var/www/fa2.3/devel/../sales/manage/customers.php:201
 msgid "Customer Name:"
@@ -14107,7 +14107,7 @@ msgstr "Total Remisión"
 
 #: /var/www/fa2.3/devel/../sales/inquiry/sales_deliveries_view.php:185
 msgid "Batch"
-msgstr "Filial"
+msgstr "Proceso"
 
 #: /var/www/fa2.3/devel/../sales/inquiry/sales_deliveries_view.php:185
 msgid "Batch Invoicing"
