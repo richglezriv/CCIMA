@@ -4,28 +4,20 @@
 ***********************************************************************/
 $page_security = 'SA_OPEN';
 $path_to_root = "..";
-
 include($path_to_root . "/includes/db_pager.inc");
 include($path_to_root . "/includes/session.inc");
 include_once($path_to_root . "/includes/ui.inc");
 include($path_to_root . "/calculadoras/includes/db/creacion_db.inc");
-
 simple_page_mode(true);
-
 $_SESSION['page_title'] = "Despliega calculadoras";
-
 $js = "";
 if ($use_popup_windows)
 	$js .= get_js_open_window(900, 500);
 if ($use_date_picker)
 	$js .= get_js_date_picker();
-
 /*****************************************************************************/
-
 function recupera_variables() {
-
 	global $variables;
-
 	foreach($_POST['variables'] as $var) {
 		foreach($var as $key=>$campo) {
 			$key = trim($key,'\"');
@@ -34,11 +26,8 @@ function recupera_variables() {
 		$variables[] = $r;
 	}
 }
-
 /*****************************************************************************/
-
 /*****************************************************************************/
-
 if (list_updated(lista_calculadora)) {
 	
 	$cabecera = split(':-:',$_POST['lista_calculadora']);
@@ -53,52 +42,34 @@ if (list_updated(lista_calculadora)) {
 	$Ajax->activate('nombre_calculadora');
 	$Ajax->activate('div_detalles');
 }
-
 if (get_post('calcular')) {
 	
 	recupera_variables();
 	$operaciones = $_POST['operaciones'];
 		
 	foreach($variables as $var) {
-		//$evaluar = $var['variable'].' = '.'$_POST[\''.$var['nombre'].'\'];';
 		eval('\''.$var['variable'] . ' = ' . $_POST[$var['nombre']].'\'');
-		display_notification_centered('\''.$var['variable'] . ' = ' . $_POST[$var['nombre']].'\'');
 	}
 	
 	foreach($operaciones as $operacion) {
-		display_notification_centered($operacion);
 		eval('\''.$operacion.'\'');
 	}
-	
-	foreach($variables as $var) {
-		display_notification_centered($var['variable'] . ' = ' . $var["variable"]);
-	}
-	
-	$Ajax->activate('v_area_a_c');
 }
-
 if (get_post('cancelar')) {
-
 	unset($_POST);
 	meta_forward('http://localhost/CCIMA/index.php');
 }
 /*****************************************************************************/
-
 function apply_uncoded($param) {
 	
-    $arreglo = explode('(',$param);
-	return rtrim($arrego[1],')');
+	return rtrim(explode('(',$param)[1],')');
 }
-
 function convierte_formula($formula) {
 	
 	
 }
-
 /*****************************************************************************/
-
 page($_SESSION['page_title'], false, false, "", $js);
-
 	start_form();
 		div_start('div_cabecera');
 			
@@ -110,7 +81,7 @@ page($_SESSION['page_title'], false, false, "", $js);
 				end_row();
 	
 				start_row();
-					calculadora_list_cells(_("Cálculo a ser utilizado en cotización:"), 'calculo', null, 
+					calculadora_list_cells(_("Cï¿½lculo a ser utilizado en cotizaciï¿½n:"), 'calculo', null, 
 						null, true, check_value('show_inactive'));
 					text_cells(null,'cotizacion', $cotizacion, 61, 60,null,'','','READONLY');
 				end_row();
@@ -125,13 +96,10 @@ page($_SESSION['page_title'], false, false, "", $js);
 				
 				start_table(TABLESTYLE_NOBORDER,"width=80%");
 					$operaciones = '';
-					$primera_vez = 0;
+					//$primera_vez = 0;
 					while ($control = db_fetch($result)) {
 						start_row();
 							if ($control['tipo'] == 'Etiqueta') {
-								if ($primera_vez++ != 0) {
-									end_row(); start_row(); echo "<td>&nbsp</td>"; end_row(); start_row();
-								}
 								label_cells($control['valor'],'','','',$control['nombre']);
 							} else {
 								$_POST[$control['nombre']] = 0;
@@ -148,7 +116,7 @@ page($_SESSION['page_title'], false, false, "", $js);
 									31,60,null,'','',$control['editable'] == 'Si' ? '' : 'READONLY');
 							}
 						end_row();
-					}//var_dump($_POST);
+					}
 				end_table();
 				hidden_array('variables', $variables);
 				hidden_array('operaciones',$operaciones);
@@ -157,9 +125,9 @@ page($_SESSION['page_title'], false, false, "", $js);
 		echo "</div>\n";
 		
 		start_outer_table(TABLESTYLE_NOBORDER, "width=80%");
-			submit('calcular', _("Realizar cálculos"), true, '', true);
-			submit('guardar', _("Guardar cálculos"), true, '', true);
-			submit('cancelar', _("Cancelar cálculos"), true, '', true);
+			submit('calcular', _("Realizar cï¿½lculos"), true, '', true);
+			submit('guardar', _("Guardar cï¿½lculos"), true, '', true);
+			submit('cancelar', _("Cancelar cï¿½lculos"), true, '', true);
 		end_table(1); 
 		
 	end_form();
