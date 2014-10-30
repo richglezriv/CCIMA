@@ -184,6 +184,9 @@ page($_SESSION['page_title'], false, false, "", $js);
 					}
 						
 					if ($seccion != 0) {
+						if ($renglon == 1) {
+							end_row();
+						}
 						end_outer_table(1);
 					}
 				end_table();
