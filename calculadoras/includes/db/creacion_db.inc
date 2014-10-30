@@ -11,7 +11,8 @@ function get_sql_for_calculadora_search($id_calculadora=0)
 		posicion_xy,
 		editable
 		FROM ".TB_PREF."detalles_calculadora 
-				WHERE id_calculadora = " . db_escape($id_calculadora); 
+				WHERE id_calculadora = " . db_escape($id_calculadora) . " 
+		ORDER BY bloque, posicion"; 
 
 	return $sql;
 }
