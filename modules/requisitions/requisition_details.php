@@ -52,23 +52,25 @@ if ($Mode=='ADD_ITEM' || $Mode=='UPDATE_ITEM')
 		display_error(_("The item of use cannot be empty."));
 		set_focus('name');
 	}
-	if (strlen($_POST['estimate_price']) == 0) 
+	/**
+    if (strlen($_POST['estimate_price']) == 0) 
 	{
 		$input_error = 1;
 		display_error(_("The estimated price be empty."));
 		set_focus('rate');
 	}
+    **/
 
 	if ($input_error != 1) 
 	{
     	if ($selected_id != -1) 
     	{
-    		update_requisition_detail($selected_id, $_POST['item_code'], $_POST['purpose'], $_POST['order_quantity'], input_num('estimate_price'));
+    		update_requisition_detail($selected_id, $_POST['item_code'], $_POST['purpose'], $_POST['order_quantity'], 0.0);
 			display_notification(_('Selected requisition details has been updated.'));
     	} 
     	else 
     	{
-    		add_requisition_detail($_POST['requisitionid'], $_POST['item_code'], $_POST['purpose'], $_POST['order_quantity'], input_num('estimate_price'));
+    		add_requisition_detail($_POST['requisitionid'], $_POST['item_code'], $_POST['purpose'], $_POST['order_quantity'], 0.0);
 			display_notification(_('New requisition details has been added'));
     	}
     	
@@ -126,7 +128,9 @@ $result = get_all_requisition_details(get_post('requisitionid'));
 start_form();
 start_table(TABLESTYLE, "width=50%");
 
-$th = array(_("Item Code"), _("Item Name"), _("Purpose"), _("Qrder Quantity"), _("Estimate Price"), "", "");
+//CCIMA Eliminar precio estimado
+//$th = array(_("Item Code"), _("Item Name"), _("Purpose"), _("Qrder Quantity"), _("Estimate Price"), "", "");
+$th = array(_("Item Code"), _("Item Name"), _("Purpose"), _("Qrder Quantity"), "", "");
 
 table_header($th);
 $k = 0;
@@ -138,7 +142,7 @@ while ($myrow = db_fetch($result))
 	label_cell($myrow["description"]);
 	label_cell($myrow["purpose"]);
 	label_cell($myrow["order_quantity"]);
-	amount_cell($myrow["estimate_price"]);
+	//amount_cell($myrow["estimate_price"]);
 
  	edit_button_cell("Edit".$myrow['requisition_detail_id'], _("Edit"));
  	delete_button_cell("Delete".$myrow['requisition_detail_id'], _("Delete"));
@@ -167,15 +171,16 @@ if ($selected_id != -1)
 	hidden('selected_id', $selected_id);
 } 
 
-sales_local_items_list_row(_("Item :"), 'item_code', null, false, false);
-text_row(_("Purpose :"), 'purpose', null, 50, 50);
+sales_local_items_list_row(_("Item"), 'item_code', null, false, false);
+text_row(_("Purpose"), 'purpose', null, 50, 50);
 
 	$res = get_item_edit_info(get_post('item_code'));
 	$dec =  $res["decimals"] == '' ? 0 : $res["decimals"];
 	$units = $res["units"] == '' ? _('kits') : $res["units"];
 
-qty_row(_("Requisition Quantity:"), 'order_quantity', number_format2(1, $dec), '', $units, $dec);
-amount_row(_("Estimate Price :"), 'estimate_price', null, null, null, 2);
+qty_row(_("Requisition Quantity"), 'order_quantity', number_format2(1, $dec), '', $units, $dec);
+//amount_row(_("Estimate Price :"), 'estimate_price', null, null, null, 2);
+hidden('estimate_price');
 
 hidden('requisitionid');
 

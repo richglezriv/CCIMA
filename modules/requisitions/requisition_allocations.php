@@ -26,17 +26,18 @@ if(isset($_GET['po'])) {
 	if($_GET['po'] == 'yes') {
         //CCIMA validar el monto maximo para procesar requisicion
         if (puede_procesar()){
-            
-		        if (generate_po())
-			        display_notification(_("Purchase orders has been generated."));
-		        else
-			        display_error(_("Purchase orders generation failed."));
+                
+		    if (generate_po())
+			    display_notification(_("Purchase orders has been generated."));
+		    else
+			    display_error(_("Purchase orders generation failed."));
             
         }
         else 
         {
             display_warning("No puede procesar la orden de compra ya que excede el monto m&aacute;ximo, se ha solicitado la autorizaci&oacute;n correspondiente");
         }
+        
     
 	}
 }

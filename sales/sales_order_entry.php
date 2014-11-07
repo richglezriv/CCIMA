@@ -262,6 +262,12 @@ function copy_to_cart()
     $cart->inicioObra = $_POST['inicioObra'];
     $cart->finObra = $_POST['finObra'];
 
+        $cart->inicioObraReal = $_POST['inicioObraReal'];
+    
+    
+        $cart->finObraReal = $_POST['finObraReal'];
+    //display_error("valor de obra real " . $_SESSION['Items']->finObraReal);
+
 	$newpayment = false;
 
 	if (isset($_POST['payment']) && ($cart->payment != $_POST['payment'])) {
@@ -313,6 +319,9 @@ function copy_from_cart()
 	$_POST['delivery_date'] = $cart->due_date;
     $_POST['inicioObra'] = $cart->inicioObra;
     $_POST['finObra'] = $cart->finObra;
+    $_POST['inicioObraReal'] = $cart->inicioObraReal;
+    $_POST['finObraReal'] = $cart->finObraReal;
+
 	$_POST['cust_ref'] = $cart->cust_ref;
 	$_POST['freight_cost'] = price_format($cart->freight_cost);
 
@@ -437,6 +446,8 @@ function can_process() {
 		display_error("Invoice total amount cannot be less than zero.");
 		return false;
 	}
+
+
 	return true;
 }
 
@@ -458,6 +469,8 @@ if (isset($_POST['ProcessOrder']) && can_process()) {
 	{
 		display_error(_("The entered reference is already in use."));
 		$ref = get_next_reference($_SESSION['Items']->trans_type);
+        
+
 		if ($ref != $_SESSION['Items']->reference)
 		{
 			display_error(_("The reference number field has been increased. Please save the document again."));

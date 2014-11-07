@@ -335,7 +335,7 @@ function display_order_header(&$order, $editable, $date_text)
 							// and pos have no permitions for terms selected in customer record.
 							// Terms are set to first terms in allowed category below.
 							display_warning(
-								sprintf(_("Customer's payment terms '%s' cannot be selected on this POS"),
+								sprintf(_("Los terminos de pago de este cliente '%s' No se puede utilizar en este punto de venta"),
 									$order->payment_terms['terms']));
 							$order->payment = '';
 				} elseif (get_post('payment') !== $order->payment) {
@@ -494,6 +494,14 @@ function display_order_header(&$order, $editable, $date_text)
 			    $order->trans_no==0, 0, 0, 0, null, false);
         date_row('Fin de Obra', 'finObra', 'Fin de Obra',
 			    $order->trans_no==0, 0, 0, 0, null, false);
+        //solo si es orden de trabajo
+        if ($order->trans_type == ST_SALESORDER){
+            date_row('Inicio Real de Obra', 'inicioObraReal', 'Inicio Real de Obra',
+			        null, 0, 0, 0, null, false);
+            date_row('Fin Real de Obra', 'finObraReal', 'Fin Real de Obra',
+			        null, 0, 0, 0, null, false);
+        }
+        
     }
 	end_outer_table(1); // outer table
 

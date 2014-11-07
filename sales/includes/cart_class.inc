@@ -75,6 +75,8 @@ class cart
 
     var $inicioObra;
     var $finObra;
+    var $inicioObraReal;
+    var $finObraReal;
 
 	//-------------------------------------------------------------------------
 	//

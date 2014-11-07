@@ -17,6 +17,7 @@
 global $systypes_array, $bank_account_types, $bank_transfer_types, 
 	$payment_person_types, $wo_types_array, $wo_cost_types, $class_types,
 	$quick_actions, $quick_entry_types, $stock_types, $tag_types;
+global $SERVER_URI;
 
 $systypes_array = array (
 	ST_JOURNAL => _("Journal Entry"),
@@ -186,4 +187,9 @@ $pterm_types = array(
 // This month array is for use with the last 3 dateformats. 
 $tmonths = array("", _("Jan"),_("Feb"),_("Mar"),_("Apr"),_("May"),_("Jun"),_("Jul"),_("Aug"),_("Sep"),_("Oct"),_("Nov"),_("Dec"));
 
+/**Nombre del servidor**/
+function get_serveruri(){
+    $SERVER_URI = "http://localhost:3391/";
+    return $SERVER_URI;
+}
 ?>

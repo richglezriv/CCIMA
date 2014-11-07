@@ -101,7 +101,10 @@ function puede_procesar(){
 
     $parametro = $myrow[0];
     
-    if ($parametro > $total){
+    if ($_SESSION["wa_current_user"]->access == 10 || $_SESSION["wa_current_user"]->access == 2){
+        return true;
+    }
+    else if ($parametro > $total){
         return true;
     }
     else {
@@ -125,7 +128,10 @@ function notificaAutorizacionRequisicion(){
     $descripcion = "Solicitud de autorizacion de orden de compra para los items requeridos";
     
     require_once($path_to_root . "/includes/db/utilities.inc");
-    $notificacion = notifica_autorizacion("http://google.com", $motivoCorreo, $descripcion, $seccionMensaje);
+    require_once($path_to_root.'/includes/sysnames.inc');
+    //generacion de liga
+    $liga = get_serveruri() . 'remotos/requisitions.php?po=f6122c971aeb03476bf01623b09ddfd4';
+    $notificacion = notifica_autorizacion($liga, $motivoCorreo, $descripcion, $seccionMensaje);
     //echo($notificacion);
 }
 
@@ -137,8 +143,8 @@ function getItemsPendientesReq(){
 	WHERE (r.completed = 1) AND (rd.lpo_id = 0)
 	ORDER BY r.requisition_id";
     $result = db_query($sql, "could not get all requisition_details");
-    $html = "<table style='width:100px;'>";
-    $html .= "<tr>";
+    $html = "<table style='width:100%;'>";
+    $html .= "<tr style='font-weight:bold;'>";
     $html .= "<td>Utilidad</td>";
     $html .= "<td>Cantidad</td>";
     $html .= "<td>Precio</td>";

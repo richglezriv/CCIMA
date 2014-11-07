@@ -20,11 +20,14 @@ function add_sales_order(&$order)
 	$del_date = date2sql($order->due_date);
     $inicioObra = date2sql($order->inicioObra);
     $finObra = date2sql($order->finObra);
+    $inicioObraReal = date2sql($order->inicioObraReal);
+    $finObraReal = date2sql($order->finObraReal);
+
 	$order_type = 0; // this is default on new order
 	$total = $order->get_trans_total();
 	$sql = "INSERT INTO ".TB_PREF."sales_orders (order_no, type, debtor_no, trans_type, branch_code, customer_ref, reference, comments, ord_date,
 		order_type, ship_via, deliver_to, delivery_address, contact_phone,
-		freight_cost, from_stk_loc, delivery_date, payment_terms, total, inicio_obra, fin_obra)
+		freight_cost, from_stk_loc, delivery_date, payment_terms, total, inicio_obra, fin_obra, inicio_obra_real, fin_obra_real)
 		VALUES (" .db_escape($order_no) . "," .db_escape($order_type) . "," . db_escape($order->customer_id) .
 		 ", " .db_escape($order->trans_type) . "," .db_escape($order->Branch) . ", ".
 			db_escape($order->cust_ref) .",". 
@@ -40,7 +43,8 @@ function add_sales_order(&$order)
 			db_escape($order->Location) .", " .
 			db_escape($del_date) . "," .
 			db_escape($order->payment) . "," .
-			db_escape($total). ",".db_escape($inicioObra).",".db_escape($finObra).")";
+			db_escape($total). ",".db_escape($inicioObra).",".db_escape($finObra).
+            ",".db_escape($inicioObraReal).",".db_escape($finObraReal).")";
 
 	db_query($sql, "order Cannot be Added");
 
@@ -126,6 +130,8 @@ function update_sales_order($order)
 	$ord_date = date2sql($order->document_date);
     $inicioObra = date2sql($order->inicioObra);
     $finObra = date2sql($order->finObra);
+    $inicioObraReal = date2sql($order->inicioObraReal);
+    $finObraReal = date2sql($order->finObraReal);
 	$order_no =  key($order->trans_no);
 	$version= current($order->trans_no);
 	$total = $order->get_trans_total();
@@ -152,7 +158,9 @@ function update_sales_order($order)
 		payment_terms = " .db_escape($order->payment). ",
 		total = ". db_escape($total) .",
         inicio_obra = ".db_escape($inicioObra).",
-        fin_obra = ".db_escape($finObra)." 
+        fin_obra = ".db_escape($finObra).", 
+        inicio_obra_real = ".db_escape($inicioObraReal).", 
+        fin_obra_real = ".db_escape($finObraReal)." 
 	 WHERE order_no=" . db_escape($order_no) ."
 	 AND trans_type=".$order->trans_type." AND version=".$version;
 	db_query($sql, "order Cannot be Updated, this can be concurrent edition conflict");
@@ -316,6 +324,8 @@ function read_sales_order($order_no, &$order, $trans_type)
 	$order->due_date = sql2date($myrow["delivery_date"]);
     $order->inicioObra = sql2date($myrow["inicio_obra"]);
     $order->finObra = sql2date($myrow["fin_obra"]);
+    $order->inicioObraReal = sql2date($myrow["inicio_obra_real"]);
+    $order->finObraReal = sql2date($myrow["fin_obra_real"]);
 	$order->document_date = sql2date($myrow["ord_date"]);
 
 	$result = get_sales_order_details($order_no, $order->trans_type);
@@ -539,7 +549,10 @@ function cliente_asignado($user, $customer){
 
     $myrow = db_fetch($result);
 
-    if ($myrow[0] == $user){
+    if ($myrow[0] == null){
+        return true;
+    }
+    else if ($myrow[0] == $user){
         return TRUE;
     }
     else

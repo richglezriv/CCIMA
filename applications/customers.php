@@ -23,16 +23,16 @@ class customers_app extends application
         $cadena = user_company() == 0 ? "Orden de Trabajo" : "Orden de Servicio";
 		$this->add_lapp_function(0, $cadena,
 			"sales/sales_order_entry.php?NewOrder=Yes", 'SA_SALESORDER', MENU_TRANSACTION);
-		$cadena = user_company() == 0 ? "Orden de Entrega de Obra" : _("Direct &Delivery");
+		$cadena = user_company() == 0 ? "Venta de Material" : _("Direct &Delivery");
         $this->add_lapp_function(0, $cadena,
 			"sales/sales_order_entry.php?NewDelivery=0", 'SA_SALESDELIVERY', MENU_TRANSACTION);
 		$this->add_lapp_function(0, _("Direct &Invoice"),
 			"sales/sales_order_entry.php?NewInvoice=0", 'SA_SALESINVOICE', MENU_TRANSACTION);
 		$this->add_lapp_function(0, "","");
-        $cadena = user_company() == 0 ? "Entrega de Obra" : _("&Delivery Against Sales Orders");
+        $cadena = user_company() == 0 ? "Entregas" : _("&Delivery Against Sales Orders");
 		$this->add_lapp_function(0, $cadena,
 			"sales/inquiry/sales_orders_view.php?OutstandingOnly=1", 'SA_SALESDELIVERY', MENU_TRANSACTION);
-        $cadena = user_company() == 0 ? "Facturar Obra" : _("&Invoice Against Sales Delivery");
+        $cadena = user_company() == 0 ? "Facturaciones" : _("&Invoice Against Sales Delivery");
 		$this->add_lapp_function(0, $cadena,
 			"sales/inquiry/sales_deliveries_view.php?OutstandingOnly=1", 'SA_SALESINVOICE', MENU_TRANSACTION);
 
@@ -53,7 +53,9 @@ class customers_app extends application
 		$this->add_module(_("Inquiries and Reports"));
 		$this->add_lapp_function(1, _("Sales Quotation I&nquiry"),
 			"sales/inquiry/sales_orders_view.php?type=32", 'SA_SALESTRANSVIEW', MENU_INQUIRY);
-		$this->add_lapp_function(1, _("Sales Order &Inquiry"),
+
+        $cadena = user_company() == 0 ? "Consultar Ordenes de Venta" : _("Sales Order &Inquiry");
+		$this->add_lapp_function(1, $cadena,
 			"sales/inquiry/sales_orders_view.php?type=30", 'SA_SALESTRANSVIEW', MENU_INQUIRY);
 		$this->add_lapp_function(1, _("Customer Transaction &Inquiry"),
 			"sales/inquiry/customer_inquiry.php?", 'SA_SALESTRANSVIEW', MENU_INQUIRY);

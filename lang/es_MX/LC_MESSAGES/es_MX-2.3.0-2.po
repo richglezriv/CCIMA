@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FrontAccounting\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-08 15:59+0200\n"
-"PO-Revision-Date: 2014-10-29 13:56-0600\n"
+"PO-Revision-Date: 2014-11-05 15:26-0600\n"
 "Last-Translator: Translation Team <info@frontaccounting.net>\n"
 "Language-Team: FrontAccounting <info@frontaccounting.com>\n"
 "MIME-Version: 1.0\n"
@@ -887,7 +887,7 @@ msgstr "No se puede eliminar el directorio temporal de datos de la compañía"
 
 #: /var/www/fa2.3/devel/../admin/create_coy.php:243
 msgid "Selected company has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "La empresa seleccionada ha sido eliminada"
 
 # c:/Apache2/htdocs/account/admin/create_coy.php:173
 #: /var/www/fa2.3/devel/../admin/create_coy.php:257
@@ -1261,7 +1261,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../admin/fiscalyears.php:114
 msgid "Selected fiscal year has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El año fiscal seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../admin/fiscalyears.php:127
 msgid ""
@@ -4591,7 +4591,7 @@ msgstr "El nombre de la cuenta bancaria no puede ser vacío."
 
 #: /var/www/fa2.3/devel/../gl/manage/bank_accounts.php:47
 msgid "Bank account has been updated"
-msgstr "El costo ha sido actualizado."
+msgstr "La cuenta de banco ha sido actualizada."
 
 #: /var/www/fa2.3/devel/../gl/manage/bank_accounts.php:56
 msgid "New bank account has been added"
@@ -4934,7 +4934,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_classes.php:92
 msgid "Selected account class has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "La clase de cuenta ha sido eliminada."
 
 # c:/Apache2/htdocs/account/gl/manage/gl_account_classes.php:82
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_classes.php:109
@@ -4999,7 +4999,7 @@ msgstr "El código de la cuenta debe ser numérico."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_accounts.php:86
 msgid "Account data has been updated."
-msgstr "El costo ha sido actualizado."
+msgstr "Datos de la cuenta han sido actualizados"
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_accounts.php:95
 msgid "New account has been added."
@@ -5070,7 +5070,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_accounts.php:179
 msgid "Selected account has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "La cuenta seleccionada ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_accounts.php:194
 msgid "New account"
@@ -5155,7 +5155,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_types.php:105
 msgid "Selected account group has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El grupo de cuentas ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../gl/manage/gl_account_types.php:122
 msgid "Group ID"
@@ -6463,20 +6463,20 @@ msgstr "Actualizacion de Costo"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:50
 msgid "Savings Account"
-msgstr "Cuenta de Ventas:"
+msgstr "Cuenta de Ahorros"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:51
 msgid "Chequing Account"
-msgstr "Nueva Cuenta"
+msgstr "Cuenta de Cheques"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:52
 #: /var/www/fa2.3/devel/../manufacturing/work_order_costs.php:151
 msgid "Credit Account"
-msgstr "Editar Cuenta:"
+msgstr "Cuenta de Credito"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:53
 msgid "Cash Account"
-msgstr "Cuenta de Ventas:"
+msgstr "Cuenta de Efectivo"
 
 #: /var/www/fa2.3/devel/../includes/sysnames.inc:57
 msgid "Transfer"
@@ -6999,7 +6999,7 @@ msgstr "Tipos de Venta"
 
 #: /var/www/fa2.3/devel/../includes/ui/ui_lists.inc:1583
 msgid "Use Item Sales Accounts"
-msgstr "Cuenta de Ventas:"
+msgstr "Utilizar la cuenta de ventas del item"
 
 #: /var/www/fa2.3/devel/../includes/ui/ui_lists.inc:1892
 #: /var/www/fa2.3/devel/../includes/ui/ui_lists.inc:1909
@@ -7185,11 +7185,11 @@ msgstr "Octubre"
 
 #: /var/www/fa2.3/devel/../includes/ui/ui_view.inc:840
 msgid "November"
-msgstr "Número"
+msgstr "Noviembre"
 
 #: /var/www/fa2.3/devel/../includes/ui/ui_view.inc:840
 msgid "December"
-msgstr "Número"
+msgstr "Diciembre"
 
 #: /var/www/fa2.3/devel/../includes/ui/ui_view.inc:841
 msgid "Su"
@@ -7622,7 +7622,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_categories.php:77
 msgid "Selected item category has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "La cateogoria seleccionada ha sido eliminada."
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_categories.php:98
 msgid "Tax type"
@@ -7644,7 +7644,7 @@ msgstr "Unidades"
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_categories.php:98
 msgid "Sales Act"
-msgstr "Cuenta de Ventas:"
+msgstr "Utiliza Ventas"
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_categories.php:99
 msgid "Inventory Account"
@@ -7729,7 +7729,7 @@ msgstr "Nuevo codigo de inventario ha sido agregado"
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_codes.php:73
 msgid "Item code has been updated."
-msgstr "El costo ha sido actualizado."
+msgstr "El codigo de item ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_codes.php:85
 msgid "Item code has been sucessfully deleted."
@@ -7827,7 +7827,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:179
 msgid "Item has been updated."
-msgstr "El costo ha sido actualizado."
+msgstr "El item ha sido actualizado."
 
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:192
 msgid "A new item has been added."
@@ -7835,7 +7835,7 @@ msgstr "Un nuevo articulo ha sido adicionado."
 
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:234
 msgid "Selected item has been deleted."
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El item seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../inventory/manage/items.php:250
 msgid "Select an item:"
@@ -7947,7 +7947,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_units.php:75
 msgid "Selected unit has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "La unidad seleccionada ha sido eliminada."
 
 #: /var/www/fa2.3/devel/../inventory/manage/item_units.php:94
 msgid "Decimals"
@@ -8090,7 +8090,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../inventory/manage/movement_types.php:76
 msgid "Selected movement type has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El movimiento seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../inventory/manage/sales_kits.php:16
 msgid "Sales Kits & Alias Codes"
@@ -9152,7 +9152,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../manufacturing/manage/work_centres.php:83
 msgid "Selected work center has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El centro de trabajo seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../manufacturing/manage/work_centres.php:101
 msgid "description"
@@ -12060,7 +12060,7 @@ msgstr "No tiene ninguna cuenta de correo definida para este tipo de documento"
 
 #: /var/www/fa2.3/devel/../reporting/includes/pdf_report.inc:1034
 msgid "Sending document by email failed"
-msgstr "Editar Cuenta:"
+msgstr "Envio de documento por correo fallido"
 
 #: /var/www/fa2.3/devel/../reporting/includes/pdf_report.inc:1037
 msgid "has been sent by email to destination."
@@ -13293,7 +13293,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../sales/manage/credit_status.php:79
 msgid "Selected credit status has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El estado de credito seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../sales/manage/credit_status.php:97
 msgid "Dissallow Invoices"
@@ -13381,7 +13381,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../sales/manage/customer_branches.php:137
 msgid "Selected customer branch has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "La filial de cliente seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../sales/manage/customer_branches.php:218
 msgid "Main Branch"
@@ -13523,7 +13523,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../sales/manage/customers.php:152
 msgid "Selected customer has been deleted."
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El cliente seleccionado ha sido eliminado."
 
 #                                                                                          repeated \n
 # /../../BankAccounts.php:158\n
@@ -13590,7 +13590,7 @@ msgstr "Actualizar Cliente"
 
 #: /var/www/fa2.3/devel/../sales/manage/customers.php:263
 msgid "Select this customer and return to document entry."
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "Seleccione el cliente y regrese a la entrada de documento."
 
 #: /var/www/fa2.3/devel/../sales/manage/customers.php:264
 msgid "Delete Customer"
@@ -13632,7 +13632,7 @@ msgstr "Nueva factura recurrente creada"
 
 #: /var/www/fa2.3/devel/../sales/manage/recurrent_invoices.php:69
 msgid "Selected recurrent invoice has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "La factura recurrente seleccionada ha sido eliminada."
 
 #: /var/www/fa2.3/devel/../sales/manage/recurrent_invoices.php:149
 msgid "Template:"
@@ -13673,7 +13673,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_areas.php:68
 msgid "Selected sales area has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El area de ventas seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_areas.php:88
 msgid "Area Name"
@@ -13705,7 +13705,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_groups.php:67
 msgid "Selected sales group has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El grupo de ventas seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_groups.php:85
 #: /var/www/fa2.3/devel/../sales/manage/sales_groups.php:120
@@ -13742,7 +13742,7 @@ msgstr "Los datos de compra de este proveedor han sido adicionados."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_people.php:81
 msgid "Selected sales person data have been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El vendedor seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_people.php:155
 msgid "Sales person name:"
@@ -13784,7 +13784,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_points.php:65
 msgid "Selected point of sale has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El punto de venta seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_points.php:84
 msgid "POS Name"
@@ -13862,7 +13862,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_types.php:83
 msgid "Selected sales type has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El tipo de venta seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../sales/manage/sales_types.php:103
 msgid "Type Name"
@@ -14284,7 +14284,7 @@ msgstr "Entregar De Localidad"
 
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:583
 msgid "Cash account:"
-msgstr "Cuenta de Ventas:"
+msgstr "Cuenta de Efectivo:"
 
 #: /var/www/fa2.3/devel/../sales/includes/ui/sales_order_ui.inc:589
 msgid "Delivery Details"
@@ -14371,7 +14371,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../taxes/item_tax_types.php:93
 msgid "Selected item tax type has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El tipo de impuesto seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../taxes/item_tax_types.php:112
 msgid "Tax exempt"
@@ -14435,7 +14435,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../taxes/tax_groups.php:127
 msgid "Selected tax group has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El grupo de impuestos seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../taxes/tax_groups.php:146
 msgid "Shipping Tax"
@@ -14486,7 +14486,7 @@ msgstr ""
 
 #: /var/www/fa2.3/devel/../taxes/tax_types.php:94
 msgid "Selected tax type has been deleted"
-msgstr "El precio seleccionado ha sido eliminado."
+msgstr "El tipo de impuesto seleccionado ha sido eliminado."
 
 #: /var/www/fa2.3/devel/../taxes/tax_types.php:112
 msgid ""
@@ -14794,3 +14794,9 @@ msgstr "Nueva Contraseña:"
 
 msgid "Repeat New Password:"
 msgstr "Repetir Nueva Contraseña:"
+
+msgid "Requisition Quantity"
+msgstr "Cantidad requerida"
+
+msgid "Selected requisition details has been updated."
+msgstr "Los detalles de la requisicion han sido actualizados"

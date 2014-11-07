@@ -29,14 +29,19 @@ print_customer_details_listing();
 
 function get_customer_details_for_report($area=0, $salesid=0)
 {
+    $asignado = "";
+    //if (user_company() == 0){
+        $asignado = TB_PREF."debtors_master.cotizando, ";
+
+    //}
 	$sql = "SELECT ".TB_PREF."debtors_master.debtor_no,
 			".TB_PREF."debtors_master.name,
 			".TB_PREF."debtors_master.address,
 			".TB_PREF."debtors_master.curr_code,
 			".TB_PREF."debtors_master.dimension_id,
 			".TB_PREF."debtors_master.dimension2_id,
-			".TB_PREF."debtors_master.notes,
-			".TB_PREF."sales_types.sales_type,
+			".TB_PREF."debtors_master.notes,".$asignado.
+			TB_PREF."sales_types.sales_type,
 			".TB_PREF."cust_branch.branch_code,
 			".TB_PREF."cust_branch.br_name,
 			".TB_PREF."cust_branch.br_address,
@@ -45,7 +50,7 @@ function get_customer_details_for_report($area=0, $salesid=0)
 			".TB_PREF."cust_branch.area,
 			".TB_PREF."cust_branch.salesman,
 			".TB_PREF."areas.description,
-			".TB_PREF."salesman.salesman_name
+			".TB_PREF."salesman.salesman_name 
 		FROM ".TB_PREF."debtors_master
 		INNER JOIN ".TB_PREF."cust_branch
 			ON ".TB_PREF."debtors_master.debtor_no=".TB_PREF."cust_branch.debtor_no
@@ -230,10 +235,11 @@ function print_customer_details_listing()
 			if (isset($adr[0]))
 				$rep->TextCol(0, 1, $adr[0]);
 			$rep->TextCol(1, 2,	_('Currency') . ": " . $myrow['curr_code']);
-			if (isset($contacts[0]))
+            if (isset($contacts[0]))
 				$rep->TextCol(2, 3, $contacts[0]['name']. " " .$contacts[0]['name2']);
 			if (isset($adr2[0]))	
 				$rep->TextCol(3, 4, $adr2[0]);
+            
 			$rep->NewLine();
 			if (isset($adr[1]))
 				$rep->TextCol(0, 1, $adr[1]);
@@ -278,9 +284,13 @@ function print_customer_details_listing()
 				if (isset($adr2[$i]))
 					$rep->TextCol(3, 4, $adr2[$i]);
 			}	
+            //CCIMA vendedor asignado
+            $rep->TextCol(0,4,"Vendedor asignado:".$myrow['cotizando']);
+
 			if ($newrow != 0 && $newrow < $rep->row)
 				$rep->row = $newrow;
 			$rep->NewLine();
+            
 			/*
 			$rep->TextCol(0, 1,	$myrow['name']);
 			$adr = Explode("\n", $myrow['address']);
@@ -312,6 +322,7 @@ function print_customer_details_listing()
 			*/
 			$rep->Line($rep->row + 8);
 			$rep->NewLine(0, 3);
+            
 		}
 	}
     $rep->End();

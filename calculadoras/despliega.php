@@ -97,7 +97,8 @@ if (get_post('cancelar')) {
 
 function apply_uncoded($param) {
 	
-	return rtrim(explode('(',$param)[1],')');
+    $arreglo = explode('(',$param);
+	return rtrim($arreglo[1],')');
 }
 
 function evalua_formula($mathString)    {

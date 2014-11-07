@@ -24,8 +24,20 @@ function notifica_autorizacion($liga, $motivoCorreo, $descripcion, $seccionMensa
     $mail->to($to);
     $mail->subject($motivoCorreo);
     $mail->html($msg);
-    //$mail->text("prueba de mensaje");
-    return $mail->send();
+
+    // To send HTML mail, the Content-type header must be set
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+    
+    $envio = 'no enviado';
+    
+    $envio = 'no enviado';
+    if (mail($to, $motivoCorreo, $msg, $headers)){
+        $envio = 'mensaje enviado';
+    }
+    return $envio;
+
 
 }
 

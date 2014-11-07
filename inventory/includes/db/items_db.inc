@@ -12,7 +12,7 @@
 function update_item($stock_id, $description, $long_description, $category_id, 
 	$tax_type_id, $units='', $mb_flag='', $sales_account, $inventory_account, 
 	$cogs_account, 	$adjustment_account, $assembly_account, $dimension_id, 
-	$dimension2_id, $no_sale, $editable)
+	$dimension2_id, $no_sale, $editable, $tarjetaGas='', $seguro='', $verificacion='', $tenencia='')
 {
 	$sql = "UPDATE ".TB_PREF."stock_master SET long_description=".db_escape($long_description).",
 		description=".db_escape($description).",
@@ -34,7 +34,19 @@ function update_item($stock_id, $description, $long_description, $category_id,
 	if ($mb_flag != '')
 		$sql .= ", mb_flag=".db_escape($mb_flag);
 
-	$sql .= " WHERE stock_id=".db_escape($stock_id);
+    if ($tarjetaGas != '')
+        $sql.= ", tarjeta_gas=".db_escape($tarjetaGas);
+
+    if ($seguro != '')
+        $sql.= ", seguro =".db_escape($seguro);
+
+    if ($verificacion != '')
+        $sql .= ", verificacion = ".db_escape($verificacion);
+
+    if ($tenencia != '')
+        $sql .= ", tenencia=".db_escape($tenencia);
+
+    $sql .= " WHERE stock_id=".db_escape($stock_id);
 
 	db_query($sql, "The item could not be updated");
 
@@ -44,11 +56,25 @@ function update_item($stock_id, $description, $long_description, $category_id,
 function add_item($stock_id, $description, $long_description, $category_id, 
 	$tax_type_id, $units, $mb_flag,	$sales_account, $inventory_account, 
 	$cogs_account, $adjustment_account,	$assembly_account, $dimension_id, 
-	$dimension2_id, $no_sale, $editable)
+	$dimension2_id, $no_sale, $editable, $tarjetaGas='', $seguro='', $verificacion='', $tenencia='')
 {
 	$sql = "INSERT INTO ".TB_PREF."stock_master (stock_id, description, long_description, category_id,
 		tax_type_id, units, mb_flag, sales_account, inventory_account, cogs_account,
-		adjustment_account, assembly_account, dimension_id, dimension2_id, no_sale, editable)
+		adjustment_account, assembly_account, dimension_id, dimension2_id, no_sale, editable";
+        
+        if ($tarjetaGas != '')
+            $sql.= ", tarjeta_gas";
+
+        if ($seguro != '')
+            $sql.= ", seguro ";
+
+        if ($verificacion != '')
+            $sql .= ", verificacion";
+
+        if ($tenencia != '')
+            $sql .= ", tenencia";
+        
+        $sql .= ")
 		VALUES (".db_escape($stock_id).", ".db_escape($description).", ".db_escape($long_description).",
 		".db_escape($category_id).", ".db_escape($tax_type_id).", "
 		.db_escape($units).", ".db_escape($mb_flag).",
@@ -57,7 +83,21 @@ function add_item($stock_id, $description, $long_description, $category_id,
 		.", ".db_escape($assembly_account).", "
 		.db_escape($dimension_id).", ".db_escape($dimension2_id).","
 		.db_escape($no_sale).","
-		.db_escape($editable).")";
+		.db_escape($editable);
+
+        if ($tarjetaGas != '')
+            $sql.= ",".db_escape($tarjetaGas);
+
+        if ($seguro != '')
+            $sql.= ",".db_escape($seguro);
+
+        if ($verificacion != '')
+            $sql.= ",".db_escape($verificacion);
+
+        if ($tenencia != '')
+            $sql.= ",".db_escape($tenencia);
+        
+        $sql .= ")";
 
 	db_query($sql, "The item could not be added");
 

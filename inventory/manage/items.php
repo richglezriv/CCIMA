@@ -51,6 +51,56 @@ if (list_updated('category_id') || list_updated('mb_flag')) {
 	$Ajax->activate('details');
 }
 $upload_file = "";
+
+//CCIMA Para cargar los archivos de rentas
+function upload_file($array, $documentName){
+    $stock_id = $_POST['NewStockID'];
+    $file = $array['name'];
+    $filename = company_path()."/images/".item_img_name($stock_id);
+    $extension = substr($file, strlen($file) - 3);
+    $upload = TRUE;
+
+    if (!file_exists($filename))
+	{
+		mkdir($filename);
+	}	
+
+    $filename .= "/".$documentName.".png";
+
+    $result = $array['error'];
+
+    if ($result > 0){
+        display_warning('Hay un error al subir el archivo '.$documentName);
+        $upload = FALSE;
+    }
+
+    $result = $array['type'];
+    $result = $array['size'];
+
+    $file = $array['tmp_name'];
+
+    if ($upload){
+        move_uploaded_file($file, $filename);
+    }
+}
+
+if (isset($_FILES['verif']) && $_FILES['verif']['name'] != '') {
+    upload_file($_FILES['verif'], 'verificacion');
+}
+if (isset($_FILES['circulacion']) && $_FILES['circulacion']['name'] != '') {
+    upload_file($_FILES['circulacion'], 'circulacion');
+}
+if (isset($_FILES['licencia']) && $_FILES['licencia']['name'] != '') {
+    upload_file($_FILES['licencia'], 'licencia');
+}
+if (isset($_FILES['factura']) && $_FILES['factura']['name'] != '') {
+    upload_file($_FILES['factura'], 'factura');
+}
+if (isset($_FILES['capacidad']) && $_FILES['capacidad']['name'] != '') {
+    upload_file($_FILES['capacidad'], 'capacidad');
+}
+
+
 if (isset($_FILES['pic']) && $_FILES['pic']['name'] != '') 
 {
 	$stock_id = $_POST['NewStockID'];
@@ -118,6 +168,10 @@ function clear_data()
 	unset($_POST['dimension_id']);
 	unset($_POST['dimension2_id']);
 	unset($_POST['no_sale']);
+    unset($_POST['tarjetaGas']);
+    unset($_POST['seguro']);
+    unset($_POST['mesVerif']);
+    unset($_POST['tenencia']);
 }
 
 //------------------------------------------------------------------------------------
@@ -174,7 +228,8 @@ if (isset($_POST['addupdate']))
 				$_POST['inventory_account'], $_POST['cogs_account'],
 				$_POST['adjustment_account'], $_POST['assembly_account'], 
 				$_POST['dimension_id'], $_POST['dimension2_id'],
-				check_value('no_sale'), check_value('editable'));
+				check_value('no_sale'), check_value('editable'), 
+                $_POST['tarjetaGas'],$_POST['seguro'],$_POST['mesVerif'], $_POST['tenencia']);
 			update_record_status($_POST['NewStockID'], $_POST['inactive'],
 				'stock_master', 'stock_id');
 			update_record_status($_POST['NewStockID'], $_POST['inactive'],
@@ -192,7 +247,8 @@ if (isset($_POST['addupdate']))
 				$_POST['inventory_account'], $_POST['cogs_account'],
 				$_POST['adjustment_account'], $_POST['assembly_account'], 
 				$_POST['dimension_id'], $_POST['dimension2_id'],
-				check_value('no_sale'), check_value('editable'));
+				check_value('no_sale'), check_value('editable'),
+                $_POST['tarjetaGas'],$_POST['seguro'],$_POST['mesVerif'], $_POST['tenencia']);
 
 			display_notification(_("A new item has been added."));
 			$_POST['stock_id'] = $_POST['NewStockID'] = 
@@ -289,6 +345,11 @@ function item_settings(&$stock_id)
 			$_POST['del_image'] = 0;	
 			$_POST['inactive'] = $myrow["inactive"];
 			$_POST['editable'] = $myrow["editable"];
+
+            $_POST['tarjetaGas'] = $myrow["tarjeta_gas"];
+            $_POST['seguro']= $myrow["seguro"];
+            $_POST['mesVerif']= $myrow["verificacion"];
+             $_POST['tenencia'] = $myrow["tenencia"];
 		}
 		label_row(_("Item Code:"),$_POST['NewStockID']);
 		hidden('NewStockID', $_POST['NewStockID']);
@@ -334,11 +395,32 @@ function item_settings(&$stock_id)
     //3H Rentas
     if (user_company() == 1){
         table_section_title("Datos del veh&iacute;culo");
+
         file_row(_("Tarjeta de verificaci&oacute;n (.jpg)") . ":", 'verif', 'verif');
+        if (file_exists(company_path().'/images/'.$_POST['NewStockID']."/verificacion.png")){
+            $verificacion = "'".company_path().'/images/'.$_POST['NewStockID']."/verificacion.png'";
+            echo('<tr><td class="label">&nbsp;</td><td><a href="#" onclick="window.open('.$verificacion.');">ver documento</a></td></tr>');
+        }
         file_row(_("Tarjeta de circulaci&oacute;n (.jpg)") . ":", 'circulacion', 'circulacion');
+        if (file_exists(company_path().'/images/'.$_POST['NewStockID']."/circulacion.png")){
+            $circulacion = "'".company_path().'/images/'.$_POST['NewStockID']."/circulacion.png'";
+            echo('<tr><td class="label">&nbsp;</td><td><a href="#" onclick="window.open('.$circulacion.');">ver documento</a></td></tr>');
+        }
         file_row(_("Licencia de operador (.jpg)") . ":", 'licencia', 'licencia');
+        if (file_exists(company_path().'/images/'.$_POST['NewStockID']."/licencia.png")){
+            $licencia = "'".company_path().'/images/'.$_POST['NewStockID']."/licencia.png'";
+            echo('<tr><td class="label">&nbsp;</td><td><a href="#" onclick="window.open('.$licencia.');">ver documento</a></td></tr>');
+        }
         file_row(_("Factura de veh&iacute;culo (.jpg)") . ":", 'factura', 'factura');
+        if (file_exists(company_path().'/images/'.$_POST['NewStockID']."/factura.png")){
+            $factura = "'".company_path().'/images/'.$_POST['NewStockID']."/factura.png'";
+            echo('<tr><td class="label">&nbsp;</td><td><a href="#" onclick="window.open('.$factura.');">ver documento</a></td></tr>');
+        }
         file_row(_("Gr&aacute;fica de capacidades (.jpg)") . ":", 'capacidad', 'capacidad');
+        if (file_exists(company_path().'/images/'.$_POST['NewStockID']."/capacidad.png")){
+            $capacidad = "'".company_path().'/images/'.$_POST['NewStockID']."/capacidad.png'";
+            echo('<tr><td class="label">&nbsp;</td><td><a href="#" onclick="window.open('.$capacidad.');">ver documento</a></td></tr>');
+        }
         //texto
         text_row(_("No tarjeta de gasolina:"), 'tarjetaGas', null, 22, 50);
         text_row(_("Fecha de expiraci&oacute;n seguro:"), 'seguro', null, 22, 50);
