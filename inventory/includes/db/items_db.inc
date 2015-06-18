@@ -12,7 +12,7 @@
 function update_item($stock_id, $description, $long_description, $category_id, 
 	$tax_type_id, $units='', $mb_flag='', $sales_account, $inventory_account, 
 	$cogs_account, 	$adjustment_account, $assembly_account, $dimension_id, 
-	$dimension2_id, $no_sale, $editable, $tarjetaGas='', $seguro='', $verificacion='', $tenencia='')
+	$dimension2_id, $no_sale, $editable, $tarjetaGas='', $seguro='', $verificacion='', $tenencia='', $horas_mantto='', $pagare='')
 {
 	$sql = "UPDATE ".TB_PREF."stock_master SET long_description=".db_escape($long_description).",
 		description=".db_escape($description).",
@@ -46,6 +46,12 @@ function update_item($stock_id, $description, $long_description, $category_id,
     if ($tenencia != '')
         $sql .= ", tenencia=".db_escape($tenencia);
 
+    if ($horas_mantto != '')
+        $sql .= ", horas_mantto=".db_escape($horas_mantto);
+
+    if ($pagare != '')
+        $sql .= ", pagare = ".db_escape($pagare);
+
     $sql .= " WHERE stock_id=".db_escape($stock_id);
 
 	db_query($sql, "The item could not be updated");
@@ -56,7 +62,7 @@ function update_item($stock_id, $description, $long_description, $category_id,
 function add_item($stock_id, $description, $long_description, $category_id, 
 	$tax_type_id, $units, $mb_flag,	$sales_account, $inventory_account, 
 	$cogs_account, $adjustment_account,	$assembly_account, $dimension_id, 
-	$dimension2_id, $no_sale, $editable, $tarjetaGas='', $seguro='', $verificacion='', $tenencia='')
+	$dimension2_id, $no_sale, $editable, $tarjetaGas='', $seguro='', $verificacion='', $tenencia='', $horas_mantto='', $pagare='')
 {
 	$sql = "INSERT INTO ".TB_PREF."stock_master (stock_id, description, long_description, category_id,
 		tax_type_id, units, mb_flag, sales_account, inventory_account, cogs_account,
@@ -73,6 +79,12 @@ function add_item($stock_id, $description, $long_description, $category_id,
 
         if ($tenencia != '')
             $sql .= ", tenencia";
+
+        if ($horas_mantto != '')
+            $sql .= ", horas_mantto";
+
+        if ($pagare != '')
+            $sql .= ", pagare";
         
         $sql .= ")
 		VALUES (".db_escape($stock_id).", ".db_escape($description).", ".db_escape($long_description).",
@@ -97,6 +109,12 @@ function add_item($stock_id, $description, $long_description, $category_id,
         if ($tenencia != '')
             $sql.= ",".db_escape($tenencia);
         
+        if ($horas_mantto != '')
+                    $sql.= ",".db_escape($horas_mantto);
+
+        if ($pagare != '')
+            $sql = ",".db_escape($pagare);
+
         $sql .= ")";
 
 	db_query($sql, "The item could not be added");
@@ -198,4 +216,16 @@ function item_in_foreign_codes($stock_id)
 	}
 	return $msg;
 }
+
+function addConversion($stock_id, $nombre, $formula=''){
+
+    $sql = "INSERT INTO  0_conversion_stock (stock_id, nombre, formula) VALUES (".
+        db_escape($stock_id).",".
+        db_escape($nombre).",".
+        db_escape($formula).")";
+    error_log($sql);
+    db_query($sql);
+
+}
+
 ?>

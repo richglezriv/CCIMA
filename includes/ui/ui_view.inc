@@ -504,6 +504,7 @@ function display_edit_tax_items($taxes, $columns, $tax_included, $rightspan=0, $
 				end_row();
 			} else {
 				$value = number_format2($taxitem['Value'],user_price_dec());
+                
 				if ($tax_included)
 				{
 					label_row(_("Included") . " " . $taxitem['tax_type_name']
@@ -766,7 +767,7 @@ function display_quick_entries(&$cart, $id, $base, $type, $descr='')
 
 //--------------------------------------------------------------------------------------
 //
-//	Simple English version of number to words conversion.
+//	Simple Spanish version of number to words conversion.
 //
 function _number_to_words($number) 
 { 
@@ -782,65 +783,76 @@ function _number_to_words($number)
     $n = $number % 10;               /* Ones */
 
     $res = ""; 
-
+    
     if ($Bn) 
-        $res .= _number_to_words($Bn) . " Billion"; 
+        $res .= _number_to_words($Bn) . " BILLON"; 
     if ($Gn) 
-        $res .= (empty($res) ? "" : " ") . _number_to_words($Gn) . " Million"; 
+        $res .= (empty($res) ? "" : " ") . $Gn == "1" ? " UN MILLON" : _number_to_words($Gn) . " MILLONES"; 
     if ($kn) 
-        $res .= (empty($res) ? "" : " ") . _number_to_words($kn) . " Thousand"; 
-    if ($Hn) 
-        $res .= (empty($res) ? "" : " ") . _number_to_words($Hn) . " Hundred"; 
+        $res .= (empty($res) ? "" : " ") . ($kn == "1" ? "UN MIL": _number_to_words($kn) . " MIL"); 
+    /**if ($Hn) 
+        $res .= (empty($res) ? "" : " ") . _number_to_words($Hn) . " Cien"; **/
 
-    $ones = array("", "One", "Two", "Three", "Four", "Five", "Six", 
-        "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", 
-        "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", 
-        "Nineteen"); 
-    $tens = array("", "", "Twenty", "Thirty", "Fourty", "Fifty", "Sixty", 
-        "Seventy", "Eighty", "Ninety"); 
+    $ones = array("", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", 
+        "SIETE", "OCHO", "NUEVE", "DIEZ", "ONCE", "DOCE", "TRECE", 
+        "CATORCE", "QUINCE", "DIECISEIS", "DIECISIETE", "DIECIOCHO", 
+        "DIECINUEVE","VEINTE", "VEINTIUNO", "VEINTIDOS", "VEINTITRES","VEINTICUATRO","VEINTICINCO", "VEINTISEIS", "VEINTISIETE", "VEINTIOCHO","VEINTINUEVE"); 
+    $tens = array("", "", "VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", 
+        "SETENTA", "OCHENTA", "NOVENTA"); 
 
-    if ($Dn || $n) 
+    $hundreds = array("", "CIEN","DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS");
+
+    if ($Dn || $n || $Hn || $kn) 
     { 
+        
         if (!empty($res)) 
-            $res .= " and "; 
-        if ($Dn < 2) 
-            $res .= $ones[$Dn * 10 + $n]; 
+            $res .= " "; 
+        
+        //for hundreds in spanish
+        if ($Hn == 1)
+            $res .= (empty($res) ? "":" ")."CIENTO";
+        elseif  ($Hn > 1)
+            $res .= (empty($res) ? "":" ").$hundreds[$Hn];
+        if ($Dn < 3) 
+            $res .= (empty($res) ? "":" ").$ones[$Dn * 10 + $n]; 
         else 
         { 
-            $res .= $tens[$Dn]; 
+            $res .= (empty($res) ? "":" ").$tens[$Dn]; 
             if ($n) 
-                $res .= "-" . $ones[$n]; 
+                $res .= " Y " . $ones[$n]; 
         } 
     } 
 
     if (empty($res)) 
         $res = "zero"; 
     return $res; 
-} 
+}
 
 function price_in_words($amount, $document=0)
 {
 	// use local price_in_words() if the hook is defined
 	$price = hook_price_in_words($amount, $document);
+    
 	if ($price) 
 		return $price;
 
 	// Only usefor Remittance and Receipts as default
-	if (!($document == ST_SUPPAYMENT || $document == ST_CUSTPAYMENT || $document == ST_CHEQUE))
-		return "";
+	/**if (!($document == ST_SUPPAYMENT || $document == ST_CUSTPAYMENT || $document == ST_CHEQUE))
+		return "";**/
 	if ($amount < 0 || $amount > 999999999999)
 		return "";
 	$dec = user_price_dec();
+    
 	if ($dec > 0)
 	{
 		$divisor = pow(10, $dec);
         $frac = round2($amount - floor($amount), $dec) * $divisor;
 		$frac = sprintf("%0{$dec}d", round2($frac, 0));
-		$and = _("and");
+		$and = _("pesos y");
     	$frac = " $and $frac/$divisor";
     }
     else
-    	$frac = "";
+    	$frac = "pesos";
     return _number_to_words(intval($amount)) . $frac;
 }    
 
@@ -1431,4 +1443,23 @@ function payment_link($name, $options)
 	return strtr($link, $patterns);
 }
 
+/**
+* Function to display a date in spanish as a logn date
+* A LOS # DIAS DEL MES DE ### DEL AÑO ####
+*/
+function getDateString($date){
+	$dateObject = new DateTime($date);
+	$months = array("", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+	$dateString = sprintf(" a los %s dias del mes de %s del año %s", date_format($dateObject, "d"), $months[date_format($dateObject, "n")], date_format($dateObject, "Y"));
+	
+	return $dateString;
+}
+
+function getSimpleDateString($date){
+	$dateObject = new DateTime($date);
+	$months = array("", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+	$dateString = sprintf(" dia %s de %s del %s", date_format($dateObject, "d"), $months[date_format($dateObject, "n")], date_format($dateObject, "Y"));
+	
+	return $dateString;
+}
 ?>

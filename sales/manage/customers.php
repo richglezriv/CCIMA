@@ -264,17 +264,19 @@ function customer_settings($selected_id)
 
 	table_section_title(_("Sales"));
     //CCIMA usuario asignado al cliente
+    /**
     if ($_POST['cotizando'] != ""){
         echo("<tr><td class='label'>Vendedor asignado:</td><td><span id='cot' name='cot'>".$_POST['cotizando']."</span>&nbsp;&nbsp;".
             "<input type='hidden' name='cotizando' id='cotizando' value='".$_POST['cotizando'].
             "' />&nbsp;&nbsp;<input type='button' name='btnRemove' onclick='removeSalesMan();' value='Desasignar' id='btnRemove' class='inputsubmit'/></td></tr>");
     }
+    **/
 	percent_row(_("Discount Percent:"), 'discount', $_POST['discount']);
 	percent_row(_("Prompt Payment Discount Percent:"), 'pymt_discount', $_POST['pymt_discount']);
 	amount_row(_("Credit Limit:"), 'credit_limit', $_POST['credit_limit']);
 
 	payment_terms_list_row(_("Payment Terms:"), 'payment_terms', $_POST['payment_terms']);
-	credit_status_list_row(_("Credit Status:"), 'credit_status', $_POST['credit_status']); 
+	credit_status_list_row(user_company() == 0 ? _("Credit Status:") : "Tipo de Cliente:", 'credit_status', $_POST['credit_status']); 
 	$dim = get_company_pref('use_dimension');
 	if ($dim >= 1)
 		dimensions_list_row(_("Dimension")." 1:", 'dimension_id', $_POST['dimension_id'], true, " ", false, 1);

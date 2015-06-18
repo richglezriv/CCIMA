@@ -28,7 +28,7 @@ function update_requisition_detail($selected_id, $item_code, $purpose, $order_qu
 			.", quantity=".db_escape($order_quantity)
 			.", price=".db_escape($estimate_price)
 			."WHERE requisition_detail_id=".db_escape($selected_id);
-
+            
 	db_query($sql, "could not update requisition detail");
 }
 

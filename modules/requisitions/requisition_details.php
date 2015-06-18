@@ -21,6 +21,7 @@ include_once($path_to_root . "/includes/ui.inc");
 include_once($path_to_root . "/includes/ui/ui_lists.inc");
 
 simple_page_mode(true);
+
 //-----------------------------------------------------------------------------------
 if(isset($_GET['requisitionid'])) {
 	$req = get_requisition($_GET['requisitionid']);
@@ -63,14 +64,17 @@ if ($Mode=='ADD_ITEM' || $Mode=='UPDATE_ITEM')
 
 	if ($input_error != 1) 
 	{
+        $precio = preg_replace("/,/","",$_POST['estimate_price']);
+        $precio = floatval($precio);
+
     	if ($selected_id != -1) 
     	{
-    		update_requisition_detail($selected_id, $_POST['item_code'], $_POST['purpose'], $_POST['order_quantity'], 0.0);
+    		update_requisition_detail($selected_id, $_POST['item_code'], $_POST['purpose'], $_POST['order_quantity'], $precio);
 			display_notification(_('Selected requisition details has been updated.'));
     	} 
     	else 
     	{
-    		add_requisition_detail($_POST['requisitionid'], $_POST['item_code'], $_POST['purpose'], $_POST['order_quantity'], 0.0);
+    		add_requisition_detail($_POST['requisitionid'], $_POST['item_code'], $_POST['purpose'], $_POST['order_quantity'], $precio);
 			display_notification(_('New requisition details has been added'));
     	}
     	
@@ -102,7 +106,7 @@ $result = get_one_requisition(get_post('requisitionid'));
 
 start_table(TABLESTYLE, "width=50%");
 
-$th = array(_("Point of use"), _("Narrative"), _("Application Date"), _("Completation"));
+$th = array(_("Point of Use"), _("Narrative"), _("Application Date"), "");
 inactive_control_column($th);
 table_header($th);
 $k = 0;
@@ -129,8 +133,8 @@ start_form();
 start_table(TABLESTYLE, "width=50%");
 
 //CCIMA Eliminar precio estimado
-//$th = array(_("Item Code"), _("Item Name"), _("Purpose"), _("Qrder Quantity"), _("Estimate Price"), "", "");
-$th = array(_("Item Code"), _("Item Name"), _("Purpose"), _("Qrder Quantity"), "", "");
+$th = array(_("Item Code"), _("Item Name"), _("Purpose"), _("Order Quantity"), "Precio aprox.", "", "");
+//$th = array(_("Item Code"), _("Item Name"), _("Purpose"), _("Qrder Quantity"), "", "");
 
 table_header($th);
 $k = 0;
@@ -142,7 +146,7 @@ while ($myrow = db_fetch($result))
 	label_cell($myrow["description"]);
 	label_cell($myrow["purpose"]);
 	label_cell($myrow["order_quantity"]);
-	//amount_cell($myrow["estimate_price"]);
+	amount_cell($myrow["price"]);
 
  	edit_button_cell("Edit".$myrow['requisition_detail_id'], _("Edit"));
  	delete_button_cell("Delete".$myrow['requisition_detail_id'], _("Delete"));
@@ -171,16 +175,20 @@ if ($selected_id != -1)
 	hidden('selected_id', $selected_id);
 } 
 
-sales_local_items_list_row(_("Item"), 'item_code', null, false, false);
+sales_local_items_list_row(_("Item"), 'item_code', null, false, true);
 text_row(_("Purpose"), 'purpose', null, 50, 50);
-
+    $units = $_POST['unidades'];
 	$res = get_item_edit_info(get_post('item_code'));
 	$dec =  $res["decimals"] == '' ? 0 : $res["decimals"];
 	$units = $res["units"] == '' ? _('kits') : $res["units"];
+    
+    //para que haga los cambios correctos de la unidad de medida
+    global $Ajax;
+    $Ajax->activate("_page_body");
+    //fin
+    qty_row(_("Requisition Quantity"), 'order_quantity', number_format2(1, $dec), '', $units, $dec);
 
-qty_row(_("Requisition Quantity"), 'order_quantity', number_format2(1, $dec), '', $units, $dec);
-//amount_row(_("Estimate Price :"), 'estimate_price', null, null, null, 2);
-hidden('estimate_price');
+amount_row("Precio estimado:", 'estimate_price', null, null, null, 2);
 
 hidden('requisitionid');
 

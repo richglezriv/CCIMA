@@ -1,7 +1,16 @@
 <?php
+
+function apply_uncoded($param) {
+    
+    $arreglo = explode('(',$param);
+	return rtrim($arreglo[1],')');
+	//return rtrim(explode('(',$param)[1],')');
+}
+
 function get_sql_for_calculadora_search($id_calculadora=0)
 {
 	$sql = "SELECT
+		id_campo,
 		bloque,
 		posicion,
 		tipo,
@@ -15,6 +24,20 @@ function get_sql_for_calculadora_search($id_calculadora=0)
 		ORDER BY bloque, posicion"; 
 
 	return $sql;
+}
+
+function get_sql_from_valor_field($id_campo) {
+	
+	$sql = "SELECT
+		valor FROM ".TB_PREF."detalles_calculadora "; 
+
+	if (($id_campo != null) && $id_campo != "")
+	{
+		$sql .= "WHERE id_campo = ".db_escape($id_campo);
+	}
+
+	$result = db_query($sql, "could not get sql");
+	return db_fetch($result);
 }
 
 function get_component_from_calculadora($id_campo)
@@ -76,5 +99,6 @@ function add_calculadora($id_calculadora, $nombre_calculadora, $controles)
 	
 	return $result1;
 }
+
 
 ?>

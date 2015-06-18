@@ -260,6 +260,16 @@ function submenu_print($title, $type, $number, $id=null, $email=0, $extra=0)
 {
 	display_note(print_document_link($number, $title, true, $type, false, 'printlink', $id, $email, $extra), 0, 1);
 }
+
+//-- CCIMA impresion
+function submenu_print_CCIMA($text, $number, $report){
+    global $path_to_root;
+    $uri = $path_to_root . '/sales/gcap/'.$report.'.php';
+    
+    $ar = array('?PARAM_0'=>$number);
+    
+    display_note(print_link_CCIMA($text, '100', $ar, $uri),0,1);
+}
 //-----------------------------------------------------------------------------------
 
 function hyperlink_params($target, $label, $params, $center=true)
@@ -331,7 +341,12 @@ function table_header($labels, $params='')
 {
 	start_row();
 	foreach ($labels as $label)
-		labelheader_cell($label, $params);
+        if ($label == "Referencia"){
+            labelheader_cell($label, 'style="width:30%;"');
+        }
+        else{
+		    labelheader_cell($label, $params);
+        }
 	end_row();
 }
 //-----------------------------------------------------------------------------------

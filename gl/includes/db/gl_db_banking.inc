@@ -392,7 +392,7 @@ function write_bank_transaction($trans_type, $trans_no, $from_account, $items, $
 			// we don't allow payments to go to a bank account. use transfer for this !
 			display_db_error("invalid payment entered. Cannot pay to another bank account", "");
 		}
-
+        $gl_item->incluir_forma_pago();
     	// do the destination account postings
     	$total += add_gl_trans($trans_type, $trans_no, $date_, $gl_item->code_id,
     		$gl_item->dimension_id, $gl_item->dimension2_id, $gl_item->reference,

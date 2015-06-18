@@ -38,7 +38,8 @@ if (isset($_GET['ModifyDelivery'])) {
 	$help_context = "Modifying Delivery Note";
 	processing_start();
 } elseif (isset($_GET['OrderNumber'])) {
-	$_SESSION['page_title'] = _($help_context = "Deliver Items for a Sales Order");
+	$_SESSION['page_title'] = user_company() == 1 ? _($help_context = "Remisionar Articulos Para Orden de Servicio") : 
+        _($help_context = "Deliver Items for a Sales Order");
 	processing_start();
 }
 

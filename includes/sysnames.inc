@@ -187,9 +187,9 @@ $pterm_types = array(
 // This month array is for use with the last 3 dateformats. 
 $tmonths = array("", _("Jan"),_("Feb"),_("Mar"),_("Apr"),_("May"),_("Jun"),_("Jul"),_("Aug"),_("Sep"),_("Oct"),_("Nov"),_("Dec"));
 
-/**Nombre del servidor**/
-function get_serveruri(){
-    $SERVER_URI = "http://localhost:3391/";
-    return $SERVER_URI;
-}
+
+//---------------------
+$SERVER_URI = "http://192.168.1.10/erp_ccima/";
+//$SERVER_URI = "http://localhost:3391/";
+
 ?>

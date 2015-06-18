@@ -95,12 +95,12 @@ class items_cart
 
 	// ----------- GL item functions
 
-	function add_gl_item($code_id, $dimension_id, $dimension2_id, $amount, $reference, $description=null)
+	function add_gl_item($code_id, $dimension_id, $dimension2_id, $amount, $reference, $description=null, $forma_pago=0)
 	{
 		if (isset($code_id) && $code_id != "" && isset($amount) && isset($dimension_id)  &&
 			isset($dimension2_id))
 		{
-			$this->gl_items[] = new gl_item($code_id, $dimension_id, $dimension2_id, $amount, $reference, $description);
+			$this->gl_items[] = new gl_item($code_id, $dimension_id, $dimension2_id, $amount, $reference, $description, $forma_pago);
 			return true;
 		}
 		else
@@ -112,13 +112,14 @@ class items_cart
 		return false;
 	}
 
-	function update_gl_item($index, $code_id, $dimension_id, $dimension2_id, $amount, $reference, $description=null)
+	function update_gl_item($index, $code_id, $dimension_id, $dimension2_id, $amount, $reference, $description=null, $forma_pago=0)
 	{
 	    $this->gl_items[$index]->code_id = $code_id;
 		$this->gl_items[$index]->dimension_id = $dimension_id;
 		$this->gl_items[$index]->dimension2_id = $dimension2_id;
 		$this->gl_items[$index]->amount = $amount;
 		$this->gl_items[$index]->reference = $reference;
+        $this->gl_items[$index]->forma_pago = $forma_pago;
 		if ($description == null)
 			$this->gl_items[$index]->description = get_gl_account_name($code_id);
 		else
@@ -256,9 +257,10 @@ class gl_item
 	var $amount;
 	var $reference;
 	var $description;
+    var $forma_pago;
 
 	function gl_item($code_id, $dimension_id, $dimension2_id, $amount, $reference,
-		$description=null)
+		$description=null, $forma_pago=0)
 	{
 		//echo "adding $index, $code_id, $dimension_id, $amount, $reference<br>";
 
@@ -272,7 +274,26 @@ class gl_item
 		$this->dimension2_id = $dimension2_id;
 		$this->amount = $amount;
 		$this->reference = $reference;
+        $this->forma_pago = $forma_pago;
 	}
+
+    //------------------------------
+    function incluir_forma_pago(){
+        
+            switch($this->forma_pago){
+
+                case "0":
+                    $this->reference .= " [Transferencia] ";break;
+                case "1":
+                    $this->reference .= " [Cheque] ";break;
+                case "2":
+                    $this->reference .= " [Deposito] ";break;
+                case "3":
+                    $this->reference .= " [Efectivo] ";break;
+
+            }
+        
+    }
 }
 
 //---------------------------------------------------------------------------------------

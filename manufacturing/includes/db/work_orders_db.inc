@@ -217,6 +217,11 @@ function add_work_order($wo_ref, $loc_code, $units_reqd, $stock_id,
 	$type, $date_, $required_by, $memo_, $costs, $cr_acc, $labour, $cr_lab_acc)
 {
 	global $Refs;
+    
+    //CCIMA solo aplica para RENTAS
+    if (user_company() == 1){
+        $wo_ref = genera_folio_om();
+    }
 
 	if (!($type == WO_ADVANCED))
 		return add_work_order_quick($wo_ref, $loc_code, $units_reqd, $stock_id, $type, $date_, $memo_, $costs, $cr_acc, $labour, $cr_lab_acc);
@@ -250,6 +255,30 @@ function add_work_order($wo_ref, $loc_code, $units_reqd, $stock_id,
 	commit_transaction();
 
 	return $woid;
+}
+
+function genera_folio_om(){
+
+    $folio = "OM-000001";
+    $sql = "select wo_ref from ".TB_PREF."workorders order by wo_ref DESC";
+
+    $result = db_query($sql, "no se pudo obtener el folio");
+
+    if (db_num_rows($result) >= 1)
+	{
+		$row = db_fetch_row($result);
+        $nuevoFolio = substr($row[0], 2,4);
+        $nuevoFolio = $nuevoFolio + 1;
+
+        while(strlen($nuevoFolio) < 6){
+            $nuevoFolio = "0" . $nuevoFolio;
+        }
+
+        $folio = "C-".$nuevoFolio;
+		
+	}
+
+    return $folio;
 }
 
 //--------------------------------------------------------------------------------------
@@ -571,4 +600,31 @@ function get_gl_wo_cost($woid, $cost_type)
 	return $cost;	
 }
 
+function getConversionesMaterial($stock_id, $quantity=''){
+
+        require_once('../../inventory/includes/inventory_db.inc');
+        
+        //ML
+        convierte('fac_ML', $quantity, $stock_id);
+        //M2
+        convierte('fac_M2', $quantity, $stock_id);
+        //KG
+        convierte('fac_KG', $quantity, $stock_id);
+        //PZA
+        convierte('fac_PZA', $quantity, $stock_id);
+}
+
+function convierte($nombreFactor, $quantity='', $stock_id){
+    $factor = getFactor($nombreFactor, $stock_id);
+    $valor = 'ND';
+
+    if ($factor != '' and $quantity != ''){
+        $formula = str_replace("X", $quantity, $factor);
+        error_log($formula);
+        $compute = create_function('', "return (".$formula.");");
+        $valor = $compute();
+    }
+
+    label_cell($valor);
+}
 ?>

@@ -150,13 +150,13 @@ function display_gl_items($title, &$order)
 
 	if ($dim == 2)
 		$th = array(_("Account Code"), _("Account Description"), _("Dimension")." 1",
-			_("Dimension")." 2", _("Amount"), _("Memo"), "");
+			_("Dimension")." 2", _("Amount"), _("Memo"), "Forma de Pago","");
 	else if ($dim == 1)
 		$th = array(_("Account Code"), _("Account Description"), _("Dimension"),
-			_("Amount"), _("Memo"), "");
+			_("Amount"), _("Memo"), "Forma de Pago", "");
 	else
 		$th = array(_("Account Code"), _("Account Description"),
-			_("Amount"), _("Memo"), "");
+			_("Amount"), _("Memo"), "Forma de Pago", "");
 
 	if (count($order->gl_items)) $th[] = '';
 
@@ -182,6 +182,8 @@ function display_gl_items($title, &$order)
 			else		
 				amount_cell($item->amount);
 			label_cell($item->reference);
+            //label_cell($item->forma_pago);
+            translate_forma_pago($item->forma_pago);
 
 			edit_button_cell("Edit$line", _("Edit"),
 				_('Edit document line'));
@@ -205,6 +207,22 @@ function display_gl_items($title, &$order)
 	div_end();
 }
 
+function translate_forma_pago($forma_pago){
+
+    switch($forma_pago){
+
+        case "0":
+            label_cell("Transferencia");break;
+        case "1":
+            label_cell("Cheque");break;
+        case "2":
+            label_cell("Deposito");break;
+        case "3":
+            label_cell("Efectivo");break;
+
+    }
+}
+
 //---------------------------------------------------------------------------------
 
 function gl_edit_item_controls(&$order, $dim, $Index=null)
@@ -223,7 +241,7 @@ function gl_edit_item_controls(&$order, $dim, $Index=null)
 		$_POST['amount'] = price_format(abs($item->amount));
 		$_POST['description'] = $item->description;
 		$_POST['LineMemo'] = $item->reference;
-
+        $_POST['FormaPago'] = $item->forma_pago;
 		hidden('Index', $id);
 		echo gl_all_accounts_list('code_id', null, true, true);
 		if ($dim >= 1)
@@ -271,6 +289,7 @@ function gl_edit_item_controls(&$order, $dim, $Index=null)
 
 	amount_cells(null, 'amount');
 	text_cells_ex(null, 'LineMemo', 35, 255);
+    forma_pago();
 
 	if ($id != -1)
 	{
@@ -289,6 +308,17 @@ function gl_edit_item_controls(&$order, $dim, $Index=null)
 	end_row();
 }
 
+function forma_pago(){
+    
+    echo ('<td>');
+    echo ('<select name="FormaPago" id="FormaPago">');
+    echo ('<option value="0">Transferencia</option>');
+    echo ('<option value="1">Cheque</option>');
+    echo ('<option value="2">Deposito</option>');
+    echo ('<option value="3">Efectivo</option>');
+    echo ('</select>');
+    echo ('</td>');
+}
 
 //---------------------------------------------------------------------------------
 

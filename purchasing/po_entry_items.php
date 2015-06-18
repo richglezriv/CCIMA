@@ -74,7 +74,7 @@ if (isset($_GET['AddedID']))
 	$trans_type = ST_PURCHORDER;	
 
 	if (!isset($_GET['Updated']))
-		display_notification_centered(_("Purchase Order has been entered"));
+		display_notification_centered(_("Purchase Order has been entered") . " #$order_no");
 	else
 		display_notification_centered(_("Purchase Order has been updated") . " #$order_no");
 	display_note(get_trans_view_str($trans_type, $order_no, _("&View this order")), 0, 1);
@@ -155,6 +155,7 @@ function unset_form_variables() {
     unset($_POST['qty']);
     unset($_POST['price']);
     unset($_POST['req_del_date']);
+    unset($_POST['descuento']);
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -259,9 +260,10 @@ function handle_update_item()
 			set_focus('qty');
 			return;
 		}
-	
-		$_SESSION['PO']->update_order_item($_POST['line_no'], input_num('qty'), input_num('price'),
-  			@$_POST['req_del_date'], $_POST['item_description'] );
+	    
+        $price = input_num('price') - (input_num('price') * (input_num('descuento')/100));
+		$_SESSION['PO']->update_order_item($_POST['line_no'], input_num('qty'), $price,
+  			@$_POST['req_del_date'], $_POST['item_description'], $_POST['descuento'] );
 		unset_form_variables();
 	}	
     line_start_focus();
@@ -300,10 +302,11 @@ function handle_add_new_item()
 			if ($allow_update)
 			{
 				$myrow = db_fetch($result);
+                $price = input_num('price') - (input_num('price') * (input_num('descuento')/100));
 				$_SESSION['PO']->add_to_order (count($_SESSION['PO']->line_items), $_POST['stock_id'], input_num('qty'), 
 					get_post('stock_id_text'), //$myrow["description"], 
-					input_num('price'), '', // $myrow["units"], (retrived in cart)
-					$_SESSION['PO']->trans_type == ST_PURCHORDER ? $_POST['req_del_date'] : '', 0, 0);
+					$price, '', // $myrow["units"], (retrived in cart)
+					$_SESSION['PO']->trans_type == ST_PURCHORDER ? $_POST['req_del_date'] : '', 0, 0, $_POST['descuento']);
 
 				unset_form_variables();
 				$_POST['stock_id']	= "";

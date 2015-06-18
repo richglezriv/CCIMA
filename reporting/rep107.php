@@ -88,8 +88,9 @@ function print_invoices()
 				$rep = new FrontReport("", "", user_pagesize(), 9, $orientation);
 				$rep->title = _('INVOICE');
 				$rep->filename = "Invoice" . $myrow['reference'] . ".pdf";
-			}	
-			$rep->SetHeaderType('Header2');
+			}
+            	
+			$rep->SetHeaderType('Header3');
 			$rep->currency = $cur;
 			$rep->Font();
 			$rep->Info($params, $cols, null, $aligns);

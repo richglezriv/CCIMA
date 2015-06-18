@@ -142,10 +142,10 @@
 		if ($this->pageNumber > 1)
 			$this->Text($this->endLine - 35, _("Page") . ' ' . $this->pageNumber);
 		$this->row = $iline1 - $this->lineHeight;
-		$this->fontSize -= 4;
+		//$this->fontSize -= 2;
 		$this->Text($ccol, $Addr1['title'], $icol);
 		$this->Text($mcol, $Addr2['title']);
-		$this->fontSize += 4;
+		//$this->fontSize += 2;
 
 // address1
 		$temp = $this->row = $this->row - $this->lineHeight - 5;

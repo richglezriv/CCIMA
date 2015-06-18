@@ -837,6 +837,11 @@ function amount_cells($label, $name, $init=null, $params=null, $post_label=null,
 	amount_cells_ex($label, $name, 15, 15, $init, $params, $post_label, $dec, $disabled);
 }
 
+function amount_cells_desc($label, $name, $init=null, $params=null, $post_label=null, $dec=null, $disabled='')
+{
+	amount_cells_ex($label, $name, 5, 5, $init, $params, $post_label, $dec, $disabled);
+}
+
 //JAM  Allow entered unit prices to be fractional
 function unit_amount_cells($label, $name, $init=null, $params=null, $post_label=null, $dec=null)
 {
@@ -867,7 +872,7 @@ function qty_cells($label, $name, $init=null, $params=null, $post_label=null, $d
 	if (!isset($dec))
 	  	$dec = user_qty_dec();
 
-	amount_cells_ex($label, $name, 15, 15, $init, $params, $post_label, $dec);
+	amount_cells_ex($label, $name, 10, 10, $init, $params, $post_label, $dec);
 }
 
 function qty_row($label, $name, $init=null, $params=null, $post_label=null, $dec=null)

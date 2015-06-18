@@ -29,6 +29,10 @@ include_once($path_to_root . "/sales/includes/sales_db.inc");
 include_once($path_to_root . "/sales/includes/db/sales_types_db.inc");
 include_once($path_to_root . "/reporting/includes/reporting.inc");
 
+//RENTAS
+include_once($path_to_root . "/includes/ui.inc");
+include_once($path_to_root . "/includes/ui/contacts_view.inc");
+
 set_page_security( @$_SESSION['Items']->trans_type,
 	array(	ST_SALESORDER=>'SA_SALESORDER',
 			ST_SALESQUOTE => 'SA_SALESQUOTE',
@@ -52,6 +56,7 @@ set_page_security( @$_SESSION['Items']->trans_type,
 
 $js = '';
 
+
 if ($use_popup_windows) {
 	$js .= get_js_open_window(900, 500);
 }
@@ -60,9 +65,7 @@ if ($use_date_picker) {
 	$js .= get_js_date_picker();
 }
 
-function display_form_buttons(){
-    
-}
+
 
 if (isset($_GET['NewDelivery']) && is_numeric($_GET['NewDelivery'])) {
 
@@ -70,23 +73,27 @@ if (isset($_GET['NewDelivery']) && is_numeric($_GET['NewDelivery'])) {
     
     _($help_context = "Direct Sales Delivery");
 	create_cart(ST_CUSTDELIVERY, $_GET['NewDelivery']);
+    $_SESSION['muestra'] = FALSE;
 
 } elseif (isset($_GET['NewInvoice']) && is_numeric($_GET['NewInvoice'])) {
 
 	$_SESSION['page_title'] = _($help_context = "Direct Sales Invoice");
 	create_cart(ST_SALESINVOICE, $_GET['NewInvoice']);
+    $_SESSION['muestra'] = FALSE;
 
 } elseif (isset($_GET['ModifyOrderNumber']) && is_numeric($_GET['ModifyOrderNumber'])) {
 
 	$help_context = 'Modifying Sales Order';
 	$_SESSION['page_title'] = sprintf( _("Modifying Sales Order # %d"), $_GET['ModifyOrderNumber']);
 	create_cart(ST_SALESORDER, $_GET['ModifyOrderNumber']);
+    $_SESSION['muestra'] = FALSE;
 
 } elseif (isset($_GET['ModifyQuotationNumber']) && is_numeric($_GET['ModifyQuotationNumber'])) {
 
 	$help_context = 'Modifying Sales Quotation';
 	$_SESSION['page_title'] = sprintf( _("Modifying Sales Quotation # %d"), $_GET['ModifyQuotationNumber']);
 	create_cart(ST_SALESQUOTE, $_GET['ModifyQuotationNumber']);
+    $_SESSION['muestra'] = TRUE;
 
 } elseif (isset($_GET['NewOrder'])) {
 
@@ -94,13 +101,28 @@ if (isset($_GET['NewDelivery']) && is_numeric($_GET['NewDelivery'])) {
     
     _($help_context = "New Sales Order Entry");
 	create_cart(ST_SALESORDER, 0);
+    $_SESSION['muestra'] = FALSE;
+	$_SESSION["COTIZADOR_OBRA"] = FALSE;
+    //if comes from CCIMA custom qo's then creates the cart according to the info
+    if ($_REQUEST["qo"]!= ""){
+        GetFromCustomQO($_REQUEST["qo"]);
+    }
 } elseif (isset($_GET['NewQuotation'])) {
 
 	$_SESSION['page_title'] = _($help_context = "New Sales Quotation Entry");
 	create_cart(ST_SALESQUOTE, 0);
+    $_SESSION['muestra'] = TRUE;
+
+    //si viene de la calculadora
+    
+    if ($_REQUEST['Ref'] != ''){
+        GetFromCalc($_REQUEST['Ref']);
+    }
+
 } elseif (isset($_GET['NewQuoteToSalesOrder'])) {
 	$_SESSION['page_title'] = _($help_context = "Sales Order Entry");
 	create_cart(ST_SALESQUOTE, $_GET['NewQuoteToSalesOrder']);
+    $_SESSION['muestra'] = FALSE;
 }
 
 page($_SESSION['page_title'], false, false, "", $js);
@@ -118,9 +140,17 @@ if (isset($_GET['AddedID'])) {
 	display_notification_centered(sprintf( _("Order # %d has been entered."),$order_no));
 
 	submenu_view(_("&View This Order"), ST_SALESORDER, $order_no);
-
-	submenu_print(_("&Print This Order"), ST_SALESORDER, $order_no, 'prtopt');
-	submenu_print(_("&Email This Order"), ST_SALESORDER, $order_no, null, 1);
+    if (user_company() == 1){
+	    submenu_print_CCIMA("Imprimir Orden de Servicio", $order_no, 'orden_servicio');
+        submenu_print_CCIMA("Imprimir Contrato", $order_no, 'contrato');
+    }
+    else{
+        submenu_print_CCIMA("Imprimir Contrato", $order_no, 'contratoConst');
+        //submenu_print(_("&Print This Order"), ST_SALESORDER, $order_no, 'prtopt');    
+        
+    }
+	
+	//submenu_print(_("&Email This Order"), ST_SALESORDER, $order_no, null, 1);
 	set_focus('prtopt');
 	
 	submenu_option(_("Make &Delivery Against This Order"),
@@ -139,8 +169,14 @@ if (isset($_GET['AddedID'])) {
 
 	submenu_view(_("&View This Order"), ST_SALESORDER, $order_no);
 
-	submenu_print(_("&Print This Order"), ST_SALESORDER, $order_no, 'prtopt');
-	submenu_print(_("&Email This Order"), ST_SALESORDER, $order_no, null, 1);
+	if (user_company() == 1){
+	    submenu_print_CCIMA("Imprimir Orden de Servicio", $order_no, 'orden_servicio');
+        submenu_print_CCIMA("Imprimir Contrato", $order_no, 'contrato');
+    }
+    else{
+        submenu_print(_("&Print This Order"), ST_SALESORDER, $order_no, 'prtopt');    
+    }
+	//submenu_print(_("&Email This Order"), ST_SALESORDER, $order_no, null, 1);
 	set_focus('prtopt');
 
 	submenu_option(_("Confirm Order Quantities and Make &Delivery"),
@@ -156,9 +192,16 @@ if (isset($_GET['AddedID'])) {
 	display_notification_centered(sprintf( _("Quotation # %d has been entered."),$order_no));
 
 	submenu_view(_("&View This Quotation"), ST_SALESQUOTE, $order_no);
-
-	submenu_print(_("&Print This Quotation"), ST_SALESQUOTE, $order_no, 'prtopt');
-	submenu_print(_("&Email This Quotation"), ST_SALESQUOTE, $order_no, null, 1);
+    //para rentas se imprime hoja personalizada y/o contrato
+    if (user_company() == 1){
+	    submenu_print_CCIMA("Imprimir Cotizacion", $order_no, "cotizacion");
+    }
+    else {
+        
+        GetQuotLinks($order_no);        
+        
+    }
+	//submenu_print(_("&Email This Quotation"), ST_SALESQUOTE, $order_no, null, 1);
 	set_focus('prtopt');
 	
 	submenu_option(_("Make &Sales Order Against This Quotation"),
@@ -174,9 +217,14 @@ if (isset($_GET['AddedID'])) {
 	display_notification_centered(sprintf( _("Quotation # %d has been updated."),$order_no));
 
 	submenu_view(_("&View This Quotation"), ST_SALESQUOTE, $order_no);
-
-	submenu_print(_("&Print This Quotation"), ST_SALESQUOTE, $order_no, 'prtopt');
-	submenu_print(_("&Email This Quotation"), ST_SALESQUOTE, $order_no, null, 1);
+    //para rentas se imprime hoja personalizada y/o contrato
+    if (user_company() == 1){
+	    submenu_print_CCIMA("Imprimir Cotizacion", $order_no, "cotizacion");
+    }
+    else {
+        GetQuotLinks($order_no);
+    }
+	//submenu_print(_("&Email This Quotation"), ST_SALESQUOTE, $order_no, null, 1);
 	set_focus('prtopt');
 
 	submenu_option(_("Make &Sales Order Against This Quotation"),
@@ -194,9 +242,12 @@ if (isset($_GET['AddedID'])) {
 	submenu_view(_("&View This Delivery"), ST_CUSTDELIVERY, $delivery);
 
 	submenu_print(_("&Print Delivery Note"), ST_CUSTDELIVERY, $delivery, 'prtopt');
-	submenu_print(_("&Email Delivery Note"), ST_CUSTDELIVERY, $delivery, null, 1);
-	submenu_print(_("P&rint as Packing Slip"), ST_CUSTDELIVERY, $delivery, 'prtopt', null, 1);
-	submenu_print(_("E&mail as Packing Slip"), ST_CUSTDELIVERY, $delivery, null, 1, 1);
+	/**
+    submenu_print(_("&Email Delivery Note"), ST_CUSTDELIVERY, $delivery, null, 1);
+	
+    submenu_print(_("P&rint as Packing Slip"), ST_CUSTDELIVERY, $delivery, 'prtopt', null, 1);
+	submenu_print(_("E&mail as Packing Slip"), ST_CUSTDELIVERY, $delivery, null, 1, 1);**/
+
 	set_focus('prtopt');
 
 	display_note(get_gl_view_str(ST_CUSTDELIVERY, $delivery, _("View the GL Journal Entries for this Dispatch")),0, 1);
@@ -221,7 +272,7 @@ if (isset($_GET['AddedID'])) {
 	submenu_view(_("&View This Invoice"), ST_SALESINVOICE, $invoice);
 
 	submenu_print(_("&Print Sales Invoice"), ST_SALESINVOICE, $invoice."-".ST_SALESINVOICE, 'prtopt');
-	submenu_print(_("&Email Sales Invoice"), ST_SALESINVOICE, $invoice."-".ST_SALESINVOICE, null, 1);
+	//submenu_print(_("&Email Sales Invoice"), ST_SALESINVOICE, $invoice."-".ST_SALESINVOICE, null, 1);
 	set_focus('prtopt');
 	
 	$sql = "SELECT trans_type_from, trans_no_from FROM ".TB_PREF."cust_allocations
@@ -248,6 +299,82 @@ if (isset($_GET['AddedID'])) {
 	display_footer_exit();
 } else
 	check_edit_conflicts();
+
+
+function GetQuotLinks($order_no){
+    $sql = "select reference,calculadora from 0_sales_orders where order_no = ".db_Escape($order_no);
+        $result = db_query($sql);
+        $row = db_fetch($result);
+
+        $ligaCotiza = '<a href="repCotizador.php?fol='.$row[0].'" target="_blank">Imprimir esta cotizacion</a><br/><br/>';
+
+        display_note($ligaCotiza);
+
+        if ($row[1] != '0'){
+            submenu_print_CCIMA("Imprimir Contrato", $order_no, 'contratoConst');    
+        }
+}
+
+//-----------------------------------------------------------------------------
+function GetFromCustomQO($id){
+	$_SESSION["COTIZADOR_OBRA"] = TRUE;
+    $comments = "Cotizacion desde cotizador de obra ";
+    $cart = &$_SESSION['Items'];
+    $cart->calculadora = $id;
+
+    $sql = "SELECT * FROM 0_tb_cotizador WHERE id = ".db_escape($id);
+    $result = db_query($sql);
+    $row = db_fetch($result);
+    
+    $cart->customer_id = $row["customer_id"];
+    $cart->payment = 2;
+	$cart->reference = $row["folio"];
+    $cart->due_date = $row["fecha"];
+    $cart->Comments = $comments."[".$row["folio"]."]";
+
+    copy_from_cart();
+}
+
+//-----------------------------------------------------------------------------
+function GetFromCalc($reference){
+
+    $comments = "Cotizacion desde calculadora";
+    $cart = &$_SESSION['Items'];
+    $cart->calculadora = $reference;
+    
+    $sql = "SELECT * FROM 0_calculadora_items where id_calc_reg = ".db_escape($reference);
+    $result = db_query($sql);
+    while($row = db_fetch($result)){
+        if ($row['precio'] == '0'){
+
+            add_to_order($cart, $row['stock_id'], $row['cantidad'],
+		        $row['precio'], 0, 'desde calculadora', '');
+        }
+        else{
+            $item = $row['stock_id'];
+            //roladora
+            if (substr($row['stock_id'], 0, 3) == "MQR"){
+                $item = 'ROLADORA';
+                $comments .= ' ROLADORA: '.$row['stock_id'];
+            }
+
+            //grua
+            if (substr($row['stock_id'],0,1) == "T"){
+                $item = 'GRUA';
+                $comments .= ' GRUA: '.$row['stock_id'];
+            }
+
+            //registro directo de objeto con precio incluido
+            $cart->add_to_cart(count($cart->line_items), $item, $row['cantidad'], 
+                ($row['precio']/$row['cantidad']), 0, 0, 0, null, 0, 0,0, '');
+        }
+    }
+
+    $_POST['Comments'] = $comments;
+    $_SESSION['Items'] = $cart;
+    $_SESSION['idenCalc'] = $reference;
+
+}
 //-----------------------------------------------------------------------------
 
 function copy_to_cart()
@@ -260,12 +387,23 @@ function copy_to_cart()
 
 	$cart->document_date = $_POST['OrderDate'];
     $cart->inicioObra = $_POST['inicioObra'];
-    $cart->finObra = $_POST['finObra'];
+    if (user_company() == 0){
+        $cart->finObra = $_POST['finObra'];    
+    }
+    else{
+        $date = date_create('2000-01-01 ' . $_POST['fecha_vencimiento']);
+        $cart->finObra = date_format($date, 'Y-m-d H:i:s');
+        $cart->trabajo = $_POST['trabajo'];
+        $cart->vendedor = $_POST['vendedor'];
+    }
+    
 
         $cart->inicioObraReal = $_POST['inicioObraReal'];
     
     
         $cart->finObraReal = $_POST['finObraReal'];
+        
+        
     //display_error("valor de obra real " . $_SESSION['Items']->finObraReal);
 
 	$newpayment = false;
@@ -318,7 +456,15 @@ function copy_from_cart()
 	$_POST['OrderDate'] = $cart->document_date;
 	$_POST['delivery_date'] = $cart->due_date;
     $_POST['inicioObra'] = $cart->inicioObra;
-    $_POST['finObra'] = $cart->finObra;
+    if (user_company() == 0){
+        $_POST['finObra'] = $cart->finObra;    
+    }
+    else{
+        $_POST['fecha_vencimiento'] = $cart->finObra;    
+        $_POST['trabajo'] = $cart->trabajo;
+        $_POST['vendedor'] = $cart->vendedor;
+    }
+    
     $_POST['inicioObraReal'] = $cart->inicioObraReal;
     $_POST['finObraReal'] = $cart->finObraReal;
 
@@ -336,7 +482,7 @@ function copy_from_cart()
 	$_POST['branch_id'] = $cart->Branch;
 	$_POST['sales_type'] = $cart->sales_type;
 	// POS 
-	$_POST['payment'] = $cart->payment;
+	$_POST['payment'] = $cart->payment;error_log("payment type".$cart->payment);
 	if ($cart->trans_type!=ST_SALESORDER && $cart->trans_type!=ST_SALESQUOTE) { // 2008-11-12 Joe Hunt
 		$_POST['dimension_id'] = $cart->dimension_id;
 		$_POST['dimension2_id'] = $cart->dimension2_id;
@@ -447,8 +593,7 @@ function can_process() {
 		return false;
 	}
 
-
-	return true;
+    return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -463,7 +608,28 @@ if (isset($_POST['ProcessOrder']) && can_process()) {
 	$modified = ($_SESSION['Items']->trans_no != 0);
 	$so_type = $_SESSION['Items']->so_type;
     
+    $_SESSION['Items']->calculadora = $_SESSION['idenCalc'];
 	$ret = $_SESSION['Items']->write(1);
+
+    //Comentarios doc cotizacion
+    $rClass = $_SESSION['Items'];
+    $sql = " DELETE FROM ".TB_PREF."tb_cotizador WHERE folio = " . db_escape($rClass->reference);
+    db_query($sql);
+
+    if (user_company()==1){
+        $sql = " INSERT INTO ".TB_PREF."tb_cotizador (folio, customer_id, salesman_id, contact_id, header,notes,id_inventario) VALUES (".
+            db_escape($rClass->reference).",".db_escape($_POST["customer_id"]).",".db_escape($_POST["vendedor"]).
+            ",".db_escape($_POST["radSeleccion"]).",".db_escape($_POST["txtHeader"]).",NULL,".db_escape($rClass->line_items[0]->stock_id).")";
+        db_query($sql);    
+    }
+    else{
+        $sql = " INSERT INTO ".TB_PREF."tb_cotizador (folio, customer_id, salesman_id, contact_id, header,notes,id_inventario) VALUES (".
+            db_escape($rClass->reference).",".db_escape($_POST["customer_id"]).",1,"
+            .db_escape($_POST["radSeleccion"]).",".db_escape($_POST["txtHeader"]).",".db_escape($_POST["notas"]).",".db_escape($rClass->line_items[0]->stock_id).")";
+            
+        db_query($sql);    
+    }
+    
     //$ret = -1;
 	if ($ret == -1)
 	{
@@ -599,13 +765,45 @@ function handle_new_item()
 	if (!check_item_data()) {
 			return;
 	}
+    
+    $sql = "select st.sales_type from 1_prices pr inner join 1_sales_types st on pr.sales_type_id = st.id ".
+        " where pr.stock_id = " . db_escape(get_post('stock_id')) ." and st.id = ".db_escape($_POST['units']);
+    $result = db_query($sql);
+    $row = db_fetch($result);
+
 	add_to_order($_SESSION['Items'], get_post('stock_id'), input_num('qty'),
-		input_num('price'), input_num('Disc') / 100, get_post('stock_id_text'));
+		input_num('price'), input_num('Disc') / 100, get_post('stock_id_text'), $row['sales_type']);
 
 	unset($_POST['_stock_id_edit'], $_POST['stock_id']);
 	page_modified();
 	line_start_focus();
 }
+
+//-----------------------CCIMA RENTAS
+function beginSection(){
+    
+    echo '<div style="margin:10px 0px 20px 0px;">';
+}
+
+function endSection(){
+    
+    echo '</div>';
+}
+
+function GetVendedores(){
+    $result = get_salesmen(TRUE);
+    
+    echo'<td><select id="vendedor" name="vendedor">';
+    
+    while ($myrow = db_fetch($result))
+    {
+        $selected = $_POST['vendedor'] == $myrow["salesman_code"] ? "selected" : "";
+        echo '<option '.$selected.' value="'.$myrow["salesman_code"].'">'.$myrow["initials"].'</option>';
+    }
+
+    echo'</select></td>';
+}
+
 
 //--------------------------------------------------------------------------------
 
@@ -665,7 +863,9 @@ function create_cart($type, $trans_no)
 	{
 		$trans_no = $_GET['NewQuoteToSalesOrder'];
 		$doc = new Cart(ST_SALESQUOTE, $trans_no, true);
-		$doc->Comments = _("Sales Quotation") . " # " . $trans_no;
+		//$doc->Comments = _("Sales Quotation") . " # " . $trans_no;
+        $doc->reference = "V".substr($doc->reference, 1, strlen($doc->reference));
+        
 		$_SESSION['Items'] = $doc;
 	}	
 	elseif($type != ST_SALESORDER && $type != ST_SALESQUOTE && $trans_no != 0) { // this is template
@@ -745,7 +945,6 @@ if ($_SESSION['Items']->trans_type == ST_SALESINVOICE) {
 }
 
 
-
 start_form();
 
 hidden('cart_id');
@@ -761,9 +960,70 @@ if ($customer_error == "") {
 	display_delivery_details($_SESSION['Items']);
 	echo "</td></tr>";
 	end_table(1);
-  
+
+    if ($_SESSION['muestra']){
+        if (user_company() == 0){
+//encabezado y notas
+if ($_POST["txtHeader"] == ''){
+    $_POST["txtHeader"] = "POR MEDIO DE LA PRESENTE TENEMOS EL GUSTO DE PRESENTAR A USTED LA SIGUIENTE COTIZACION REFERENTE A: ";
+}
+
+if ($_POST['notas'] == ''){
+    $_POST['notas'] = "LOS PRECIOS NO INCLUYEN IVA.
+
+TIEMPO DE ENTREGA: NOS AJUSTAMOS A SUS NECESIDADES
+
+FORMA DE PAGO: 50% ANTICIPO, 30% CONTRA AVISO DE ENTREGA DE MATERIALES Y 20% CONTRA AVANCE.
+
+LOS CONCEPTOS NO INCLUIDOS EN ESTE PRESUPUESTO SERAN COTIZADOS POR SEPARADO.
+
+PRECIOS SUJETOS A CAMBIO SIN PREVIO AVISO.
+
+LA ENERGIA ELECTRICA SERÁ SUMINISTRADA POR EL CLIENTE.
+
+LOS PAGOS REALIZADOS ANTICIPOS, DURANTE EL PROCESO DE EJECUCION, FINIQUITOS,Y/O CUALQUIER OTRA TRANSACCION , DEBERAN SER DEPOSITADOS Y/O TRANSFERIDOS A LA CUENTA DE GRUPO CCIMA SA DE CV  O A LA DE RICARDO MEDINA EXCLUSIVAMENTE. EN CASO DE SER PAGO DE SER EN EFECTIVO DEBERA SER PAGADO DIRECTAMENTE EN LAS OFICINAS DE GRUPO CCIMA SA DE CV. NO SE TOMARA EN CUENTA PAGOS EN EFECTIVO Y/O CHEQUES QUE SEAN ENTREGADOS DIRECTAMENTE AL VENDEDOR SIN PREVIO AVISO POR PARTE DEL CLIENTE Y PREVIA AUTORIZACION DEL DEPARTAMENTO DE COBRANZA.
+
+SIN MAS POR EL MOMENTO Y EN ESPERA DE PODER BRINDARLE NUESTROS SERVICIOS QUEDA A SUS ORDENES PARA CUALQUIER ACLARACION O DUDA:";
+}
+        }
+        
+
+        $sql = "SELECT * FROM ".TB_PREF."tb_cotizador WHERE folio = ".db_escape($_SESSION['Items']->reference);
+        
+        $result = db_query($sql);
+        $row = db_fetch_row($result);
+        if ($row != false){
+            $_POST['txtHeader'] = $row[6];
+            $_POST['notas'] =$row[7];
+        }
+
+        start_table(TABLESTYLE, "width=80%", 10);
+        echo '<tr><td style="text-align:center"><h4>Datos de Cotizaci&oacute;n</h4></td></tr>';
+        echo '<tr><td style="text-align:left;"><h4>Encabezado</h4></td></tr>';
+        echo '<tr><td ><textarea style="width:90%;height:40px;" id="txtHeader" name="txtHeader" >'.$_POST['txtHeader'].'</textarea></tr>';
+        
+        //contactos de clientes
+        if (get_post('customer_id')){
+    
+            $contacts = new contacts('contacts', $_POST['customer_id'], 'customer');
+	        $contacts->listado_cotizador($_POST['radSeleccion']);
+    
+        }
+
+        if (user_company()==0){
+            //NOTAS solo para Construccion
+            start_table(TABLESTYLE, "width=80%", 10);
+            echo '<tr><td style="text-align:left;"><h4>Notas</h4></td></tr>';
+            echo '<tr><td ><textarea name="notas" id="notas" style="width:90%;height:100px;" >'.$_POST['notas'].'</textarea></tr>';    
+        }
+        
+    }
+    
+    
+    start_table(TABLESTYLE, "width=80%", 10);
     //CCIMA evalua si el usuario que cotiza es acorde al cliente
-    if (!cliente_asignado($_SESSION["wa_current_user"]->username, $_SESSION['Items']->customer_id)){
+    //SOLO APLICA PARA CONSTRUCCION
+    if (!cliente_asignado($_SESSION["wa_current_user"]->username, $_SESSION['Items']->Branch) && user_company() == 0 && $_SESSION["COTIZADOR_OBRA"] != TRUE){
         $habilitado = FALSE;
         display_warning('No puede realizar transacciones al cliente debido a que otro usuario lo est&aacute; atendiendo.');
         
@@ -789,9 +1049,14 @@ if ($customer_error == "") {
 	        }  
     }
 
+    end_table();
+
 } else {
 	display_error($customer_error);
 }
+
+
+
 
 
 end_form();

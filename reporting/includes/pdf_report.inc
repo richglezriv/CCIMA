@@ -74,7 +74,7 @@ class FrontReport extends Cpdf
 		global $page_security;
 
 		$this->rep_id = $_POST['REP_ID'];	// FIXME
-		
+	
 		if (!$_SESSION["wa_current_user"]->can_access_page($page_security))
 		{
 			display_error(_("The security settings on your account do not permit you to print this report"));
@@ -91,6 +91,7 @@ class FrontReport extends Cpdf
 		}
 		// Page orientation - P: portrait, L: landscape
 		$orientation = strtoupper($orientation);
+        
 		// Page size name
 		switch (strtoupper($size))
 		{
@@ -208,6 +209,7 @@ class FrontReport extends Cpdf
 			  }
 			  break;
 		}
+        
 		$this->size = array(0, 0, $this->pageWidth, $this->pageHeight);
 		$this->title = $title;
 		$this->filename = $filename.".pdf";
@@ -220,8 +222,10 @@ class FrontReport extends Cpdf
 		$this->currency = '';
 		$this->scaleLogoWidth = false; // if Logo, scale on width (else height).
 		$this->SetHeaderType('Header'); // default
-
+        
 		$this->Cpdf($size, $_SESSION['language']->code, $orientation);
+
+        
 	}
 	
 	/*
@@ -645,21 +649,26 @@ class FrontReport extends Cpdf
 		$this->lineHeight = $oldLineHeight;
 
 		// Print the column headers!
-		$this->Font('I');
+		
+        $this->Font('I');
 		if ($this->headers2 != null)
 		{
 			$count = count($this->headers2);
+            
 			for ($i = 0; $i < $count; $i++)
 				$this->TextCol2($i, $i + 1,	$this->headers2[$i], $corr=0, $r=0, $border=0, $fill=0, $link=NULL, $stretch=1);
+            
 			$this->NewLine();
 		}
 		$count = count($this->headers);
+        
 		for ($i = 0; $i < $count; $i++)
 			$this->TextCol($i, $i + 1, $this->headers[$i], $corr=0, $r=0, $border=0, $fill=0, $link=NULL, $stretch=1);
+        
 		$this->Font();
 
 		$this->NewLine(2);
-
+        
 		// restore user-specified draw color
 		$this->SetDrawColor($oldDrawColor[0], $oldDrawColor[1], $oldDrawColor[2]);		
 	}

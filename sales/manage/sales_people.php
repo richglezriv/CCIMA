@@ -22,7 +22,6 @@ simple_page_mode(true);
 
 if ($Mode=='ADD_ITEM' || $Mode=='UPDATE_ITEM') 
 {
-
 	//initialise no input errors assumed initially before we test
 	$input_error = 0;
 
@@ -47,15 +46,17 @@ if ($Mode=='ADD_ITEM' || $Mode=='UPDATE_ITEM')
 	{
     	if ($selected_id != -1) 
     	{
+            
     		/*selected_id could also exist if submit had not been clicked this code would not run in this case cos submit is false of course  see the delete code below*/
 			update_salesman($selected_id, $_POST['salesman_name'], $_POST['salesman_phone'], $_POST['salesman_fax'],
-				$_POST['salesman_email'], input_num('provision'), input_num('break_pt'), input_num('provision2'));
+				$_POST['salesman_email'], input_num('provision'), input_num('break_pt'), input_num('provision2'), $_POST['asignado'],$_POST['initials']);
     	}
     	else
     	{
+            
     		/*Selected group is null cos no item selected on first time round so must be adding a record must be submitting new entries in the new Sales-person form */
 			add_salesman($_POST['salesman_name'], $_POST['salesman_phone'], $_POST['salesman_fax'],
-				$_POST['salesman_email'], input_num('provision'), input_num('break_pt'), input_num('provision2'));
+				$_POST['salesman_email'], input_num('provision'), input_num('break_pt'), input_num('provision2'), $_POST['asignado'], $_POST['initials']);
     	}
 
     	if ($selected_id != -1) 
@@ -96,7 +97,7 @@ $result = get_salesmen(check_value('show_inactive'));
 
 start_form();
 start_table(TABLESTYLE, "width=60%");
-$th = array(_("Name"), _("Phone"), _("Fax"), _("Email"), _("Provision"), _("Break Pt."), _("Provision")." 2", "", "");
+$th = array(_("Name"), _("Phone"), _("Fax"), _("Email"), _("Provision"), _("Break Pt."), _("Provision")." 2", "Usuario","", "");
 inactive_control_column($th);
 table_header($th);
 
@@ -114,6 +115,7 @@ while ($myrow = db_fetch($result))
 	label_cell(percent_format($myrow["provision"])." %", "nowrap align=right");
    	amount_cell($myrow["break_pt"]);
 	label_cell(percent_format($myrow["provision2"])." %", "nowrap align=right");
+    label_cell($myrow["user_id"]);
 	inactive_control_cell($myrow["salesman_code"], $myrow["inactive"],
 		'salesman', 'salesman_code');
  	edit_button_cell("Edit".$myrow["salesman_code"], _("Edit"));
@@ -142,6 +144,8 @@ if ($selected_id != -1)
 		$_POST['provision'] = percent_format($myrow["provision"]);
 		$_POST['break_pt'] = price_format($myrow["break_pt"]);
 		$_POST['provision2'] = percent_format($myrow["provision2"]);
+        $_POST['asignado'] = $myrow["user_id"];
+        $_POST['initials'] = $myrow["initials"];
 	}
 	hidden('selected_id', $selected_id);
 } elseif ($Mode != 'ADD_ITEM') {
@@ -159,6 +163,8 @@ email_row_ex(_("E-mail:"), 'salesman_email', 40);
 percent_row(_("Provision").':', 'provision');
 amount_row(_("Break Pt.:"), 'break_pt');
 percent_row(_("Provision")." 2:", 'provision2');
+user_list_row('Usuario asignado','asignado',$_POST['asignado']);
+text_row_ex(_("Iniciales:"), 'initials', 20);
 end_table(1);
 
 submit_add_or_update_center($selected_id == -1, '', 'both');

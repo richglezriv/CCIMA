@@ -204,7 +204,7 @@ textarea_row(_("Address:"), 'delivery_address', null, 35, 5);
 text_row_ex(_("Telephone No:"), 'phone', 32, 30);
 text_row_ex(_("Secondary Phone Number:"), 'phone2', 32, 30);
 text_row_ex(_("Facsimile No:"), 'fax', 32, 30);
-email_row_ex(_("E-mail:"), 'email', 30);
+email_row_ex(_("E-mail:"), 'email', 30, 100);
 
 end_table(1);
 submit_add_or_update_center($selected_id == -1, '', 'both');

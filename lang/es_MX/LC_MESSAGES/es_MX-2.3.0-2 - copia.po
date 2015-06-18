@@ -13300,7 +13300,7 @@ msgstr "Remisionar Artículos Pedidos"
 #: /var/www/fa2.3/devel/../sales/sales_order_entry.php:173
 #, php-format
 msgid "Delivery # %d has been entered."
-msgstr "La Entregs # %d ha sido introducida."
+msgstr "La Remision # %d ha sido introducida."
 
 #: /var/www/fa2.3/devel/../sales/customer_delivery.php:52
 #: /var/www/fa2.3/devel/../sales/sales_order_entry.php:175

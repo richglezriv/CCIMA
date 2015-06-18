@@ -92,7 +92,7 @@ function print_receipts()
 
 	$cur = get_company_Pref('curr_default');
 
-	$rep = new FrontReport(_('RECEIPT'), "ReceiptBulk", user_pagesize(), 9, $orientation);
+	$rep = new FrontReport(_('RECEIPT'), "ReceiptBulk", user_pagesize(), 8, $orientation);
    	if ($orientation == 'L')
     	recalculate_cols($cols);
  	$rep->SetHeaderType('Header2');

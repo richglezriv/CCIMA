@@ -40,7 +40,7 @@ function get_prices($stock_id)
 		WHERE ".TB_PREF."prices.sales_type_id = ".TB_PREF."sales_types.id 
 		AND stock_id=".db_escape($stock_id)
 		." ORDER BY curr_abrev, sales_type_id";	
-	
+	error_log('test' . $sql);
 	return db_query($sql,"item prices could not be retreived");
 }
 

@@ -1,18 +1,20 @@
 <?php
 
-$path_to_root = "../..";
-$ACCESS = "f6122c971aeb03476bf01623b09ddfd4";
-$keyword = md5('po');
-$resultado = "";
-
+$path_to_root = "../";
+include_once($path_to_root . "/includes/session.inc");
 include_once($path_to_root . "/modules/requisitions/includes/modules_db.inc");
-
-
+$ACCESS = $_REQUEST['po'];
+$keyword = md5('po');
+$req = $_REQUEST['amp;amp;req'];
+$resultado = "";
+error_log($req);
 if ($keyword == $ACCESS){
-    if (generate_po())
+    
+    if (generate_po($req))
 		$resultado = 'Ordenes de compra generadas';
 	else
 		$resultado = 'Ocurrió un error en la generación de ordenes de compra para la requisicion, verifique con el adminsitrador';
+    
 }
 ?>
 

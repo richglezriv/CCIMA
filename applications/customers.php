@@ -18,8 +18,14 @@ class customers_app extends application
 		$this->application("orders", _($this->help_context = "&Sales"));
 	
 		$this->add_module(_("Transactions"));
-		$this->add_lapp_function(0, _("Cotizacion"),
+        $cadena = user_company() == 0 ? "Cotizacion de material" : "Cotizacion";
+		$this->add_lapp_function(0, $cadena,
 			"sales/sales_order_entry.php?NewQuotation=Yes", 'SA_SALESQUOTE', MENU_TRANSACTION);
+        if (user_company() == 0){
+            $this->add_lapp_function(0, "Cotizacion de Obra",
+			"sales/cotizador.php", 'SA_SALESQUOTE', MENU_TRANSACTION);
+        }
+        
         $cadena = user_company() == 0 ? "Orden de Trabajo" : "Orden de Servicio";
 		$this->add_lapp_function(0, $cadena,
 			"sales/sales_order_entry.php?NewOrder=Yes", 'SA_SALESORDER', MENU_TRANSACTION);
@@ -35,6 +41,7 @@ class customers_app extends application
         $cadena = user_company() == 0 ? "Facturaciones" : _("&Invoice Against Sales Delivery");
 		$this->add_lapp_function(0, $cadena,
 			"sales/inquiry/sales_deliveries_view.php?OutstandingOnly=1", 'SA_SALESINVOICE', MENU_TRANSACTION);
+        $this->add_lapp_function(0, "Seguimiento de Ordenes", "sales/inquiry/seguimiento.php");
 
 		$this->add_rapp_function(0, _("&Template Delivery"),
 			"sales/inquiry/sales_orders_view.php?DeliveryTemplates=Yes", 'SA_SALESDELIVERY', MENU_TRANSACTION);
@@ -54,7 +61,7 @@ class customers_app extends application
 		$this->add_lapp_function(1, _("Sales Quotation I&nquiry"),
 			"sales/inquiry/sales_orders_view.php?type=32", 'SA_SALESTRANSVIEW', MENU_INQUIRY);
 
-        $cadena = user_company() == 0 ? "Consultar Ordenes de Venta" : _("Sales Order &Inquiry");
+        $cadena = user_company() == 0 ? "Consultar MEGAs" : "Consultar Ordenes de Servicio";
 		$this->add_lapp_function(1, $cadena,
 			"sales/inquiry/sales_orders_view.php?type=30", 'SA_SALESTRANSVIEW', MENU_INQUIRY);
 		$this->add_lapp_function(1, _("Customer Transaction &Inquiry"),
@@ -65,6 +72,10 @@ class customers_app extends application
 
 		$this->add_rapp_function(1, _("Customer and Sales &Reports"),
 			"reporting/reports_main.php?Class=0", 'SA_SALESTRANSVIEW', MENU_REPORT);
+
+        if (user_company() == 0)
+            $this->add_rapp_function(1, "Consultar Cotizaciones de Obra",
+			"sales/inquiry/cotizaciones_obra.php?", 'SA_SALESTRANSVIEW', MENU_REPORT);
 
 		$this->add_module(_("Maintenance"));
 		$this->add_lapp_function(2, _("Add and Manage &Customers"),

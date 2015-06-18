@@ -139,5 +139,4 @@ function is_new_reference($ref, $type)
 
 }
 
-
 ?>

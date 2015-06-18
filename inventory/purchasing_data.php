@@ -52,6 +52,12 @@ if ($Mode=='ADD_ITEM' || $Mode=='UPDATE_ITEM')
       	display_error( _("The price entered was not numeric."));
 	set_focus('price');
    	}
+    elseif (!check_num('descuento', 0))
+   	{
+      	$input_error = 1;
+      	display_error( "El descuento debe ser numerico");
+	    set_focus('descuento');
+   	}
    	elseif (!check_num('conversion_factor'))
    	{
       	$input_error = 1;
@@ -69,13 +75,13 @@ if ($Mode=='ADD_ITEM' || $Mode=='UPDATE_ITEM')
      	if ($Mode == 'ADD_ITEM') 
        	{
 			add_item_purchasing_data($_POST['supplier_id'], $_POST['stock_id'], input_num('price',0),
-				$_POST['suppliers_uom'], input_num('conversion_factor'), $_POST['supplier_description']);
+				$_POST['suppliers_uom'], input_num('conversion_factor'), $_POST['supplier_description'], $_POST['descuento']);
     		display_notification(_("This supplier purchasing data has been added."));
        	} 
        	else
        	{
        		update_item_purchasing_data($selected_id, $_POST['stock_id'], input_num('price',0),
-       			$_POST['suppliers_uom'], input_num('conversion_factor'), $_POST['supplier_description']);
+       			$_POST['suppliers_uom'], input_num('conversion_factor'), $_POST['supplier_description'], $_POST['descuento']);
     	  	display_notification(_("Supplier purchasing data has been updated."));
        	}
 		$Mode = 'RESET';
@@ -144,7 +150,7 @@ else
     {
         start_table(TABLESTYLE, "width=65%");
 
-		$th = array(_("Supplier"), _("Price"), _("Currency"),
+		$th = array(_("Supplier"), _("Price"), 'Descuento', _("Currency"),
 			_("Supplier's Unit"), _("Conversion Factor"), _("Supplier's Description"), "", "");
 
         table_header($th);
@@ -157,6 +163,7 @@ else
 
             label_cell($myrow["supp_name"]);
             amount_decimal_cell($myrow["price"]);
+            label_cell($myrow['descuento']);
             label_cell($myrow["curr_code"]);
             label_cell($myrow["suppliers_uom"]);
             qty_cell($myrow['conversion_factor'], false, 'max');
@@ -187,6 +194,7 @@ if ($Mode =='Edit')
 
     $supp_name = $myrow["supp_name"];
     $_POST['price'] = price_decimal_format($myrow["price"], $dec2);
+    $_POST['descuento'] = price_decimal_format($myrow["descuento"], $dec2);
     $_POST['suppliers_uom'] = $myrow["suppliers_uom"];
     $_POST['supplier_description'] = $myrow["supplier_description"];
     $_POST['conversion_factor'] = maxprec_format($myrow["conversion_factor"]);
@@ -213,6 +221,7 @@ else
 	$_POST['price'] = $_POST['suppliers_uom'] = $_POST['conversion_factor'] = $_POST['supplier_description'] = "";
 }
 amount_row(_("Price:"), 'price', null,'', get_supplier_currency($selected_id), $dec2);
+amount_row("Descuento:", 'descuento', NULL, '', '%', $dec2);
 text_row(_("Suppliers Unit of Measure:"), 'suppliers_uom', null, 50, 51);
 
 if (!isset($_POST['conversion_factor']) || $_POST['conversion_factor'] == "")

@@ -13,7 +13,7 @@ include_once($path_to_root . "/sales/includes/cart_class.inc");
 include_once($path_to_root . "/includes/manufacturing.inc");
 
 //--------------------------------------------------------------------------------
-function add_to_order(&$order, $new_item, $new_item_qty, $price, $discount, $description='')
+function add_to_order(&$order, $new_item, $new_item_qty, $price, $discount, $description='', $unidades='')
 {
 	// calculate item price to sum of kit element prices factor for 
 	// value distribution over all exploded kit items
@@ -24,20 +24,22 @@ function add_to_order(&$order, $new_item, $new_item_qty, $price, $discount, $des
 		$price_factor = 0;
 	else
 		$price_factor = $price/$std_price;
-
+    
 	$kit = get_item_kit($new_item);
 	$item_num = db_num_rows($kit);
 
 	while($item = db_fetch($kit)) {
+    
 		$std_price = get_kit_price($item['stock_id'], $order->customer_currency, 
 			$order->sales_type,	$order->price_factor, get_post('OrderDate'), true);
-
+        
 		// rounding differences are included in last price item in kit
 		$item_num--;
 		if ($item_num) {
-			$price -= $item['quantity']*$std_price*$price_factor;
+        	$price -= $item['quantity']*$std_price*$price_factor;
 			$item_price = $std_price*$price_factor;
 		} else {
+            
 			if ($item['quantity']) 
 				$price = $price/$item['quantity'];
 			$item_price = $price;
@@ -46,6 +48,7 @@ function add_to_order(&$order, $new_item, $new_item_qty, $price, $discount, $des
 
 	 if (!$item['is_foreign'] && $item['item_code'] != $item['stock_id'])
 	 {	// this is sales kit - recurse 
+        
 		add_to_order($order, $item['stock_id'], $new_item_qty*$item['quantity'],
 			$item_price, $discount);
 	 }
@@ -63,7 +66,8 @@ function add_to_order(&$order, $new_item, $new_item_qty, $price, $discount, $des
 			}
 		}
 		$order->add_to_cart (count($order->line_items),	$item['stock_id'], 
-			$new_item_qty*$item['quantity'], $item_price, $discount, 0,0, $description);
+			$new_item_qty*$item['quantity'], $item_price, $discount, 0,0, $description,0,0,0,$unidades);
+            
 	 }
 	}
 
@@ -79,8 +83,8 @@ function get_customer_details_to_order(&$order, $customer_id, $branch_id)
 	$myrow = get_customer_to_order($customer_id);
 
 	$name = $myrow['name'];
-
-	if ($myrow['dissallow_invoices'] == 1)
+    
+	if ($myrow['dissallow_invoices'] == 1 && $order->trans_type != ST_SALESQUOTE)
 		$ret_error = _("The selected customer account is currently on hold. Please contact the credit control personnel to discuss.");
 
 	$deliver = $myrow['address']; // in case no branch address use company address
@@ -147,13 +151,17 @@ function display_order_summary($title, &$order, $editable_items=false)
 
     div_start('items_table');
 	start_table(TABLESTYLE, "colspan=7 width=90%");
-	$th = array(_("Item Code"), _("Item Description"), _("Quantity"),
+	//CCIMA Construccion
+    $th = array(_("Item Code"), _("Item Description"), _("Quantity"),
 		_("Delivered"),
 		_("Unit"), $order->tax_included ? _("Price after Tax") : _("Price before Tax"), _("Discount %"), _("Total"), "");
 
-	if ($order->trans_no == 0) {
-	unset( $th[3] );
+	if ($order->trans_no == 0 && user_company() == 1) {
+	    unset( $th[3] );
 	}
+    else if ($order->trans_no == 0 && user_company() == 0) {
+        $th[3] = "Disponible";
+    }
 
 	if (count($order->line_items))
 	     $th[]= '';
@@ -205,7 +213,14 @@ function display_order_summary($title, &$order, $editable_items=false)
 			if ($order->trans_no!=0)
 				qty_cell($stock_item->qty_done, false, $dec);
 
-			label_cell($stock_item->units);
+			if (user_company() == 0){
+                $qoh = get_qoh_on_date($_POST['stock_id'], $_POST['Location']);
+                label_cell($qoh, '', 'disponible');
+                label_cell($stock_item->units);
+            }
+            else 
+                label_cell($stock_item->unidades);
+
 			amount_cell($stock_item->price);
             
             
@@ -319,7 +334,7 @@ function display_order_header(&$order, $editable, $date_text)
 			{
 
 				$old_order = (PHP_VERSION<5) ? $order : clone( $order );
-
+                
 				$customer_error = get_customer_details_to_order($order, $_POST['customer_id'], $_POST['branch_id']);
 				$_POST['Location'] = $order->Location;
 				$_POST['deliver_to'] = $order->deliver_to;
@@ -379,7 +394,7 @@ function display_order_header(&$order, $editable, $date_text)
 		else
 		{
 			$row = get_customer_to_order($_POST['customer_id']);
-			if ($row['dissallow_invoices'] == 1)
+			if ($row['dissallow_invoices'] == 1 && $order->trans_type != ST_SALESQUOTE)
 				$customer_error = _("The selected customer account is currently on hold. Please contact the credit control personnel to discuss.");
 		}
 	}
@@ -397,7 +412,7 @@ function display_order_header(&$order, $editable, $date_text)
 
 	customer_credit_row($_POST['customer_id'], $order->credit);
 
-    //descuento modificable para 3H
+    //descuento modificable para CCIMA
     $descuento = $_POST['customer_discount'];
     if ($descuento > 0 && $descuento > ($order->default_discount*100)){
         $order->default_discount = ($descuento / 100);
@@ -431,11 +446,31 @@ function display_order_header(&$order, $editable, $date_text)
 		label_cells(_('Payment:'), $order->payment_terms['terms']);
 	}
 
-	if($editable) {
-		$str = sales_types_list_row(_("Price List:"), 'sales_type', null, true);
-	} else {
-		label_row(_("Price List:"), $order->sales_type_name);
-	}
+    //solo Construccion puede ver la lista de precios
+    if (user_company() == 0){
+	    if($editable) {
+		    $str = sales_types_list_row(_("Price List:"), 'sales_type', null, true);
+	    } else {
+		    label_row(_("Price List:"), $order->sales_type_name);
+	    }
+    }
+    else {
+        echo'<tr><td class="label">Vendedor';
+        echo '<input type="hidden" name="sales_type" id="sales_type" value="'.$_POST['sales_type'].'">';
+        echo'</td>';
+        $result = get_salesmen(TRUE);
+    
+        echo'<td><select id="vendedor" name="vendedor">';
+    
+        while ($myrow = db_fetch($result))
+        {
+            $selected = $order->vendedor == $myrow["salesman_code"] ? "selected" : "";
+            echo '<option '.$selected.' value="'.$myrow["salesman_code"].'">'.$myrow["initials"].'</option>';
+        }
+
+        echo'</select></td></tr>';
+    }
+
 	if ($order->sales_type != $_POST['sales_type']) {
 		$myrow = get_sales_type($_POST['sales_type']);
 		$order->set_sales_type($myrow['id'], $myrow['sales_type'],
@@ -487,30 +522,53 @@ function display_order_header(&$order, $editable, $date_text)
 		hidden('OrderDate', $order->document_date);
 	}
 
+    
+	end_outer_table(1); // outer table
+    
+    
+    
+    
     //CCIMA solo construccion puede ver inicio y fin de obra
     if (user_company() == 0){
-    
-        date_row('Inicio de Obra', 'inicioObra', 'Inicio de Obra',
-			    $order->trans_no==0, 0, 0, 0, null, false);
-        date_row('Fin de Obra', 'finObra', 'Fin de Obra',
-			    $order->trans_no==0, 0, 0, 0, null, false);
         //solo si es orden de trabajo
         if ($order->trans_type == ST_SALESORDER){
+            start_table();
+            start_row();
+            echo('<td><strong>Fechas de Obra</strong></td></tr>');
+            end_row();
+            end_table();
+            start_outer_table(1, 'width=80%');
+            table_section(1);
+            date_row('Inicio de Obra', 'inicioObra', 'Inicio de Obra',
+			        $order->trans_no==0, 0, 0, 0, null, false);
+            table_section(2);
+            date_row('Fin de Obra', 'finObra', 'Fin de Obra',
+			        $order->trans_no==0, 0, 0, 0, null, false);
+        
+        
+            table_section(3);
             date_row('Inicio Real de Obra', 'inicioObraReal', 'Inicio Real de Obra',
 			        null, 0, 0, 0, null, false);
+            table_section(4);
             date_row('Fin Real de Obra', 'finObraReal', 'Fin Real de Obra',
 			        null, 0, 0, 0, null, false);
+
+            end_outer_table(1); // outer table 
         }
         
     }
-	end_outer_table(1); // outer table
+    
+       
 
 	if ($change_prices != 0) {
+        
 		foreach ($order->line_items as $line_no=>$item) {
 			$line = &$order->line_items[$line_no];
-			$line->price = get_kit_price($line->stock_id, $order->customer_currency,
-				$order->sales_type, $order->price_factor, get_post('OrderDate'));
-		//		$line->discount_percent = $order->default_discount;
+            if ($line->price == 0){
+			    $line->price = get_kit_price($line->stock_id, $order->customer_currency,
+				    $order->sales_type, $order->price_factor, get_post('OrderDate'));
+		        //$line->discount_percent = $order->default_discount;
+            }
 		}
 	    $Ajax->activate('items_table');
 	}
@@ -561,8 +619,8 @@ function sales_order_item_controls(&$order, &$rowcounter, $line_no=-1)
 		}
 
 		$item_info = get_item_edit_info($_POST['stock_id']);
-		$units = $item_info["units"];
-		$dec = $item_info['decimals'];
+        $units = $item_info["units"];
+        $dec = $item_info['decimals'];
 		$_POST['qty'] = number_format2(1, $dec);
 		$price = get_kit_price($_POST['stock_id'],
 			$order->customer_currency, $order->sales_type,
@@ -577,10 +635,15 @@ function sales_order_item_controls(&$order, &$rowcounter, $line_no=-1)
 	if ($order->trans_no!=0) {
 		qty_cell($line_no==-1 ? 0 :$order->line_items[$line_no]->qty_done, false, $dec);
 	}
+    if (user_company() == 0){
+        $qoh = get_qoh_on_date($_POST['stock_id'], $_POST['Location']);
+        label_cell($qoh, '', 'disponible');
+	    label_cell($units, '', 'units');
+    }
+    else 
+        get_TiposRentas($_POST['stock_id']);
 
-	label_cell($units, '', 'units');
-
-	amount_cells(null, 'price',null,null,null,null,'readonly');
+	amount_cells(null, 'price',null,null,null,null,user_company() == 0 ? 'readonly' : '');
         
 	small_amount_cells(null, 'Disc', percent_format($_POST['Disc']), null, null, user_percent_dec(), 'readonly');
 
@@ -604,6 +667,23 @@ function sales_order_item_controls(&$order, &$rowcounter, $line_no=-1)
 	}
 
 	end_row();
+}
+
+function get_TiposRentas($stock_id){
+
+    echo '<td>';
+    echo sales_types_list_RENTAS('units', $_POST['units'], true, false, $stock_id);
+    echo'</td>';
+
+    $sql = "select pr.price ".
+    " from 1_prices pr inner join 1_sales_types st on pr.sales_type_id = st.id ".
+    " where pr.stock_id = " .db_escape($stock_id)." and st.id=" . db_escape($_POST['units']);
+
+    $result = db_query($sql);
+    $mysql=db_fetch($result);
+
+    $_POST['price'] = $mysql['price'];
+    
 }
 
 //--------------------------------------------------------------------------------
@@ -632,12 +712,12 @@ function display_delivery_details(&$order)
 		if ($order->trans_type==ST_SALESINVOICE)
 		{
 			$title = _("Delivery Details");
-			$delname = _("Due Date").':';
+			$delname = _("Due Dates").':';
 		}
 		elseif ($order->trans_type==ST_CUSTDELIVERY)
 		{
 			$title = _("Invoice Delivery Details");
-			$delname = _("Invoice before").':';
+			$delname = _("Invoice beforee").':';
 		}
 		elseif ($order->trans_type==ST_SALESQUOTE)
 		{
@@ -660,19 +740,24 @@ function display_delivery_details(&$order)
 		date_row($delname, 'delivery_date',
 			$order->trans_type==ST_SALESORDER ?  _('Enter requested day of delivery') 
 				: $order->trans_type==ST_SALESQUOTE ? _('Enter Valid until Date') : '');
+        if (user_company() == 1){
+            $date = date_create($order->finObra);
+            text_row('Hora Llegada', 'fecha_vencimiento',date_format($date, 'H:i'),10,8);
+        }
 		text_row(_("Deliver To:"), 'deliver_to', $order->deliver_to, 40, 40,
 			_('Additional identifier for delivery e.g. name of receiving person'));
 
-		textarea_row(_("Address:"), 'delivery_address', $order->delivery_address, 35, 5,
+		textarea_row(user_company() == 1 ? "Direccion de Entrega:" : _("Address:"), 'delivery_address', $order->delivery_address, 35, 5,
 			_('Delivery address. Default is address of customer branch'));
 
 		table_section(2);
 
 		text_row(_("Contact Phone Number:"), 'phone', $order->phone, 25, 25,
 		    _('Phone number of ordering person. Defaults to branch phone number'));
-		text_row(_("Customer Reference:"), 'cust_ref', $order->cust_ref, 25, 25,
+		text_row(user_company() == 0 ? _("Customer Reference:") : "Recibe en sitio:", 'cust_ref', $order->cust_ref, 25, 25,
 		  _('Customer reference number for this order (if any)'));
 		textarea_row(_("Comments:"), "Comments", $order->Comments, 31, 5);
+        textarea_row("Trabajo a realizar", "trabajo", $order->trabajo, 31, 5);
 
 		shippers_list_row(_("Shipping Company:"), 'ship_via', $order->ship_via);
 

@@ -15,7 +15,7 @@ this class can hold all the information for:
 i)   a sales order
 ii)  an invoice
 iii) a credit note
-iv)  a delivery note
+iv)  a delivery notec
 */
 
 include_once($path_to_root . "/inventory/includes/inventory_db.inc");
@@ -78,6 +78,13 @@ class cart
     var $inicioObraReal;
     var $finObraReal;
 
+    //para rentas
+    var $trabajo;
+    var $vendedor;
+
+    //para construccion
+    var $calculadora;
+
 	//-------------------------------------------------------------------------
 	//
 	//  $trans_no==0 => open new/direct document
@@ -130,7 +137,7 @@ class cart
 		$type = get_child_type($this->trans_type);
 
 		$this->trans_type = $type;
-		$this->reference = $Refs->get_next($this->trans_type);
+		//$this->reference = $Refs->get_next($this->trans_type);
 		if ($type == ST_CUSTCREDIT)
 		    $this->src_date = $this->document_date;
 
@@ -275,6 +282,8 @@ class cart
 			commit_transaction();
 			return -1;
 		}	
+
+        
 		if (count($this->src_docs) == 0 && ($this->trans_type == ST_SALESINVOICE || $this->trans_type == ST_CUSTDELIVERY)) {
 			// this is direct document - first add parent
 			$ref = $this->reference;
@@ -309,19 +318,40 @@ class cart
 			case ST_CUSTDELIVERY:
 				$ret = write_sales_delivery($this, $policy); break;
 			case ST_SALESORDER:
+                //error_log($this->reference);
+                if ($this->trans_no==0){	// new document
+                    $ret = add_sales_order($this);
+                }
+                else{
+                    $ret = update_sales_order($this);
+                }
+                break;
 			case ST_SALESQUOTE:
-				if ($this->trans_no==0)	// new document
+                if ($this->trans_no==0){	// new document
+                    //genera el folio nuevo
+                    $this->reference = genera_folio();
 					$ret = add_sales_order($this);
-				else
-					$ret = update_sales_order($this);
+                }
+				else{
+                    //obtiene una nueva referencia y debe insertar una nueva cotizacion
+                    $this->reference = get_siguiente_folio($this->reference);
+					//$ret = update_sales_order($this);
+                    set_version($this->reference);
+                    $ret = add_sales_order($this);
+                }
+
+                break;
 		}
 
-		commit_transaction();
+        commit_transaction();
 
         //CCIMA si es construccion tiene que bloquear el cliente
         if (user_company() == 0){
-        
-            block_customer($_SESSION["wa_current_user"]->username, $this->customer_id);
+            block_customer($_SESSION["wa_current_user"]->username, $this->Branch);
+            //CCIMA Notificacion por correo
+            if ($this->trans_type == ST_SALESORDER){
+                notifica_Orden($this);
+            }
         }
 
 		return $ret;
@@ -377,11 +407,12 @@ class cart
 	}
 
 	function add_to_cart($line_no, $stock_id, $qty, $price, $disc, $qty_done=0, $standard_cost=0, $description=null, $id=0, $src_no=0,
-		$src_id=0)
+		$src_id=0, $unidades='')
 	{
-		$line = new line_details($stock_id, $qty, $price, $disc,
-			$qty_done,  $standard_cost, $description, $id, $src_no, $src_id);
-
+		
+        $line = new line_details($stock_id, $qty, $price, $disc,
+			$qty_done,  $standard_cost, $description, $id, $src_no, $src_id, $unidades);
+        
 		if ($line->valid) {
 			$this->line_items[$line_no] = $line;
 			return 1;
@@ -600,16 +631,17 @@ class line_details
 	var $qty_done;
 	var $qty_dispatched;
 	var $qty_old = 0;
-
+    var $unidades = '';
 
 	function line_details ($stock_id, $qty, $prc, $disc_percent,
-		$qty_done, $standard_cost, $description, $id=0, $src_no=0, $src_id=0)
+		$qty_done, $standard_cost, $description, $id=0, $src_no=0, $src_id=0, $unidades='')
 	{
 	/* Constructor function to add a new LineDetail object with passed params */
 
 		$this->id = $id;
 		$this->src_no = $src_no;
 		$this->src_id = $src_id;
+        $this->unidades = $unidades;
 		$item_row = get_item($stock_id);
 
 		if (!$item_row) 
@@ -635,7 +667,7 @@ class line_details
 		$this->valid = true;
 	}
 
-	// get unit price as stated on document
+    // get unit price as stated on document
 	function line_price()
 	{
 		return $this->price;

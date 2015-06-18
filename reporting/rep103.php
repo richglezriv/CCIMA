@@ -122,11 +122,14 @@ function print_customer_details_listing()
     $comments = $_POST['PARAM_5'];
 	$orientation = $_POST['PARAM_6'];
 	$destination = $_POST['PARAM_7'];
+
+    
+
 	if ($destination)
 		include_once($path_to_root . "/reporting/includes/excel_report.inc");
 	else
 		include_once($path_to_root . "/reporting/includes/pdf_report.inc");
-
+    
 	$orientation = ($orientation ? 'L' : 'P');
     $dec = 0;
 
@@ -156,7 +159,7 @@ function print_customer_details_listing()
 	$less = (double)$less;
 
 	$cols = array(0, 150, 300, 425, 550);
-
+    
 	$headers = array(_('Customer Postal Address'), _('Price/Turnover'),	_('Branch Contact Information'),
 		_('Branch Delivery Address'));
 
@@ -285,7 +288,7 @@ function print_customer_details_listing()
 					$rep->TextCol(3, 4, $adr2[$i]);
 			}	
             //CCIMA vendedor asignado
-            $rep->TextCol(0,4,"Vendedor asignado:".$myrow['cotizando']);
+            //$rep->TextCol(0,4,"Vendedor asignado:".$myrow['cotizando']);
 
 			if ($newrow != 0 && $newrow < $rep->row)
 				$rep->row = $newrow;

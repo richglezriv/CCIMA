@@ -25,7 +25,7 @@ include_once($path_to_root . "/sales/includes/sales_ui.inc");
 include_once($path_to_root . "/reporting/includes/reporting.inc");
 include_once($path_to_root . "/taxes/tax_calc.inc");
 
-include_once($path_to_root . "/timbrado/WSTimbrado.php");
+//include_once($path_to_root . "/timbrado/WSTimbrado.php");
 
 $js = "";
 if ($use_popup_windows) {
@@ -54,7 +54,7 @@ if (isset($_GET['AddedID'])) {
 	$invoice_no = $_GET['AddedID'];
 	$trans_type = ST_SALESINVOICE;
 
-	display_notification(_("Selected deliveries has been processed"), true);
+	display_notification(_("Selected deliveries has been processed") . sprintf(" en la factura # %d", $invoice_no), true);
 
 	display_note(get_customer_trans_view_str($trans_type, $invoice_no, _("&View This Invoice")), 0, 1);
 

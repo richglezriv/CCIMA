@@ -146,4 +146,27 @@ function print_link($link_text, $rep, $pars = array(), $dir = '',
 	return "<a target='_blank' href='$url'$id$class $pars[1]>$pars[0]</a>";
 }
 
+function print_link_CCIMA($link_text, $rep, $pars = array(), $dir = '', 
+	$icon=false, $class='printlink', $id='')
+{
+	global $path_to_root;
+
+	$url = $dir == '' ?  $path_to_root.'/reporting/prn_redirect.php?' : $dir;
+
+	$id = default_focus($id);
+	foreach($pars as $par => $val) {
+		$pars[$par] = "$par=".urlencode($val);
+	}
+	$pars[] = 'REP_ID='.urlencode($rep);
+	$url .= implode ('&', $pars);
+
+	if ($id != '')
+		$id = " id='$id'";
+	$pars = access_string($link_text);
+	if (user_graphic_links() && $icon)
+		$pars[0] = set_icon($icon, $pars[0]);
+	return "<a target='_blank' href='$url'$id$class $pars[1]>$pars[0]</a>";
+    
+}
+
 ?>

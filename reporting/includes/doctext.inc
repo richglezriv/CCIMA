@@ -26,9 +26,9 @@
 	);
 
 	// default item column headers
-	$this->headers = array(_("Item Code"), _("Item Description"), _("Quantity"),
+	$this->headers = array("Codigo", _("Item Description"), _("Quantity"),
 		_("Unit"), _("Price"), _("Discount %"), _("Total"));
-
+    
 	// for links use 'text' => 'url'
 	$Footer[0] = _("All amounts stated in") . " - " . @$this->formData['curr_code'];
 
@@ -165,7 +165,8 @@
 				_("Supplier's Reference") => $this->formData['requisition_no'],
 				_("Order Date") => sql2date($this->formData['document_date']),
 			);
-
+            
+            
 			$this->headers = array(_("Item Code"), _("Item Description"),
 				_("Delivery Date"), _("Quantity"), 	_("Unit"), _("Price"), _("Total"));
 			break;
@@ -180,7 +181,7 @@
 				_("Customer's Reference") => $this->formData["debtor_ref"],
 				_("Type") =>$systypes_array[$this->formData["type"]],
 				_("Your VAT no.") => $this->formData['tax_id'],
-				_("Our Order No") => $this->formData['order_'],
+				user_company() == 0 ? _("Our Order No") : "Orden de servicio" => $this->formData['order_'],
 				_("Due Date") => sql2date($this->formData['tran_date']),
 			);
 			$this->headers = array(_("Trans Type"), _("#"), _("Date"), _("Due Date"), _("Total Amount"), _("Left to Allocate"), _("This Allocation"));
@@ -270,6 +271,10 @@
 		foreach(explode("\n", $this->company['legal_text']) as $line)
 			$Footer[] = $line;
 	}
+    if ($this->formData['doctype'] == ST_PURCHORDER){
+        $Footer[0] = "Jazbeth Vega Moreno";
+        $Footer[1] = "Departamento de Compras";
+    }
 
 	$this->formData['recipient_name'] = $Addr1['name'];
 ?>

@@ -116,10 +116,16 @@ function print_sales_quotations()
 				$rep->TextCol(6, 7,	$DisplayNet, -2);
 			}	
 			$rep->row = $newrow;
-			//$rep->NewLine(1);
+			$rep->NewLine(1);
 			if ($rep->row < $rep->bottomMargin + (15 * $rep->lineHeight))
 				$rep->NewPage();
 		}
+        //comentarios de CCIMA Construccion
+        if (user_company() == 0){
+            $rep->NewLine();
+            $rep->TextColLines(0,6, "Cabecera del documento de cotizacion", -2);
+        }
+
 		if ($myrow['comments'] != "")
 		{
 			$rep->NewLine();
@@ -201,6 +207,15 @@ function print_sales_quotations()
 				$myrow['reference'] = $i;
 			$rep->End($email);
 		}
+
+        if (user_company() == 1){
+            $rep->SetHeaderType('Header1');
+            $rep->NewPage();
+            $rep->row = 650;
+            $filename = company_path()."/images/ALTIMA/licencia.png";
+            $rep->TextCol(1,7,"GRAFICA DE CAPACIDADES");
+            $rep->AddImage($filename, 50, 400, 320, 240);
+        }
 	}
 	if ($email == 0)
 		$rep->End();

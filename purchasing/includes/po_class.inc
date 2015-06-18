@@ -55,19 +55,19 @@ class purch_order
 		$this->tax_group_array = get_tax_group_items_as_array($tax_group_id);
 	}
 	
-	function add_to_order($line_no, $stock_id, $qty, $item_descr, $price, $uom, $req_del_date, $qty_inv, $qty_recd)
+	function add_to_order($line_no, $stock_id, $qty, $item_descr, $price, $uom, $req_del_date, $qty_inv, $qty_recd, $discount=0.0)
 	{
 		if (isset($qty) && $qty != 0)
 		{
 			$this->line_items[$line_no] = new po_line_details($line_no, $stock_id, $item_descr, $qty, $price, $uom, 
-				$req_del_date, $qty_inv, $qty_recd);
+				$req_del_date, $qty_inv, $qty_recd, null, $discount);
 			$this->lines_on_order++;
 			return 1;
 		}
 		return 0;
 	}
 
-	function update_order_item($line_no, $qty, $price, $req_del_date, $description="")
+	function update_order_item($line_no, $qty, $price, $req_del_date, $description="", $discount=0.0)
 	{
 		if ($description != "")
 			$this->line_items[$line_no]->item_description = $description;
@@ -75,6 +75,7 @@ class purch_order
 		$this->line_items[$line_no]->price = $price;
 		$this->line_items[$line_no]->req_del_date = $req_del_date;
 		$this->line_items[$line_no]->item_description = $description;
+        $this->line_items[$line_no]->discount = $discount;
 	}
 
 	function remove_from_order($line_no)
@@ -207,8 +208,10 @@ class po_line_details
 	var $standard_cost;
 	var $descr_editable;
 
+    var $discount;
+
 	function po_line_details($line_no, $stock_item, $item_descr, $qty, $prc, $uom, $req_del_date, 
-		$qty_inv, $qty_recd, $grn_item_id=0)
+		$qty_inv, $qty_recd, $grn_item_id=0, $descuento=0.0)
 	{
 
 		/* Constructor function to add a new LineDetail object with passed params */
@@ -223,6 +226,8 @@ class po_line_details
 			$this->item_description = $item_row["description"];
 		else
 			$this->item_description = $item_descr;
+
+        $this->discount = $descuento;
 		$this->quantity = $qty;
 		$this->req_del_date = $req_del_date;
 		$this->price = $prc;
@@ -235,6 +240,8 @@ class po_line_details
 		$this->receive_qty = 0;	/*initialise these last two only */
 		$this->standard_cost =0;
 		$this->grn_item_id = $grn_item_id;
+        
+
 	}
 	
 	function taxfree_charge_price($po)

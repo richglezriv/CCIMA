@@ -19,7 +19,7 @@ function add_sales_order(&$order)
 	$order_no = get_next_trans_no($order->trans_type);
 	$del_date = date2sql($order->due_date);
     $inicioObra = date2sql($order->inicioObra);
-    $finObra = date2sql($order->finObra);
+    $finObra = user_company() == 0 ? date2sql($order->finObra) : $order->finObra;
     $inicioObraReal = date2sql($order->inicioObraReal);
     $finObraReal = date2sql($order->finObraReal);
 
@@ -27,7 +27,7 @@ function add_sales_order(&$order)
 	$total = $order->get_trans_total();
 	$sql = "INSERT INTO ".TB_PREF."sales_orders (order_no, type, debtor_no, trans_type, branch_code, customer_ref, reference, comments, ord_date,
 		order_type, ship_via, deliver_to, delivery_address, contact_phone,
-		freight_cost, from_stk_loc, delivery_date, payment_terms, total, inicio_obra, fin_obra, inicio_obra_real, fin_obra_real)
+		freight_cost, from_stk_loc, delivery_date, payment_terms, total, inicio_obra, fin_obra, inicio_obra_real, fin_obra_real, trabajo,vendedor,calculadora)
 		VALUES (" .db_escape($order_no) . "," .db_escape($order_type) . "," . db_escape($order->customer_id) .
 		 ", " .db_escape($order->trans_type) . "," .db_escape($order->Branch) . ", ".
 			db_escape($order->cust_ref) .",". 
@@ -44,7 +44,8 @@ function add_sales_order(&$order)
 			db_escape($del_date) . "," .
 			db_escape($order->payment) . "," .
 			db_escape($total). ",".db_escape($inicioObra).",".db_escape($finObra).
-            ",".db_escape($inicioObraReal).",".db_escape($finObraReal).")";
+            ",".db_escape($inicioObraReal).",".db_escape($finObraReal).",".db_escape($order->trabajo).
+            ",".db_escape($order->vendedor).",".db_escape($order->calculadora).")";
 
 	db_query($sql, "order Cannot be Added");
 
@@ -62,13 +63,23 @@ function add_sales_order(&$order)
 	{
 		if ($loc_notification == 1 && is_inventory_item($line->stock_id))
 			$loc = calculate_reorder_level($order->Location, $line, $st_ids, $st_names, $st_num, $st_reorder); 
-
-		$sql = "INSERT INTO ".TB_PREF."sales_order_details (order_no, trans_type, stk_code, description, unit_price, quantity, discount_percent) VALUES (";
+        
+		$sql = "INSERT INTO ".TB_PREF."sales_order_details (order_no, trans_type, stk_code, description, unit_price, quantity, discount_percent";
+        
+        //cuando es rentas debe insertar la unidad
+        if (user_company() == 1)
+            $sql .= ",unidad";
+        
+        $sql .= ") VALUES (";
 		$sql .= $order_no . ",".$order->trans_type .
 				",".db_escape($line->stock_id).", "
 				.db_escape($line->item_description).", $line->price,
 				$line->quantity,
-				$line->discount_percent)";
+				$line->discount_percent";
+         if (user_company() == 1)
+            $sql .= ",".db_escape($line->unidades);
+                
+        $sql .= ")";
 		db_query($sql, "order Details Cannot be Added");
 
 	// Now mark quotation line as processed
@@ -129,7 +140,7 @@ function update_sales_order($order)
 	$del_date = date2sql($order->due_date);
 	$ord_date = date2sql($order->document_date);
     $inicioObra = date2sql($order->inicioObra);
-    $finObra = date2sql($order->finObra);
+    $finObra = user_company() == 0 ? date2sql($order->finObra) : $order->finObra;
     $inicioObraReal = date2sql($order->inicioObraReal);
     $finObraReal = date2sql($order->finObraReal);
 	$order_no =  key($order->trans_no);
@@ -160,7 +171,9 @@ function update_sales_order($order)
         inicio_obra = ".db_escape($inicioObra).",
         fin_obra = ".db_escape($finObra).", 
         inicio_obra_real = ".db_escape($inicioObraReal).", 
-        fin_obra_real = ".db_escape($finObraReal)." 
+        fin_obra_real = ".db_escape($finObraReal).",
+        trabajo = ".db_escape($order->trabajo).",
+        vendedor = ".db_escape($order->vendedor)."   
 	 WHERE order_no=" . db_escape($order_no) ."
 	 AND trans_type=".$order->trans_type." AND version=".$version;
 	db_query($sql, "order Cannot be Updated, this can be concurrent edition conflict");
@@ -193,13 +206,21 @@ function update_sales_order($order)
 						SET description = ".db_escape($line->item_description) . ", 
 								unit_price = ".db_escape($line->price) . ",
 								quantity = ".db_escape($line->quantity) . ",
-								discount_percent = ".db_escape($line->discount_percent) . "
-						WHERE id = {$line->id}";
+								discount_percent = ".db_escape($line->discount_percent);
+                        if (user_company() == 1)
+                            $sql .= ", unidad=".db_escape($line->unidades);
+                                
+						$sql.= " WHERE id = {$line->id}";
 		}
 		else {
 		$sql = "INSERT INTO ".TB_PREF."sales_order_details
 		 (id, order_no, trans_type, stk_code,  description, unit_price, quantity,
-		  discount_percent, qty_sent)
+		  discount_percent, qty_sent";
+        //cuando es rentas debe insertar la unidad
+        if (user_company() == 1)
+            $sql .= ",unidad"; 
+            
+        $sql .= " ) 
 		 VALUES (";
 		$sql .= db_escape($line->id ? $line->id : 0) . ","
 		  .$order_no . ",".$order->trans_type.","
@@ -208,7 +229,12 @@ function update_sales_order($order)
 		  .db_escape($line->price) . ", "
 		  .db_escape($line->quantity) . ", "
 		  .db_escape($line->discount_percent) . ", "
-		  .db_escape($line->qty_done) ." )";
+		  .db_escape($line->qty_done);
+         if (user_company() == 1)
+              $sql .= ",".db_escape($line->unidades);
+                
+         $sql .= ")";
+           
 		}
 
 		db_query($sql, "Old order Cannot be Inserted");
@@ -284,8 +310,12 @@ function get_sales_order_details($order_no, $trans_type) {
 		.TB_PREF."stock_master.mb_flag,"
 		.TB_PREF."stock_master.material_cost + "
 			.TB_PREF."stock_master.labour_cost + "
-			.TB_PREF."stock_master.overhead_cost AS standard_cost
-	FROM ".TB_PREF."sales_order_details, ".TB_PREF."stock_master
+			.TB_PREF."stock_master.overhead_cost AS standard_cost";
+
+    if (user_company()==1)
+        $sql .= ", ".TB_PREF."sales_order_details.unidad";
+
+	$sql.= " FROM ".TB_PREF."sales_order_details, ".TB_PREF."stock_master
 	WHERE ".TB_PREF."sales_order_details.stk_code = ".TB_PREF."stock_master.stock_id
 	AND order_no =" . db_escape($order_no) 
 		." AND trans_type = " . db_escape($trans_type) . " ORDER BY id";
@@ -323,10 +353,13 @@ function read_sales_order($order_no, &$order, $trans_type)
 	$order->Comments = $myrow["comments"];
 	$order->due_date = sql2date($myrow["delivery_date"]);
     $order->inicioObra = sql2date($myrow["inicio_obra"]);
-    $order->finObra = sql2date($myrow["fin_obra"]);
+    $order->finObra = user_company() == 0 ? sql2date($myrow["fin_obra"]): $myrow["fin_obra"];
     $order->inicioObraReal = sql2date($myrow["inicio_obra_real"]);
     $order->finObraReal = sql2date($myrow["fin_obra_real"]);
 	$order->document_date = sql2date($myrow["ord_date"]);
+    $order->trabajo = $myrow['trabajo'];
+    $order->vendedor = $myrow['vendedor'];
+    
 
 	$result = get_sales_order_details($order_no, $order->trans_type);
 	if (db_num_rows($result) > 0)
@@ -336,7 +369,7 @@ function read_sales_order($order_no, &$order, $trans_type)
 		{
 			$order->add_to_cart($line_no,$myrow["stk_code"],$myrow["quantity"],
 				$myrow["unit_price"], $myrow["discount_percent"],
-				$myrow["qty_done"], $myrow["standard_cost"], $myrow["description"], $myrow["id"] );
+				$myrow["qty_done"], $myrow["standard_cost"], $myrow["description"], $myrow["id"],0,0,$myrow['unidad'] );
 		$line_no++;
 		}
 	}
@@ -448,21 +481,25 @@ function get_branch_to_order($customer_id, $branch_id) {
 }
 
 function get_sql_for_sales_orders_view($selected_customer, $trans_type, $trans_no, $filter, 
-	$stock_item=null, $from='', $to='', $ref='', $location='', $customer_id=ALL_TEXT)
+	$stock_item=null, $from='', $to='', $ref='', $location='', $customer_id=ALL_TEXT, $onlyAvailable=FALSE)
 {
-
+    //CCIMA nuevo layuot
 	$sql = "SELECT 
 			sorder.order_no,
+            concat(debtor.debtor_ref, '<br/>' , branch.br_name) as name,
 			sorder.reference,
-			debtor.name,
-			branch.br_name,"
-			.($filter=='InvoiceTemplates' 
-				|| $filter=='DeliveryTemplates' ?
-			 "sorder.comments, " : "sorder.customer_ref, ")
-			."sorder.ord_date,
-			sorder.delivery_date,
-			sorder.deliver_to,
-			Sum(line.unit_price*line.quantity*(1-line.discount_percent))+freight_cost AS OrderValue,
+            sorder.delivery_address,
+			sorder.ord_date, ";
+    if (user_company() == 0)
+        $sql .= " sorder.inicio_obra,";
+    else 
+        $sql .= " sorder.delivery_date, ";
+
+	$sql .= " sorder.deliver_to,
+            Sum(line.unit_price*line.quantity*(1-line.discount_percent))+freight_cost AS SubTotal,
+			CAST(((Sum(line.unit_price*line.quantity*(1-line.discount_percent))+freight_cost) * 0.16) as Decimal(18,2)) AS IVA,
+            (Sum(line.unit_price*line.quantity*(1-line.discount_percent))+freight_cost) + 
+            ((Sum(line.unit_price*line.quantity*(1-line.discount_percent))+freight_cost) * 0.16) AS OrderValue,
 			sorder.type,
 			debtor.curr_code,
 			Sum(line.qty_sent) AS TotDelivered,
@@ -477,6 +514,11 @@ function get_sql_for_sales_orders_view($selected_customer, $trans_type, $trans_n
 			AND sorder.debtor_no = debtor.debtor_no
 			AND sorder.branch_code = branch.branch_code
 			AND debtor.debtor_no = branch.debtor_no";
+
+    //CCIMA cuando sea cotizacion solo mostrar las versiones 0
+    if ($onlyAvailable == TRUE){
+        $sql .= " AND sorder.version = 0 ";
+    }
 
 	if (isset($trans_no) && $trans_no != "")
 	{
@@ -535,20 +577,30 @@ function get_sql_for_sales_orders_view($selected_customer, $trans_type, $trans_n
 }
 //CCIMA Asigna el usuario al cliente
 function block_customer($user, $customer){
-    
-    $sql = "UPDATE ".TB_PREF."debtors_master SET cotizando = ".db_escape($user)." WHERE debtor_no = ".db_escape($customer);
+
+    $sql = "SELECT salesman_code FROM ".TB_PREF."salesman WHERE user_id = ".db_escape($user);
+    $result = db_query($sql);
+
+    //si existe lo cambia
+    if ($myrow[0] != null){
+        $sql = "UPDATE ".TB_PREF."cust_branch SET salesman = ".db_escape($myrow[0])." WHERE branch_code = ".db_escape($customer);
+    }
+    //$sql = "UPDATE ".TB_PREF."debtors_master SET cotizando = ".db_escape($user)." WHERE debtor_no = ".db_escape($customer);
     
     db_query($sql, "error al asignar usuario que cotiza");
 }
 //CCIMA valida si el usuario asignado al cliente es el mismo
 function cliente_asignado($user, $customer){
 
-    $sql = "SELECT cotizando FROM ".TB_PREF."debtors_master WHERE debtor_no = ".db_escape($customer);
+    $sql = "SELECT sm.user_id ".
+            " FROM ".TB_PREF."cust_branch br ".
+            " INNER JOIN ".TB_PREF."salesman sm on sm.salesman_code = br.salesman ".
+            " WHERE br.branch_code = ".db_escape($customer);
     
     $result = db_query($sql, "error al asignar usuario que cotiza");
 
     $myrow = db_fetch($result);
-
+    
     if ($myrow[0] == null){
         return true;
     }
@@ -557,6 +609,145 @@ function cliente_asignado($user, $customer){
     }
     else
         return FALSE;
+
+}
+
+function get_Ordenes_Enteradas($customer_id="", $inicio, $fin){
+    
+    $_inicio = date2sql($inicio);
+    $_fin = date2sql($fin);
+    $sql = "SELECT so.*, cu.name, me.* FROM ".TB_PREF."sales_orders so
+            INNER JOIN ".TB_PREF."debtors_master cu ON so.debtor_no = cu.debtor_no
+            INNER JOIN ".TB_PREF."mega_enterado me ON so.reference = me.reference
+            WHERE so.trans_type = 30 
+            and so.ord_date >= ".db_escape($_inicio)." 
+            and so.ord_date <= ".db_escape($_fin);
+
+    if ($customer_id != "")
+            $sql .= " and so.debtor_no = ".db_escape($customer_id);
+   
+    $result = db_query($sql,"no se pudo obtener la informacion");
+    
+    return $result;
+
+}
+
+function notifica_Orden($orden){
+    global $path_to_root, $SERVER_URI;
+
+    $sql = "DELETE FROM ".TB_PREF."mega_enterado WHERE reference = ".db_escape($orden->reference);
+    db_query($sql, "no se pudo eliminar el registro");
+
+    $sql = "INSERT INTO ".TB_PREF."mega_enterado (reference) VALUES (".db_escape($orden->reference).")";
+    db_query($sql, "no se pudo insertar el registro");
+    
+    require_once($path_to_root . "/includes/db/utilities.inc");
+    
+    //generacion de liga
+    $liga = $SERVER_URI . 'remotos/enterado.php?so=';
+    $motivoCorreo = "Notificacion de orden de MEGA";
+    $resultado = notifica_autorizacion_masiva($liga, $motivoCorreo, $orden->reference);
+    //display_alert($resultado);
+}
+
+function registraDeEnterado($campo, $reference){
+
+    $sql = "UPDATE ".TB_PREF."mega_enterado SET ".$campo."= 1 WHERE reference = ".db_escape($reference);
+    db_query($sql, "error al intentar registrar");
+    
+}
+
+function genera_folio(){
+
+    $folio = user_company() == 1 ? "C-1280-A" : "C-8380-A";
+    $sql = "select reference from ".TB_PREF."sales_orders Where trans_type = 32 order by reference DESC";
+
+    $result = db_query($sql, "no se pudo obtener el folio");
+
+    if (db_num_rows($result) >= 1)
+	{
+		$row = db_fetch_row($result);
+        $nuevoFolio = substr($row[0], 2,4);
+        $nuevoFolio = $nuevoFolio + 1;
+
+        while(strlen($nuevoFolio) < 4){
+            $nuevoFolio = "0" . $nuevoFolio;
+        }
+
+        $folio = "C-".$nuevoFolio."-A";
+		
+	}
+
+    return $folio;
+}
+
+function genera_folio_cotizacion(){
+
+    $folio = "C-0001-A";
+    $sql = "select folio from ".TB_PREF."tb_cotizador order by folio DESC";
+
+    $result = db_query($sql, "no se pudo obtener el folio");
+
+    if (db_num_rows($result) >= 1)
+	{
+		$row = db_fetch_row($result);
+        $nuevoFolio = substr($row[0], 2,4);
+        $nuevoFolio = $nuevoFolio + 1;
+
+        while(strlen($nuevoFolio) < 4){
+            $nuevoFolio = "0" . $nuevoFolio;
+        }
+
+        $folio = "C-".$nuevoFolio."-A";
+		
+	}
+
+    return $folio;
+}
+
+function genera_siguiente_folio_cotizacion($folio){
+    
+    $folio = substr($folio, 0, strlen($folio) - 1);
+    $sql = "select folio from ".TB_PREF."tb_cotizador WHERE folio like '$folio%' order by folio DESC";
+
+    $result = db_query($sql, "no se pudo obtener el folio");
+
+    if (db_num_rows($result) >= 1)
+	{
+		$row = db_fetch_row($result);
+        $letra = substr($row[0], strlen($row[0]) - 1, 1);
+        $letra = ++$letra;
+        $nuevoFolio = substr($row[0], 0, strlen($row[0])-1) . $letra;
+
+        return $nuevoFolio;
+		
+	}
+
+}
+
+function get_siguiente_folio($folio){
+
+    $folio = substr($folio, 0, strlen($folio) - 1);
+    $sql = "select reference from ".TB_PREF."sales_orders Where trans_type = 32 AND reference like '$folio%' order by reference DESC";
+    $result = db_query($sql, "no se pudo obtener el folio");
+
+    if (db_num_rows($result) >= 1)
+	{
+		$row = db_fetch_row($result);
+        $letra = substr($row[0], strlen($row[0]) - 1, 1);
+        $letra = ++$letra;
+        $nuevoFolio = substr($row[0], 0, strlen($row[0])-1) . $letra;
+
+        return $nuevoFolio;
+    }
+    
+
+}
+function set_version($folio){
+    
+    $prefijo = substr($folio, 0, strlen($folio)-1);
+    $sql = "UPDATE ".TB_PREF."sales_orders SET version = 1 WHERE reference like '$prefijo%'";
+    db_query($sql, "no se pudo inactivar ordenes");
 
 }
 ?>

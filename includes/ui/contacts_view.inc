@@ -33,7 +33,7 @@ class contacts extends simple_crud {
 
 	function list_view() {
 		br();
-
+        
 			$contacts = get_crm_persons($this->class, $this->subclass, $this->entity);
 //				check_value('show_inactive'));
 			start_table(TABLESTYLE, "width=80%");
@@ -79,6 +79,82 @@ class contacts extends simple_crud {
 //inactive_control_row($th);
 			end_table(1);
 	}
+    // CCIMA Lista para seleccionar contacto a quien refiere la cotizacion
+    function listado_cotizador($idSelected = '') {
+		br();
+        
+			$contacts = get_crm_persons($this->class, $this->subclass, $this->entity);
+//				check_value('show_inactive'));
+			start_table(TABLESTYLE, "width=80%");
+
+			$th = array(_("Full Name"),_("Reference"), _('Assignment'), _("Phone"), _("Sec Phone"), _("Fax"),
+				_("email"),  '');
+		//	inactive_control_column($th);
+
+			table_header($th);
+			$k = 0; 
+
+			$last = $myrow = db_fetch($contacts);
+
+            if ($idSelected == '')
+                $idSelected = $last[id];
+
+			while ($last)
+			{
+					
+				if ($myrow['id'] != $last['id']) {
+					alt_table_row_color($k);
+					label_cell($last["name"].' '.$last["name2"]);
+                    label_cell($last["ref"]);
+                    label_cell(implode('<br>',$description));
+					
+					
+					label_cell($last["phone"]);
+					label_cell($last["phone2"]);
+					label_cell($last["fax"]);
+					email_cell($last["email"]);
+		//	inactive_control_cell($myrow["id"], $myrow["inactive"], 'crm_contacts', 'id');
+                    
+                    $selected = $idSelected == $last[id] ? 'checked' : '';
+				 	echo('<td><input type="radio" name="radSeleccion" id="radSeleccion" '.$selected.' value="'.$last['id'].'"/></td>');
+
+					end_row();
+					$description = array();
+					$last = $myrow;
+				}
+
+				if ($myrow) {
+					$description[] = $myrow['description'];
+					$myrow = db_fetch($contacts);
+				}
+			}
+
+//inactive_control_row($th);
+			end_table();
+	}
+
+    function get_contacto_cotizado($idSelected){
+        
+        $contacts = get_crm_persons($this->class, $this->subclass, $this->entity);
+        $arreglo;
+        while($last = db_fetch($contacts))
+		{
+            if ($idSelected == $last["id"]){
+                $sql = "SELECT d.name, d.tax_id FROM ".TB_PREF."debtors_master d ".
+                " INNER JOIN ".TB_PREF."crm_contacts c ON c.entity_id = d.debtor_no WHERE ".
+                " c.person_id = ".db_escape($idSelected);
+
+                //error_log($sql);
+                $datos = db_query($sql);
+                $empresa = db_fetch($datos);
+
+                $arreglo = array($last["name"].' '.$last["name2"], $last["phone"], $last["email"], $last["ref"], $last["phone2"], $last["fax"], $empresa[0],$empresa[1], $last["address"]);
+            }
+        }
+        
+        return $arreglo;
+        
+    }
 	
 	function editor_view()
 	{
@@ -91,7 +167,7 @@ class contacts extends simple_crud {
 
 		text_row(_("First Name:"), 'name', @$this->data['name'], 35, 40);
 		text_row(_("Last Name:"), 'name2', @$this->data['name2'], 35, 40);
-		text_row(_("Reference:"), 'ref', @$this->data['ref'], 35, 40);
+		text_row(_("Sucursal:"), 'ref', @$this->data['ref'], 35, 40);
 
 		crm_category_types_list_row(_("Contact active for:"), 'assgn', @$this->data['contacts'],
 			array('subclass' => @$this->subclass,
@@ -101,13 +177,13 @@ class contacts extends simple_crud {
 
 		text_row(_("Phone:"), 'phone', @$this->data['phone'], 32, 30);
 		text_row(_("Secondary Phone Number:"), 'phone2', @$this->data['phone2'], 32, 30);
-		text_row(_("Fax Number:"), 'fax', @$this->data['fax'], 32, 30);
+		//text_row(_("Fax Number:"), 'fax', @$this->data['fax'], 32, 30);
 		email_row(_("E-mail:"), 'email', @$this->data['email'], 35, 55);
 
 		table_section(2);
 		table_section_title("&nbsp;");
 		textarea_row(_("Address:"), 'address', @$this->data['address'], 30, 4);
-		languages_list_row( _("Document Language:"), 'lang', @$this->data['lang'], _("Customer default"));
+		//languages_list_row( _("Document Language:"), 'lang', @$this->data['lang'], _("Customer default"));
 
 		textarea_row(_("Notes:"), 'notes', @$this->data['notes'], 30, 4);
 		end_outer_table(1);

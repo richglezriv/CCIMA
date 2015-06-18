@@ -11,25 +11,26 @@
 ***********************************************************************/
 
 function add_item_purchasing_data($supplier_id, $stock_id, $price,
-	$suppliers_uom, $conversion_factor, $supplier_description)
+	$suppliers_uom, $conversion_factor, $supplier_description, $descuento=0)
 {
 	$sql = "INSERT INTO ".TB_PREF."purch_data (supplier_id, stock_id, price, suppliers_uom,
-		conversion_factor, supplier_description) VALUES (";
+		conversion_factor, supplier_description,descuento) VALUES (";
 	$sql .= db_escape($supplier_id).", ".db_escape($stock_id). ", "
 		.$price . ", ".db_escape($suppliers_uom ). ", "
 		.$conversion_factor . ", "
-		.db_escape($supplier_description) . ")";
+		.db_escape($supplier_description) . ", ".db_escape($descuento).")";
 
 	db_query($sql,"The supplier purchasing details could not be added");
 }
 
 function update_item_purchasing_data($selected_id, $stock_id, $price,
-	$suppliers_uom, $conversion_factor, $supplier_description)
+	$suppliers_uom, $conversion_factor, $supplier_description, $descuento=0)
 {
 	$sql = "UPDATE ".TB_PREF."purch_data SET price=" . $price . ",
 		suppliers_uom=".db_escape($suppliers_uom) . ",
 		conversion_factor=" . $conversion_factor . ",
-		supplier_description=" . db_escape($supplier_description) . "
+		supplier_description=" . db_escape($supplier_description) . ",
+        descuento = ".db_escape($descuento)." 
 		WHERE stock_id=".db_escape($stock_id) . " AND
 		supplier_id=".db_escape($selected_id);
 	db_query($sql,"The supplier purchasing details could not be updated");

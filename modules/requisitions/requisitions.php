@@ -100,7 +100,7 @@ $result = get_all_requisitions(check_value('show_inactive'));
 start_form();
 start_table(TABLESTYLE, "width=50%");
 
-$th = array(_("RNo."), _("Point of Use"), _("Narrative"), _("Application Date"), "", "", _("Details"));
+$th = array(_("RNo."), user_company() == 0 ? "Obra" : _("Point of Use"), _("Narrative"), _("Application Date"), "", "", "");
 inactive_control_column($th);
 table_header($th);
 $k = 0;
@@ -138,13 +138,14 @@ if ($selected_id != -1)
 		$_POST['point_of_use']  = $myrow["point_of_use"];
 		$_POST['narrative']  = $myrow["narrative"];
 		$_POST['details']  = $myrow["details"];
+        
 	}
 	hidden('selected_id', $selected_id);
 } 
 
-text_row(_("Point of Use"), 'point_of_use', null, 50, 50);
+text_row(user_company() == 0 ? "Obra" : _("Point of Use"), 'point_of_use', null, 50, 50);
 text_row(_("Narrative"), 'narrative', null, 50, 50);
-textarea_row(_("Details"), 'details', null, 50, 5);
+textarea_row(user_company() == 0 ? "Observaciones" : _("Details"), 'details', null, 50, 5);
 
 end_table(1);
 

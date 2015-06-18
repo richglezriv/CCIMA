@@ -126,7 +126,12 @@ function can_process()
 		return false;
 		}
 	}
-	return true;
+
+    if (!can_adjust($adj->line_items, $_POST['StockLocation'])){
+        display_error("No puede realizar el ajuste ya que sobrepasa el porcentaje permitido de ajuste.");
+        return FALSE;
+    }
+	return TRUE;
 }
 
 //-------------------------------------------------------------------------------

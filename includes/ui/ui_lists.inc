@@ -1336,6 +1336,19 @@ function sales_types_list($name, $selected_id=null, $submit_on_change=false, $sp
 	) );
 }
 
+function sales_types_list_RENTAS($name, $selected_id=null, $submit_on_change=false, $special_option=false, $stock_id)
+{
+	//$sql = "SELECT id, sales_type, inactive FROM ".TB_PREF."sales_types";
+    $sql = "select st.* from 1_prices pr inner join 1_sales_types st on pr.sales_type_id = st.id where pr.stock_id = " . db_escape($stock_id);
+	return combo_input($name, $selected_id, $sql, 'id', 'sales_type',
+	array(
+		'spec_option' => $special_option===true ? _("All Sales Types") : $special_option,
+		'spec_id' => 0,
+		'select_submit'=> $submit_on_change,
+	//	  'async' => false,
+	) );
+}
+
 function sales_types_list_cells($label, $name, $selected_id=null, $submit_on_change=false, $special_option=false)
 {
 	if ($label != null)

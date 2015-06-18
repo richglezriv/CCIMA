@@ -68,13 +68,13 @@ function display_bom_items($selected_parent)
 	div_start('bom');
 	start_table(TABLESTYLE, "width=60%");
 	$th = array(_("Code"), _("Description"), _("Location"),
-		_("Work Centre"), _("Quantity"), _("Units"),'','');
+		_("Work Centre"), _("Quantity"), _("Units"),'ML','M2','KG','PZA','','');
 	table_header($th);
 
 	$k = 0;
 	while ($myrow = db_fetch($result))
 	{
-
+        
 		alt_table_row_color($k);
 
 		label_cell($myrow["component"]);
@@ -83,6 +83,7 @@ function display_bom_items($selected_parent)
         label_cell($myrow["WorkCentreDescription"]);
         qty_cell($myrow["quantity"], false, get_qty_dec($myrow["component"]));
         label_cell($myrow["units"]);
+        getConversionesMaterial($myrow['component'], $myrow["quantity"]);
  		edit_button_cell("Edit".$myrow['id'], _("Edit"));
  		delete_button_cell("Delete".$myrow['id'], _("Delete"));
         end_row();

@@ -77,4 +77,82 @@ function send_reorder_email($loc, $st_ids, $st_names, $st_num, $st_reorder)
 	$mail->text($msg);
 	return $mail->send();
 }
+
+function can_adjust($items, $location){
+
+    $canAdjust = TRUE;
+
+    foreach ($items as $line_item)
+	{
+        
+        $quantity = $line_item->quantity;
+        $qoh = get_qoh_on_date($line_item->stock_id, $location);
+        
+        $percentMax = ($qoh * .10);
+        if ($quantity > $percentMax){
+            $canAdjust = FALSE;
+        }
+		
+    }
+
+
+    return $canAdjust;
+}
+
+function get_horas_acumuladas($stock_id, $fecha_mantto=null){
+    $valida = TRUE;
+    if ($fecha_mantto == null){
+        $valida = FALSE;
+    }  
+    $date = date2sql($fecha_mantto);
+    $hoy = date2sql(Today());
+
+    $sql = "select sum(od.qty_sent)
+            from ".TB_PREF."sales_orders os
+            inner join ".TB_PREF."sales_order_details od on os.order_no = od.order_no
+            inner join ".TB_PREF."stock_master st on st.stock_id = od.stk_code
+            where od.trans_type = os.trans_type
+            and os.trans_type = 30 
+            and st.stock_id = ".db_escape($stock_id);
+
+    if ($valida){
+        $sql .= " and os.order_date >= ".db_escape($date)." and os.order_date <= ".db_escape($hoy);
+    }
+
+    $result = db_query($sql);
+
+    $myrow = db_fetch_row($result);
+	
+    return $myrow[0];
+}
+
+function get_FactoresConversion($stock_id){
+        $fLineales = '';
+        $fPiezas = '';
+        $fKilogramo = '';
+        $fM2 = '';
+
+        $fLineales = getFactor('fac_ML', $stock_id);
+        $fPiezas = getFactor('fac_PZA', $stock_id);
+        $fKilogramo = getFactor('fac_KG', $stock_id);
+        $fM2 = getFactor('fac_M2', $stock_id);
+
+        text_row(_("Factor ML:"), 'fac_ML', $fLineales, 5, 20);
+        text_row(_("Factor KG:"), 'fac_KG', $fKilogramo, 5, 20);
+        text_row(_("Factor PZA:"), 'fac_PZA', $fPiezas, 5, 20);
+        text_row(_("Factor M2:"), 'fac_M2', $fM2, 5, 20);
+}
+
+function getFactor($nombre, $stock_id){
+    
+    $factor = '';
+    $sql = "SELECT formula FROM 0_conversion_stock WHERE nombre = ".db_escape($nombre)." AND stock_id = ".db_escape($stock_id);    
+    $result = db_query($sql);
+    
+    $row = db_fetch_row($result);
+    $factor = $row[0] != '' ? $row[0] : '';
+    
+    return $factor;
+
+}
 ?>

@@ -24,6 +24,10 @@ class suppliers_app extends application
 			"purchasing/po_entry_items.php?NewGRN=Yes", 'SA_GRN', MENU_TRANSACTION);
 		$this->add_lapp_function(0, _("Direct &Invoice"),
 			"purchasing/po_entry_items.php?NewInvoice=Yes", 'SA_SUPPLIERINVOICE', MENU_TRANSACTION);
+        $this->add_lapp_function(0, "","");
+        $this->add_lapp_function(0, _('Requisitions Allocation'), 'modules/requisitions/requisition_allocations.php',
+				'SA_REQUISITION_ALLOCATIONS', MENU_TRANSACTION);
+
 
 		$this->add_rapp_function(0, _("&Payments to Suppliers"),
 			"purchasing/supplier_payment.php?", 'SA_SUPPLIERPAYMNT', MENU_TRANSACTION);
@@ -34,10 +38,7 @@ class suppliers_app extends application
 			"purchasing/supplier_credit.php?New=1", 'SA_SUPPLIERCREDIT', MENU_TRANSACTION);
 		$this->add_rapp_function(0, _("&Allocate Supplier Payments or Credit Notes"),
 			"purchasing/allocations/supplier_allocation_main.php?", 'SA_SUPPLIERALLOC', MENU_TRANSACTION);
-        $this->add_rapp_function(0, gettext('Requisitions Entries'), 'modules/requisitions/requisitions.php',
-					'SA_REQUISITIONS',	MENU_TRANSACTION);
-		$this->add_rapp_function(0, _('Requisitions Allocation'), 'modules/requisitions/requisition_allocations.php',
-				'SA_REQUISITION_ALLOCATIONS', MENU_TRANSACTION);
+        
 
 		$this->add_module(_("Inquiries and Reports"));
 		$this->add_lapp_function(1, _("Purchase Orders &Inquiry"),
@@ -50,6 +51,9 @@ class suppliers_app extends application
 
 		$this->add_rapp_function(1, _("Supplier and Purchasing &Reports"),
 			"reporting/reports_main.php?Class=1", 'SA_SUPPTRANSVIEW', MENU_REPORT);
+        if (user_company()== 0){
+            $this->add_rapp_function(1, 'Reporte de Compras', "purchasing/inquiry/inq_compras.php",'SA_SUPPTRANSVIEW', MENU_INQUIRY);
+        }
 
 		$this->add_module(_("Maintenance"));
 		$this->add_lapp_function(2, _("&Suppliers"),

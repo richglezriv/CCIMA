@@ -26,6 +26,7 @@ include_once($path_to_root . "/sales/includes/db/payment_db.inc");
 include_once($path_to_root . "/sales/includes/db/branches_db.inc");
 include_once($path_to_root . "/sales/includes/db/customers_db.inc");
 
+
 //----------------------------------------------------------------------------------------
 // $price in customer's currency
 // $quantity is used as is (if it's neg it's neg, if it's pos it's pos)
@@ -193,6 +194,8 @@ function get_kit_price($item_code, $currency, $sales_type_id, $factor=null,
 				$currency, $sales_type_id, $factor, $date);
 		}
 	}
+
+    
 	return $kit_price;
 }
 

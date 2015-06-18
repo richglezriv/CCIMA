@@ -232,7 +232,8 @@ function display_po_items(&$order, $editable=true)
 
    	$th = array(_("Item Code"), _("Item Description"), _("Quantity"),
 		_("Received"), _("Unit"),
-   		_("Required Delivery Date"), $order->tax_included ? _("Price after Tax") : _("Price before Tax"), _("Line Total"), "");
+   		_("Required Delivery Date"), "Descuento", $order->tax_included ? _("Price after Tax") : _("Price before Tax"), 
+        _("Line Total"), "");
 	if ($order->trans_type != ST_PURCHORDER)
 		array_remove($th, 5);
 		
@@ -255,6 +256,7 @@ function display_po_items(&$order, $editable=true)
     		label_cell($po_line->units);
 			if ($order->trans_type == ST_PURCHORDER)
         	    label_cell($po_line->req_del_date);
+            amount_decimal_cell($po_line->discount);
     		amount_decimal_cell($po_line->price);
             amount_cell($line_total);
 
@@ -287,8 +289,9 @@ function display_po_items(&$order, $editable=true)
 
 	$taxes = $order->get_taxes(input_num('freight_cost'));
 	
-	$tax_total = display_edit_tax_items($taxes, $colspan, $order->tax_included, 2, $order->trans_type==ST_SUPPINVOICE);
-
+    $tax_total = display_edit_tax_items($taxes, $colspan, $order->tax_included, 2, $order->trans_type==ST_SUPPINVOICE);
+    //$tax_total = display_edit_tax_items($taxes, $colspan, $order->tax_included, 2, TRUE);
+    error_log('impuesto ' . $colspan);
 	$display_total = price_format(($total + input_num('freight_cost') + $tax_total));
 
 	start_row();
@@ -411,6 +414,7 @@ function po_item_controls(&$order, &$rowcounter, $line_no=-1)
    		$_POST['qty'] =	number_format2(get_purchase_conversion_factor ($order->supplier_id, $_POST['stock_id']), $dec);
 		//$_POST['price'] = price_format(get_purchase_price ($order->supplier_id, $_POST['stock_id']));
 		$_POST['price'] = price_decimal_format(get_purchase_price ($order->supplier_id, $_POST['stock_id']), $dec2);
+        $_POST['descuento'] = price_decimal_format(get_descuento_proveedor($order->supplier_id, $_POST['stock_id']), $dec2);
 		if ($order->trans_type == ST_PURCHORDER)
 			$_POST['req_del_date'] = add_days(Today(), $SysPrefs->default_delivery_required_by());
 		$qty_rcvd = '';
@@ -422,13 +426,17 @@ function po_item_controls(&$order, &$rowcounter, $line_no=-1)
 	label_cell($_POST['units'], '', 'units');
 	if ($order->trans_type == ST_PURCHORDER)
 		date_cells(null, 'req_del_date', '', null, 0, 0, 0);
+    
+    //descuento
+    amount_cells_desc(null, 'descuento', null, null, null, $dec2);
+
 	if ($qty_rcvd > 0)
 	{
    		amount_decimal_cell($_POST['price']);
    		hidden('price', $_POST['price']);
    	}	
    	else	
-		amount_cells(null, 'price', null, null, null, $dec2);
+		amount_cells(null, 'price', null, null, null, $dec2, TRUE);
 
 	//$line_total = $_POST['qty'] * $_POST['price'] * (1 - $_POST['Disc'] / 100);
 	$line_total = round(input_num('qty') * input_num('price'),  user_price_dec());

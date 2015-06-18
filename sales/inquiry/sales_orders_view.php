@@ -100,13 +100,22 @@ else
 function check_overdue($row)
 {
 	global $trans_type;
+
 	if ($trans_type == ST_SALESQUOTE)
-		return (date1_greater_date2(Today(), sql2date($row['delivery_date'])));
+		if (user_company() == 0)
+            return (date1_greater_date2(Today(), sql2date($row['inicio_obra'])));
+        else 
+            return (date1_greater_date2(Today(), sql2date($row['delivery_date'])));
 	else
-		return ($row['type'] == 0
-			&& date1_greater_date2(Today(), sql2date($row['delivery_date']))
-			&& ($row['TotDelivered'] < $row['TotQuantity']));
-}
+        if (user_company() == 0)
+		    return ($row['type'] == 0
+			    && date1_greater_date2(Today(), sql2date($row['inicio_obra']))
+			    && ($row['TotDelivered'] < $row['TotQuantity']));
+        else 
+            return ($row['type'] == 0
+			    && date1_greater_date2(Today(), sql2date($row['delivery_date']))
+			    && ($row['TotDelivered'] < $row['TotQuantity']));
+}   
 
 function view_link($dummy, $order_no)
 {
@@ -117,7 +126,28 @@ function view_link($dummy, $order_no)
 function prt_link($row)
 {
 	global $trans_type;
-	return print_document_link($row['order_no'], _("Print"), true, $trans_type, ICON_PRINT);
+    if (user_company() == 1){
+        $uri = '';
+        if ($trans_type == ST_SALESORDER)
+            $uri =  $path_to_root.'/erp_ccima/sales/gcap/orden_servicio.php?PARAM_0='.$row['order_no'];
+        else if ($trans_type == ST_SALESQUOTE)
+            $uri =  $path_to_root.'/erp_ccima/sales/gcap/cotizacion.php?PARAM_0='.$row['order_no'];
+
+        return '<a href="'.$uri.'" target="_blank">'.set_icon('print.png').'</a>';
+        
+    }
+    else{
+         if ($trans_type == ST_SALESQUOTE)
+            return print_document_link($row['order_no'], _("Print"), true, $trans_type, ICON_PRINT);
+        else if ($trans_type == ST_SALESORDER){
+            $uri =  $path_to_root.'/erp_ccima/sales/gcap/contratoConst.php?PARAM_0='.$row['order_no'];
+            return '<a href="'.$uri.'" target="_blank">'.set_icon('print.png').'</a>';
+        }
+            
+
+        
+    }
+	
 }
 
 function edit_link($row) 
@@ -244,6 +274,7 @@ if (!@$_GET['popup'])
 	customer_list_cells(_("Select a customer: "), 'customer_id', null, true, true);
 if ($trans_type == ST_SALESQUOTE)
 	check_cells(_("Show All:"), 'show_all');
+   
 
 submit_cells('SearchOrders', _("Search"),'',_('Select documents'), 'default');
 hidden('order_view_mode', $_POST['order_view_mode']);
@@ -255,36 +286,45 @@ end_table(1);
 //---------------------------------------------------------------------------------------------
 //	Orders inquiry table
 //
+if ($trans_type == ST_SALESQUOTE){
+    $onlyAvailable = $_POST['show_all'] == 1 ? FALSE : TRUE;
+}
+else{
+    $onlyAvailable = FALSE;
+}
 $sql = get_sql_for_sales_orders_view($selected_customer, $trans_type, $_POST['OrderNumber'], $_POST['order_view_mode'],
-	@$selected_stock_item, @$_POST['OrdersAfterDate'], @$_POST['OrdersToDate'], @$_POST['OrderReference'], $_POST['StockLocation'], $_POST['customer_id']);
+	@$selected_stock_item, @$_POST['OrdersAfterDate'], @$_POST['OrdersToDate'], @$_POST['OrderReference'], $_POST['StockLocation'], $_POST['customer_id'], $onlyAvailable);
+
 
 if ($trans_type == ST_SALESORDER)
 	$cols = array(
-		_("Order #") => array('fun'=>'view_link'),
+		_("Id") => array('fun'=>'view_link'),
+        _("Customer") => array('type' => 'debtor.name' , 'ord' => '') ,
 		_("Ref") => array('type' => 'sorder.reference', 'ord' => '') ,
-		_("Customer") => array('type' => 'debtor.name' , 'ord' => '') ,
-		_("Branch"), 
-		_("Cust Order Ref"),
+        _("Obra"),
 		_("Order Date") => array('type' =>  'date', 'ord' => ''),
 		_("Required By") =>array('type'=>'date', 'ord'=>''),
 		_("Delivery To"), 
+        _("Subtotal") => array ('type' => 'amount'),
+        _("IVA") => array ('type' => 'amount'),
 		_("Order Total") => array('type'=>'amount', 'ord'=>''),
 		'Type' => 'skip',
-		_("Currency") => array('align'=>'center')
+		_("Currency") => 'skip'
 	);
 else
 	$cols = array(
-		_("Quote #") => array('fun'=>'view_link'),
+		_("Id") => array('fun'=>'view_link'),
+        _("Customer"),
 		_("Ref"),
-		_("Customer"),
-		_("Branch"), 
-		_("Cust Order Ref"),
+        _("Obra"),
 		_("Quote Date") => 'date',
-		_("Valid until") =>array('type'=>'date', 'ord'=>''),
+		_("Required By") => 'date',
 		_("Delivery To"), 
+        _("Subtotal") => array ('type' => 'amount'),
+        _("IVA") => array ('type' => 'amount'),
 		_("Quote Total") => array('type'=>'amount', 'ord'=>''),
 		'Type' => 'skip',
-		_("Currency") => array('align'=>'center')
+		_("Currency") => 'skip'
 	);
 if ($_POST['order_view_mode'] == 'OutstandingOnly') {
 	//array_substitute($cols, 4, 1, _("Cust Order Ref"));

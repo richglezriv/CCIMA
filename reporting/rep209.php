@@ -206,6 +206,7 @@ function print_po()
 		$rep->TextCol(3, 6, _("TOTAL PO"), - 2);
 		$rep->TextCol(6, 7,	$DisplayTotal, -2);
 		$words = price_in_words($SubTotal, ST_PURCHORDER);
+        
 		if ($words != "")
 		{
 			$rep->NewLine(1);

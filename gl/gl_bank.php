@@ -348,8 +348,9 @@ function handle_update_item()
     if($_POST['UpdateItem'] != "" && check_item_data())
     {
     	$_SESSION['pay_items']->update_gl_item($_POST['Index'], $_POST['code_id'], 
-    	    $_POST['dimension_id'], $_POST['dimension2_id'], $amount , $_POST['LineMemo']);
+    	    $_POST['dimension_id'], $_POST['dimension2_id'], $amount , $_POST['LineMemo'], NULL,$_POST['FormaPago']);
     }
+    
 	line_start_focus();
 }
 
@@ -370,7 +371,7 @@ function handle_new_item()
 	$amount = ($_SESSION['pay_items']->trans_type==ST_BANKPAYMENT ? 1:-1) * input_num('amount');
 
 	$_SESSION['pay_items']->add_gl_item($_POST['code_id'], $_POST['dimension_id'],
-		$_POST['dimension2_id'], $amount, $_POST['LineMemo']);
+		$_POST['dimension2_id'], $amount, $_POST['LineMemo'], NULL, $_POST['FormaPago']);
 	line_start_focus();
 }
 //-----------------------------------------------------------------------------------------------

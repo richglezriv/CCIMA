@@ -223,8 +223,10 @@ $cols = array(
 	_("Customer") => array('ord'=>''), 
 	_("Branch") => array('ord'=>''), 
 	_("Currency") => array('align'=>'center'),
-	_("Debit") => array('align'=>'right', 'fun'=>'fmt_debit'), 
-	_("Credit") => array('align'=>'right','insert'=>true, 'fun'=>'fmt_credit'), 
+    _("SubTotal"),
+    _("IVA"),
+    _("Total") => array('align'=>'right', 'fun'=>'fmt_debit'), 
+	_("Acreditado") => array('align'=>'right','insert'=>true, 'fun'=>'fmt_credit'), 
 	_("RB") => array('align'=>'right', 'type'=>'amount'),
 		array('insert'=>true, 'fun'=>'gl_view'),
 		array('insert'=>true, 'fun'=>'credit_link'),
@@ -235,10 +237,12 @@ $cols = array(
 
 if ($_POST['customer_id'] != ALL_TEXT) {
 	$cols[_("Customer")] = 'skip';
-	$cols[_("Currency")] = 'skip';
+	
 }
 if ($_POST['filterType'] == ALL_TEXT)
 	$cols[_("RB")] = 'skip';
+
+$cols[_("Currency")] = 'skip';
 
 $table =& new_db_pager('trans_tbl', $sql, $cols);
 $table->set_marker('check_overdue', _("Marked items are overdue."));

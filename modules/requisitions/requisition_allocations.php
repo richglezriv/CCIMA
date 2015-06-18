@@ -21,17 +21,46 @@ include_once($path_to_root . "/includes/ui.inc");
 include_once($path_to_root . "/includes/ui/ui_lists.inc");
 
 simple_page_mode(true);
-//-----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
+if ($_POST['btnGenerar'] == 'Generar Ordenes de Compra'){
+        
+        $array = array('valor');
+        $indice = 0;
+        if(!empty($_POST['chkGenerar'])) {
+            foreach($_POST['chkGenerar'] as $check) {
+                    /**
+                    $array[$indice] = $check;
+                    error_log('vale'.$check);
+                    $indice += 1;
+                    **/
+                    if (puede_procesar($check)){
+                            if (generate_po($check))
+			                    display_notification(_("Purchase orders has been generated."));
+		                    else
+			                    display_error(_("Purchase orders generation failed."));
+                    }
+                    else {
+                        display_warning("No puede procesar la orden de compra ya que excede el monto m&aacute;ximo, se ha solicitado la autorizaci&oacute;n correspondiente");
+                    }
+                    
+            }
+        }
+
+        
+}
+
 if(isset($_GET['po'])) {
 	if($_GET['po'] == 'yes') {
+       
+
         //CCIMA validar el monto maximo para procesar requisicion
         if (puede_procesar()){
-                
+            /**
 		    if (generate_po())
 			    display_notification(_("Purchase orders has been generated."));
 		    else
 			    display_error(_("Purchase orders generation failed."));
-            
+            **/
         }
         else 
         {
@@ -88,14 +117,19 @@ $result = get_open_requisition_details();
 start_form();
 start_table(TABLESTYLE, "width=80%");
 
-$th = array(_("RNo."), _("Point of Use"), _("Request Date"),_("Item Code"), _("Item Name"), _("Purpose"), _("Quantity"), _("Price"),  _("Supplier"), "");
+$th = array("&nbsp;",_("RNo."), _("Point of Use"), _("Request Date"),_("Item Code"), _("Item Name"), _("Purpose"), _("Quantity"), _("Price"),  _("Supplier"), "");
 
 table_header($th);
 $k = 0;
+$indice = 0;
+$idAnterior = 'Z';
 while ($myrow = db_fetch($result)) 
 {
 	alt_table_row_color($k);	
-
+    if ($idAnterior != $myrow['requisition_id'])
+        echo '<td><input type="checkbox" name="chkGenerar['.$indice.']" id="chkGenerar['.$indice.']" value="'.$myrow['requisition_id'].'" /></td>';
+    else
+        echo '<td>&nbsp;</td>';
 	label_cell($myrow["requisition_id"]);
 	label_cell($myrow["point_of_use"]);
 	label_cell(sql2date($myrow["application_date"]));
@@ -109,6 +143,9 @@ while ($myrow = db_fetch($result))
  	edit_button_cell("Edit".$myrow['requisition_detail_id'], _("Edit"));
 
 	end_row();
+    
+    $indice += 1;
+    $idAnterior = $myrow['requisition_id'];
 }
 end_table(1);
 
@@ -144,11 +181,11 @@ amount_row(_("Price"), 'price', null, null, null, 2);
 end_table(1);
 
 submit_add_or_update_center($selected_id == -1, '', 'both');
-
+echo "</br><div align='center'><input type='submit' value='Generar Ordenes de Compra' name='btnGenerar' id='btnGenerar' class='ajaxsubmit' /></div>";
 end_form();
 
 //echo "<div align='center'><input type='checkbox' value='1' >&nbsp;Autorizado";
-echo "<div align='center'><a href='requisition_allocations.php?po=yes'>"._("Generate Purchase Orders")."</a></div>\n";
+//echo "<div align='center'><a href='requisition_allocations.php?po=yes'>"._("Generate Purchase Orders")."</a></div>\n";
 //------------------------------------------------------------------------------------
 
 end_page();

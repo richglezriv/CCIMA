@@ -65,8 +65,11 @@ class Cpdf extends FPDI {
 
 	function Cpdf($pageSize='A4', $lang=null, $pageOrientation='P')
 	{
+    
 		$this->TCPDF($pageOrientation, 'pt', $pageSize);//, $uni, $enc);
+        
 		$this->SetLang($lang);
+        
 		$this->setPrintHeader(false);
 		$this->setPrintFooter(false);
 		$this->setPDFVersion("1.3");
@@ -80,13 +83,13 @@ class Cpdf extends FPDI {
 	function SetLang($code=null) 
 	{
 		global $installed_languages, $dflt_lang, $path_to_root, $local_path_to_root, $GetText;
-
+        
 		if (!$code)
 			$code = $dflt_lang;
 
 		$lang = array_search_value($code, $installed_languages, 'code');
 		$GetText->set_language($lang['code'], strtoupper($lang['encoding']));
-
+        
 		// $local_path_to_root is  set inside find_custom_file.
 		// Select extension domain if po file is provided
 		// otherwise use global translation.
@@ -95,8 +98,8 @@ class Cpdf extends FPDI {
 		else
 			$GetText->add_domain($lang['code'], $path_to_root . "/lang", @$lang['version']);
 		// re-read translated sys names.
-		include($path_to_root.'/includes/sysnames.inc');
-
+        include($path_to_root.'/includes/sysnames.inc');
+        
 		$l = array('a_meta_charset' => strtoupper($lang['encoding']), 
 			'a_meta_dir' => @$lang['rtl'] ? 'rtl' : 'ltr',
 	 		'a_meta_language' => $code, 'w_page' => 'page');

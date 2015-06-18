@@ -96,21 +96,21 @@ function get_area_name($id)
 }
 
 function add_salesman($salesman_name, $salesman_phone, $salesman_fax,
-	$salesman_email, $provision, $break_pt, $provision2)
+	$salesman_email, $provision, $break_pt, $provision2, $user_id=null, $initials)
 {
 	$sql = "INSERT INTO ".TB_PREF."salesman (salesman_name, salesman_phone, salesman_fax, salesman_email,
-		provision, break_pt, provision2)
+		provision, break_pt, provision2, user_id, initials)
 		VALUES (".db_escape($salesman_name) . ", "
 		  .db_escape($salesman_phone) . ", "
 		  .db_escape($salesman_fax) . ", "
 		  .db_escape($salesman_email) . ", ".
 		$provision.", ".$break_pt.", "
-		.$provision2.")";
+		.$provision2.",".db_escape($user_id).",".db_escape($initials).")";
    	db_query($sql,"The insert of the sales person failed");
 }
 
 function update_salesman($selected_id, $salesman_name, $salesman_phone, $salesman_fax,
-	$salesman_email, $provision, $break_pt, $provision2)
+	$salesman_email, $provision, $break_pt, $provision2, $user_id=null, $initials)
 {
 	$sql = "UPDATE ".TB_PREF."salesman SET salesman_name=".db_escape($salesman_name) . ",
 		salesman_phone=".db_escape($salesman_phone) . ",
@@ -118,7 +118,9 @@ function update_salesman($selected_id, $salesman_name, $salesman_phone, $salesma
 		salesman_email=".db_escape($salesman_email) . ",
 		provision=".$provision.",
 		break_pt=".$break_pt.",
-		provision2=".$provision2."
+		provision2=".$provision2.", 
+        user_id=".db_escape($user_id).",
+        initials=".db_escape($initials)."  
 		WHERE salesman_code = ".db_escape($selected_id);
    	db_query($sql,"The update of the sales person failed");
 }
